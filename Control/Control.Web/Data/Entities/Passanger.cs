@@ -5,6 +5,9 @@
     public class Passanger
     {
         public int PassangerId { get; set; }
+
+        [Required]
+        [MaxLength(4)]
         public string Flight { get; set; }
 
         public int Adult { get; set; }
