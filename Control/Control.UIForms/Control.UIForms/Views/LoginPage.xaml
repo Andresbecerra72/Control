@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Control.UIForms.Views.LoginPage"
+             BindingContext="{Binding Main,Source={StaticResource Locator}}"
+             Title="Login">  <!--este es el vinculo Binding que gobierna toda la pagina desde MainViewModel -->
+    <ContentPage.Content>
+        <ScrollView
+            BindingContext="{Binding Login}"><!--este es el vinculo del objeto ScrollView con el objeto Login de loginViewModel -->
+            <StackLayout
+                Padding="10">
+                <Label 
+                    Text="Usuario:">
+                </Label>
+                <Entry
+                    Placeholder="Enter User"
+                    Text="{Binding Usuario}"><!--este es el vinculo del objeto Entry con la variable Usuario en el loginViewModel -->
+                </Entry>
+                <Label 
+                    Text="Password:">
+                </Label>
+                <Entry
+                    IsPassword="True"
+                    Placeholder="Enter Password"
+                    Text="{Binding Password}"> <!--este es el vinculo del objeto Entry con la variable Password en el loginViewModel -->
+                </Entry>
+                <Button
+                    Command="{Binding LoginCommand}"
+                    Text="Login">        <!--este es el vinculo del objeto LoginCommand para controlar la accion del Boton en el loginViewModel -->
+
+                </Button>
+
+            </StackLayout>
+        </ScrollView>
+       
+    </ContentPage.Content>
+</ContentPage>
