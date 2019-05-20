@@ -1,0 +1,54 @@
+﻿@model Control.Web.Data.Entities.Passanger
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Passanger</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Flight)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Flight)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Adult)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Adult)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Child)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Child)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Infant)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Infant)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PublishOn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PublishOn)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.PassangerId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

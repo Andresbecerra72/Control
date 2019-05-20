@@ -16,39 +16,51 @@ using Microsoft.Extensions.Logging;
 
 namespace Control.Web
 {
-
+          
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
 
-        public IConfigurationRoot Configuration { get; }
+        public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.  
-        public void ConfigureServices(IServiceCollection services)
-        {
-            // Add framework services.  
-            services.AddMvc();
-            services.Add(new ServiceDescriptor(typeof(DataContext), new DataContext(Configuration.GetConnectionString("DefaultConnection"))));
+        // This method gets called by the runtime. Use this method to add services to the container.
+                               
+            //*******************
+            public void ConfigureServices(IServiceCollection services)
+            {
+
+            // Add framework services.           
+            services.AddDbContext<DataContext>(cfg =>
+            {
+                //**esta es la inyeccion de la conexion a base de datos del archivo appsetting.json
+                cfg.UseMySql(this.Configuration.GetConnectionString("DefaultConnection"));
+
+
+            });
+
+
+            //****************
+
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.  
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
             }
             else
             {
@@ -56,6 +68,7 @@ namespace Control.Web
             }
 
             app.UseStaticFiles();
+            app.UseCookiePolicy();
 
             app.UseMvc(routes =>
             {
@@ -68,44 +81,39 @@ namespace Control.Web
 }
 
 
-
+///***************************
 //    public class Startup
 //    {
-//        public Startup(IConfiguration configuration)
+//        public Startup(IHostingEnvironment env)
 //        {
-//            Configuration = configuration;
+//            var builder = new ConfigurationBuilder()
+//                .SetBasePath(env.ContentRootPath)
+//                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+//                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+//                .AddEnvironmentVariables();
+//            Configuration = builder.Build();
 //        }
 
-//        public IConfiguration Configuration { get; }
+//        public IConfigurationRoot Configuration { get; }
 
-//        // This method gets called by the runtime. Use this method to add services to the container.
+//        // This method gets called by the runtime. Use this method to add services to the container.  
 //        public void ConfigureServices(IServiceCollection services)
 //        {
-//            //**esta es la inyeccion de la conexion a base de datos del archivo appsetting.json
-//            services.AddDbContext<DataContext>(cfg =>
-//            {
-//                cfg.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-
-
-//            });
-
-//            services.Configure<CookiePolicyOptions>(options =>
-//            {
-//                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-//                options.CheckConsentNeeded = context => true;
-//                options.MinimumSameSitePolicy = SameSiteMode.None;
-//            });
-
-
-//            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+//            // Add framework services.  
+//            services.AddMvc();
+//            services.Add(new ServiceDescriptor(typeof(DataContext), new DataContext(Configuration.GetConnectionString("DefaultConnection"))));
 //        }
 
-//        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-//        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+//        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.  
+//        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
 //        {
+//            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+//            loggerFactory.AddDebug();
+
 //            if (env.IsDevelopment())
 //            {
 //                app.UseDeveloperExceptionPage();
+//                app.UseBrowserLink();
 //            }
 //            else
 //            {
@@ -113,7 +121,6 @@ namespace Control.Web
 //            }
 
 //            app.UseStaticFiles();
-//            app.UseCookiePolicy();
 
 //            app.UseMvc(routes =>
 //            {
@@ -123,4 +130,4 @@ namespace Control.Web
 //            });
 //        }
 //    }
-//}
+//}  
