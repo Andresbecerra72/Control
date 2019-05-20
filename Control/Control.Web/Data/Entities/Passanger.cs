@@ -2,8 +2,10 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using Data;
     public class Passanger
     {
+        private DataContext context;
         public int PassangerId { get; set; }
 
         [Required]

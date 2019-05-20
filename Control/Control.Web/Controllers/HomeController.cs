@@ -24,7 +24,7 @@ namespace Control.Web.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Satena es Colombia.";
 
             return View();
         }

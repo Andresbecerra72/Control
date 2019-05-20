@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Control.Web.Data.Entities.Passanger>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PassangerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Flight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adult)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Child)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Infant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PublishOn)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PassangerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Flight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adult)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Child)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Infant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublishOn)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
