@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Control.Web
 {
-    public class Program
+    public class Program   //TODO: **pendiente codigo para que llene la base de datos con el alimentador SeedDB
     {
         public static void Main(string[] args) //por aqui arranca la aplicacion WEB
         {

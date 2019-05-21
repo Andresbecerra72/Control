@@ -3,14 +3,16 @@ using System;
 using Control.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Control.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20190521160227_Users")]
+    partial class Users
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,7 +21,7 @@ namespace Control.Web.Migrations
 
             modelBuilder.Entity("Control.Web.Data.Entities.Passanger", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("PassangerId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("Adult");
@@ -38,7 +40,7 @@ namespace Control.Web.Migrations
 
                     b.Property<string>("UserId");
 
-                    b.HasKey("Id");
+                    b.HasKey("PassangerId");
 
                     b.HasIndex("UserId");
 

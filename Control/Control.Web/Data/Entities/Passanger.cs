@@ -8,10 +8,10 @@
     using MySql.Data.MySqlClient;
     using Newtonsoft.Json;
 
-    public class Passanger
+    public class Passanger: IEntity //hereda la clase IEntity.. para obligar a las tablas a tener id
     {
         //private DataContext context;
-        public int PassangerId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(4, ErrorMessage = "The field {0} only can contain {1} characters")]
@@ -27,6 +27,8 @@
 
         [Display(Name = "Fecha")]
         public DateTime PublishOn { get; set; }
+
+        public User User { get; set; }//relacion de usuarios con los datos reportados
 
                      
     }

@@ -1,39 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Control.Web.Data;
-using Control.Web.Data.Entities;
-
-namespace Control.Web.Controllers
+﻿namespace Control.Web.Controllers
 {
+    using Data;
+    using Data.Entities;
+    using Helpers;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using System.Threading.Tasks;
+
+
     public class PassangersController : Controller
     {
-        private readonly IRepository repository;//esta es la coneccion al repository para que modifique la base de datos por medio del repositorio
+        private readonly IPassangerRepository passangerRepository;//esta es la coneccion al repository para que modifique la base de datos por medio del repositorio
+        private readonly IUserHelper userHelper;//esta es la conexion a las tablas de usuario
 
-        public PassangersController(IRepository repository)
+        public PassangersController(IPassangerRepository passangerRepository, IUserHelper userHelper)
         {
-            this.repository = repository;//inyeccion del repositorio para la conexion a BD
+            this.passangerRepository = passangerRepository;//inyeccion del repositorio para la conexion a BD
+            this.userHelper = userHelper;
+
         }
 
         // GET: Passangers
         public IActionResult Index()
         {
-            return View(this.repository.GetProducts());//llama del repositorio el metodo getProducts
+            return View(this.passangerRepository.GetAll());//llama del repositorio el metodo getProducts
         }
 
         // GET: Passangers/Details/5
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var passanger = this.repository.GetProduct(id.Value);//se pasa el valor del repositorio
+            var passanger = await this.passangerRepository.GetByIdAsync(id.Value);//se pasa el valor del repositorio
             if (passanger == null)
             {
                 return NotFound();
@@ -55,22 +56,22 @@ namespace Control.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                this.repository.AddProduct(passanger);
-                await this.repository.SaveAllAsync();//salva los cambios en la base de datos pormedio del repositorio
+                passanger.User = await this.userHelper.GetUserByEmailAsync("andres.becerra@satena.com");//TODO:****pendiente por cambio por usuario logueado
+                await this.passangerRepository.CreateAsync(passanger);//salva los cambios en la base de datos pormedio del repositorio
                 return RedirectToAction(nameof(Index));
             }
             return View(passanger);
         }
 
         // GET: Passangers/Edit/5
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var passanger = this.repository.GetProduct(id.Value);//consulta el vuelo que va a editar
+            var passanger =  await this.passangerRepository.GetByIdAsync(id.Value);//consulta el vuelo que va a editar
             if (passanger == null)
             {
                 return NotFound();
@@ -83,17 +84,18 @@ namespace Control.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Passanger passanger)
         {
-          
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    this.repository.UpdateProduct(passanger);//actualiza los cambios del vueloeeditado
-                    await this.repository.SaveAllAsync();//salvalos cambios en la base de datos
+                    //actualiza los cambios del vuelo editado
+                    passanger.User = await this.userHelper.GetUserByEmailAsync("andres.becerra@satena.com");//TODO:****pendiente por cambio por usuario logueado
+                    await this.passangerRepository.UpdateAsync(passanger);//salvalos cambios en la base de datos
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!this.repository.ProductExists(passanger.PassangerId))//valida si el vuelo existe
+                    if (!await this.passangerRepository.ExistAsync(passanger.Id))//valida si el vuelo existe
                     {
                         return NotFound();
                     }
@@ -108,14 +110,14 @@ namespace Control.Web.Controllers
         }
 
         // GET: Passangers/Delete/5
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var passanger = this.repository.GetProduct(id.Value);//consulta el vuelo que va a eliminar
+            var passanger = await this.passangerRepository.GetByIdAsync(id.Value);//consulta el vuelo que va a eliminar
             if (passanger == null)
             {
                 return NotFound();
@@ -129,12 +131,11 @@ namespace Control.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var passanger = this.repository.GetProduct(id);//pasa el dato
-            this.repository.RemoveProduct(passanger);//lo elimina
-            await this.repository.SaveAllAsync();//y salva el cambio en la base de datos
+            var passanger = await this.passangerRepository.GetByIdAsync(id);//pasa el dato
+            await this.passangerRepository.DeleteAsync(passanger);//y salva el cambio en la base de datos
             return RedirectToAction(nameof(Index));
         }
 
-        
+
     }
 }
