@@ -41,6 +41,11 @@ namespace Control.Web
 
             });
 
+            //inyeccion del alimentador
+            services.AddTransient<SeedDB>();//AddTrasient se usa y se destruye
+            //inyeccion del repositorio
+            services.AddScoped<IRepository, Repository>();//AddScoped se usa y mantiene hasta cerrar el proyecto
+
 
             //****************
 

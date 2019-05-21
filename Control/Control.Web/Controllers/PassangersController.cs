@@ -12,29 +12,28 @@ namespace Control.Web.Controllers
 {
     public class PassangersController : Controller
     {
-        private readonly DataContext _context;
+        private readonly IRepository repository;//esta es la coneccion al repository para que modifique la base de datos por medio del repositorio
 
-        public PassangersController(DataContext context)
+        public PassangersController(IRepository repository)
         {
-            _context = context;
+            this.repository = repository;//inyeccion del repositorio para la conexion a BD
         }
 
         // GET: Passangers
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Passangers.ToListAsync());
+            return View(this.repository.GetProducts());//llama del repositorio el metodo getProducts
         }
 
         // GET: Passangers/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var passanger = await _context.Passangers
-                .FirstOrDefaultAsync(m => m.PassangerId == id);
+            var passanger = this.repository.GetProduct(id.Value);//se pasa el valor del repositorio
             if (passanger == null)
             {
                 return NotFound();
@@ -50,30 +49,28 @@ namespace Control.Web.Controllers
         }
 
         // POST: Passangers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PassangerId,Flight,Adult,Child,Infant,Total,PublishOn")] Passanger passanger)
+        public async Task<IActionResult> Create(Passanger passanger)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(passanger);
-                await _context.SaveChangesAsync();
+                this.repository.AddProduct(passanger);
+                await this.repository.SaveAllAsync();//salva los cambios en la base de datos pormedio del repositorio
                 return RedirectToAction(nameof(Index));
             }
             return View(passanger);
         }
 
         // GET: Passangers/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var passanger = await _context.Passangers.FindAsync(id);
+            var passanger = this.repository.GetProduct(id.Value);//consulta el vuelo que va a editar
             if (passanger == null)
             {
                 return NotFound();
@@ -82,27 +79,21 @@ namespace Control.Web.Controllers
         }
 
         // POST: Passangers/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PassangerId,Flight,Adult,Child,Infant,Total,PublishOn")] Passanger passanger)
+        public async Task<IActionResult> Edit(Passanger passanger)
         {
-            if (id != passanger.PassangerId)
-            {
-                return NotFound();
-            }
-
+          
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(passanger);
-                    await _context.SaveChangesAsync();
+                    this.repository.UpdateProduct(passanger);//actualiza los cambios del vueloeeditado
+                    await this.repository.SaveAllAsync();//salvalos cambios en la base de datos
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PassangerExists(passanger.PassangerId))
+                    if (!this.repository.ProductExists(passanger.PassangerId))//valida si el vuelo existe
                     {
                         return NotFound();
                     }
@@ -117,15 +108,14 @@ namespace Control.Web.Controllers
         }
 
         // GET: Passangers/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var passanger = await _context.Passangers
-                .FirstOrDefaultAsync(m => m.PassangerId == id);
+            var passanger = this.repository.GetProduct(id.Value);//consulta el vuelo que va a eliminar
             if (passanger == null)
             {
                 return NotFound();
@@ -139,15 +129,12 @@ namespace Control.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var passanger = await _context.Passangers.FindAsync(id);
-            _context.Passangers.Remove(passanger);
-            await _context.SaveChangesAsync();
+            var passanger = this.repository.GetProduct(id);//pasa el dato
+            this.repository.RemoveProduct(passanger);//lo elimina
+            await this.repository.SaveAllAsync();//y salva el cambio en la base de datos
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PassangerExists(int id)
-        {
-            return _context.Passangers.Any(e => e.PassangerId == id);
-        }
+        
     }
 }

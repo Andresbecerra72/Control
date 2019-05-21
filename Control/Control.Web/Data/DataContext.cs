@@ -1,10 +1,7 @@
 ﻿namespace Control.Web.Data
 {
-    using System;
-    using System.Collections.Generic;
     using Control.Web.Data.Entities;
     using Microsoft.EntityFrameworkCore;
-    using MySql.Data.MySqlClient;
 
 
     public class DataContext : DbContext

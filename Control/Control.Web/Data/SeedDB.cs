@@ -1,10 +1,9 @@
 ﻿namespace Control.Web.Data
 {
+    using Entities;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Entities;
     //esta clase es el alimentador de la base de datos cundo esta vacia ***pendiente modificar startp y program
     public class SeedDB
     {
@@ -39,12 +38,12 @@
                 Child = this.random.Next(10),
                 Infant = this.random.Next(10),
                 Total = this.random.Next(10),
-                PublishOn =DateTime.Now
+                PublishOn = DateTime.Now
             });
-            
+
         }
 
-       
+
 
     }
 }
