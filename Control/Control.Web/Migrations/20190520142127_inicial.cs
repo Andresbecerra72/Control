@@ -12,7 +12,7 @@ namespace Control.Web.Migrations
                 name: "Passangers",
                 columns: table => new
                 {
-                    PassangerId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Flight = table.Column<string>(maxLength: 4, nullable: false),
                     Adult = table.Column<int>(nullable: false),
@@ -23,7 +23,7 @@ namespace Control.Web.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Passangers", x => x.PassangerId);
+                    table.PrimaryKey("PK_Passangers", x => x.Id);
                 });
         }
 
