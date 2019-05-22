@@ -15,6 +15,7 @@
             this.context = context;
         }
 
+        //este es el codigo para el CRUD general
         public IQueryable<T> GetAll()
         {
             return this.context.Set<T>().AsNoTracking();
