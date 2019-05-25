@@ -3,57 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Control.UIForms.Views.PassangersPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title="Conteo Pasajeros">    <!--este es el vinculo que gobierna toda la pagina desde MainViewModel -->
+             Title="Reporte Conteo Pasajeros">    <!--este es el vinculo que gobierna toda la pagina desde MainViewModel -->
     <ContentPage.Content>
-        <StackLayout>
-            <ScrollView
-            BindingContext="{Binding Passanger}">
-                <StackLayout
-                Padding="10">
-                    <Label 
-                    Text="Vuelo:">
-                    </Label>
-                    <Entry
-                    Placeholder="Enter Numero Vuelo"
-                    Text="{Binding Vuelo}">
-                    </Entry>
-                    <Label 
-                    Text="Adultos:">
-                    </Label>
-                    <Entry
-                    Placeholder="Enter Total Adultos"
-                    Text="{Binding Adultos}">
-                    </Entry>
-                    <Label 
-                    Text="Niños:">
-                    </Label>
-                    <Entry
-                    Placeholder="Enter Total Niños"
-                    Text="{Binding Ninos}">
-                    </Entry>
-                    <Label 
-                    Text="Nibras:">
-                    </Label>
-                    <Entry
-                    Placeholder="Enter Total Nibras"
-                    Text="{Binding Nibras}">
-                    </Entry>
-                    <Label 
-                    Text="Total Pasajeros:">
-                    </Label>
-                    <Entry
-                    Placeholder="Total Pax"
-                    Text="{Binding TotalPax}">
-                    </Entry>
+        <!--el siguiente  binding es una instancia de la MainViewModel -->
+        <StackLayout
+            BindingContext="{Binding Passagers}"
+            Padding="8">
+            <ListView
+                HasUnevenRows="True"
+                ItemsSource="{Binding Passangers}"> <!--este binding es una instancia de la PassangerViewModel -->
 
-                    <Button
-                    Command="{Binding PassangerCommand}"
-                    Text="Save">
 
-                    </Button>
 
-                </StackLayout>
-            </ScrollView>
+            </ListView>
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

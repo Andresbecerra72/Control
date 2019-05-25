@@ -12,6 +12,9 @@
 
         public PassangersViewModel Passangers { get; set; }
 
+        public InsertPassangerViewModel InsertPassanger { get; set; }
+
+
         //el siguiente codigo sirve para referirce a la mainviewmodel desde cualquier pagina
         public MainViewModel()
         {

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Control.UIForms.Views.InsertPassangerPage"  BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Title="Insertar Conteo Pasajeros">
+    <!--este es el vinculo que gobierna toda la pagina desde MainViewModel -->
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView
+            BindingContext="{Binding InsertPassanger}">
+                <StackLayout
+                Padding="10">
+                    <Label 
+                    Text="Vuelo:">
+                    </Label>
+                    <Entry
+                    Placeholder="Enter Numero Vuelo"
+                    Text="{Binding Vuelo}">
+                    </Entry>
+                    <Label 
+                    Text="Adultos:">
+                    </Label>
+                    <Entry
+                    Placeholder="Enter Total Adultos"
+                    Text="{Binding Adultos}">
+                    </Entry>
+                    <Label 
+                    Text="Niños:">
+                    </Label>
+                    <Entry
+                    Placeholder="Enter Total Niños"
+                    Text="{Binding Ninos}">
+                    </Entry>
+                    <Label 
+                    Text="Nibras:">
+                    </Label>
+                    <Entry
+                    Placeholder="Enter Total Nibras"
+                    Text="{Binding Nibras}">
+                    </Entry>
+                    <Label 
+                    Text="Total Pasajeros:">
+                    </Label>
+                    <Entry
+                    Placeholder="Total Pax"
+                    Text="{Binding TotalPax}">
+                    </Entry>
+
+                    <Button
+                    Command="{Binding PassangerCommand}"
+                    Text="Save">
+
+                    </Button>
+
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+
+       
+    </ContentPage.Content>
+</ContentPage>

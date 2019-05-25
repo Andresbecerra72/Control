@@ -17,6 +17,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Control.Common\Control.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\InsertPassangerPage.xaml.cs">
+      <DependentUpon>InsertPassangerPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\InsertPassangerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
