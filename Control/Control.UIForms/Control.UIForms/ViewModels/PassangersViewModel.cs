@@ -8,7 +8,7 @@
 
     public class PassangersViewModel: BaseViewModel
     {
-        private ApiService apiService;
+        private readonly ApiService apiService;
         private ObservableCollection<Passanger> passangers;
          //esta es la lista de productos que se van mostrar en la listview
     public ObservableCollection<Passanger> Passangers

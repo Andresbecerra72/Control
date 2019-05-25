@@ -34,6 +34,11 @@
 
         [JsonProperty("imageFullPath")]
         public Uri ImageFullPath { get; set; }
+
+        public override string ToString()//codigo para el list view de app movil forms
+        {
+            return $"{this.Flight}{this.Total}";
+        }
     }
 
 }

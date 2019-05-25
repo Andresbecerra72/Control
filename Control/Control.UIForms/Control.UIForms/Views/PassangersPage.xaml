@@ -7,17 +7,50 @@
     <ContentPage.Content>
         <!--el siguiente  binding es una instancia de la MainViewModel -->
         <StackLayout
-            BindingContext="{Binding Passagers}"
+            BindingContext="{Binding Passangers}"
             Padding="8">
             <ListView
                 HasUnevenRows="True"
                 ItemsSource="{Binding Passangers}"> <!--este binding es una instancia de la PassangerViewModel -->
-
-
-
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <StackLayout
+                                	Grid.Column="0"
+                                	VerticalOptions="Center">
+                                    <Label
+                                    	FontAttributes="Italic"
+                                    	FontSize="Medium"
+                                    	Text="{Binding PublishOn, StringFormat='{0:MM/dd/yyyy a\\t h:mm tt}'}"
+                                    	TextColor="Olive">
+                                    </Label>
+                                    <Label
+                                    	FontAttributes="Bold"
+                                    	FontSize="Small"
+                                    	Text="{Binding Flight,StringFormat='Vuelo: {0}'}"
+                                    	TextColor="Black">
+                                    </Label>
+                                    <Label
+                                    	Text="{Binding Total, StringFormat='Total: {0}'}"
+                                    	TextColor="Navy">
+                                    </Label>
+                                </StackLayout>
+                                <Image
+                                	Grid.Column="1"
+                                	Source="{Binding ImageFullPath}"
+                                	WidthRequest="100">
+                                </Image>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
-
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
