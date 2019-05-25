@@ -10,6 +10,7 @@
             BindingContext="{Binding Passangers}"
             Padding="8">
             <ListView
+                IsRefreshing="{Binding IsRefreshing}"
                 HasUnevenRows="True"
                 ItemsSource="{Binding Passangers}"> <!--este binding es una instancia de la PassangerViewModel -->
                 <ListView.ItemTemplate>
