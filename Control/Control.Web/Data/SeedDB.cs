@@ -38,6 +38,7 @@
                     Email = "andres.becerra@satena.com",
                     UserName = "andres.becerra@satena.com",
                     PhoneNumber = "3202456321"
+
                 };
 
                 var result = await this.userHelper.AddUserAsync(user, "123456");//passsword
@@ -67,6 +68,7 @@
                 Infant = this.random.Next(10),
                 Total = this.random.Next(10),
                 PublishOn = DateTime.Now,
+                ImageUrl = $"~/images/Passangers/{name}.png",
                 User = user
             });
 
