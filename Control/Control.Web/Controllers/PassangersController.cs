@@ -1,11 +1,16 @@
 ﻿namespace Control.Web.Controllers
 {
+
+    using Models;
     using Data;
     using Data.Entities;
     using Helpers;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
+    using System;
+    using System.IO;
     using System.Threading.Tasks;
+    using System.Linq;
 
 
     public class PassangersController : Controller
@@ -20,11 +25,11 @@
 
         }
 
-        // GET: Passangers
-        public IActionResult Index()
+        // GET: Passangers 
+        public IActionResult Index()//pagina INDEX
         {
-            return View(this.passangerRepository.GetAll());//llama del repositorio el metodo getProducts
-        }
+            return View(this.passangerRepository.GetAll().OrderBy(p => p.PublishOn));//llama del repositorio generico el metodo getAll y lo ordena por fecha
+        }                                                                           //por que es esecifico del repositorio passanger
 
         // GET: Passangers/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -52,15 +57,59 @@
         // POST: Passangers/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Passanger passanger)
+        public async Task<IActionResult> Create(PassangerViewModel view)
         {
-            if (ModelState.IsValid)
             {
-                passanger.User = await this.userHelper.GetUserByEmailAsync("andres.becerra@satena.com");//TODO:****pendiente por cambio por usuario logueado
-                await this.passangerRepository.CreateAsync(passanger);//salva los cambios en la base de datos pormedio del repositorio
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    var path = string.Empty;
+
+                    if (view.ImageFile != null && view.ImageFile.Length > 0)
+                    {
+                        var guid = Guid.NewGuid().ToString();
+                        var file = $"{guid}.jpg";
+                        //ruta donde se guarda la imagen de captura
+                        path = Path.Combine(
+                            Directory.GetCurrentDirectory(),
+                            "wwwroot\\images\\Passangers",
+                            file);
+
+                        using (var stream = new FileStream(path, FileMode.Create))
+                        {
+                            await view.ImageFile.CopyToAsync(stream);
+                        }
+
+                        path = $"~/images/Passangers/{file}";
+                    }
+                    //crea los datos del conteo de pasajeros ingresados en el formulario
+                    var passanger = this.ToPassanger(view, path);
+                    passanger.User = await this.userHelper.GetUserByEmailAsync("andres.becerra@satena.com");//TODO:****pendiente por cambio por usuario logueado
+                    await this.passangerRepository.CreateAsync(passanger);
+                    return RedirectToAction(nameof(Index));
+                }
+
+                return View(view);
+
+                
             }
-            return View(passanger);
+
+        }
+
+        //este codigo permite la conversion de la vista Passangerviewmodel al objeto Passanger con todos sus atributos
+        private Passanger ToPassanger(PassangerViewModel view, string path)
+        {
+            return new Passanger
+            {
+                Id = view.Id,
+                ImageUrl = path,
+                Flight = view.Flight,
+                Adult = view.Adult,
+                Child = view.Child,
+                Infant = view.Infant,
+                Total = view.Total,
+                PublishOn = view.PublishOn,
+                User = view.User
+            };
         }
 
         // GET: Passangers/Edit/5
@@ -71,31 +120,68 @@
                 return NotFound();
             }
 
-            var passanger =  await this.passangerRepository.GetByIdAsync(id.Value);//consulta el vuelo que va a editar
+            var passanger = await this.passangerRepository.GetByIdAsync(id.Value);//consulta el vuelo que va a editar
             if (passanger == null)
             {
                 return NotFound();
             }
-            return View(passanger);
+            var view = this.ToPassangerViewModel(passanger);
+            return View(view);
+        }
+        //se contruye la vista se toma el modelo con los atributos del entity
+        private PassangerViewModel ToPassangerViewModel(Passanger passanger)
+        {
+            return new PassangerViewModel
+            {
+                Id = passanger.Id,
+                Flight = passanger.Flight,
+                Adult = passanger.Adult,
+                Child = passanger.Child,
+                ImageUrl = passanger.ImageUrl,// se envia la foto que tiene 
+                Infant = passanger.Infant,
+                Total = passanger.Total,
+                PublishOn = passanger.PublishOn,
+                User = passanger.User
+            };
         }
 
         // POST: Passangers/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Passanger passanger)
+        public async Task<IActionResult> Edit(PassangerViewModel view)
         {
-
             if (ModelState.IsValid)
             {
                 try
                 {
+                    var path = view.ImageUrl;
+
+                    if (view.ImageFile != null && view.ImageFile.Length > 0)
+                    {
+                        var guid = Guid.NewGuid().ToString();
+                        var file = $"{guid}.jpg";
+
+                        path = Path.Combine(
+                            Directory.GetCurrentDirectory(),
+                            "wwwroot\\images\\Passangers",
+                            file);
+
+                        using (var stream = new FileStream(path, FileMode.Create))
+                        {
+                            await view.ImageFile.CopyToAsync(stream);
+                        }
+
+                        path = $"~/images/Passangers/{file}";
+                    }
+
                     //actualiza los cambios del vuelo editado
-                    passanger.User = await this.userHelper.GetUserByEmailAsync("andres.becerra@satena.com");//TODO:****pendiente por cambio por usuario logueado
-                    await this.passangerRepository.UpdateAsync(passanger);//salvalos cambios en la base de datos
+                    var passanger = this.ToPassanger(view, path);
+                    passanger.User = await this.userHelper.GetUserByEmailAsync("andres.becerra@satena.com");
+                    await this.passangerRepository.UpdateAsync(passanger);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!await this.passangerRepository.ExistAsync(passanger.Id))//valida si el vuelo existe
+                    if (!await this.passangerRepository.ExistAsync(view.Id))
                     {
                         return NotFound();
                     }
@@ -106,8 +192,11 @@
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(passanger);
+
+            return View(view);
         }
+
+       
 
         // GET: Passangers/Delete/5
         public async Task<IActionResult> Delete(int? id)

@@ -1,5 +1,7 @@
 ﻿using Control.Web.Data;
 using Microsoft.AspNetCore.Mvc;
+using Control.Web.Data.Entities;
+
 
 namespace Controllers.API
 {
@@ -17,7 +19,7 @@ namespace Controllers.API
         [HttpGet]
         public IActionResult GetPassagers()
         {
-            return this.Ok(this.passangerRepository.GetAll());
+            return this.Ok(this.passangerRepository.GetAllWithUsers());
         }
 
 

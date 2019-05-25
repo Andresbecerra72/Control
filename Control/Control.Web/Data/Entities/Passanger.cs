@@ -28,8 +28,26 @@
         [Display(Name = "Fecha")]
         public DateTime PublishOn { get; set; }
 
+        [Display(Name = "Image")]
+        public string ImageUrl { get; set; }
+
+
         public User User { get; set; }//relacion de usuarios con los datos reportados
 
-                     
+        //Atributo para el control de la imagen en el API por medio del path en el json
+        public string ImageFullPath
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.ImageUrl))
+                {
+                    return null;
+                }
+
+                return $"https://controlweb.azurewebsites.net{this.ImageUrl.Substring(1)}";
+            }
+        }
+
+
     }
 }

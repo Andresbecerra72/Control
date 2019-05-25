@@ -34,7 +34,8 @@
             services.AddDbContext<DataContext>(cfg =>
             {
                 //**esta es la inyeccion de la conexion a base de datos del archivo appsetting.json
-                cfg.UseMySql(this.Configuration.GetConnectionString("DefaultConnection"));
+                //cfg.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")); //para conectar con AZURE
+                cfg.UseMySql(this.Configuration.GetConnectionString("DefaultConnection"));     //para conectar con Mysql
 
 
             });
