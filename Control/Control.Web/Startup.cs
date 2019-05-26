@@ -64,6 +64,20 @@
             //inyeccion del UserHelper
             services.AddScoped<IUserHelper, UserHelper>();//AddScoped se usa y mantiene hasta cerrar el proyecto
 
+            //uso de TOKEN de seguridad para el acceso al API
+            services.AddAuthentication()
+                .AddCookie()
+                .AddJwtBearer(cfg =>
+                {
+                    cfg.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    {
+                        ValidIssuer = this.Configuration["Tokens:Issuer"],
+                        ValidAudience = this.Configuration["Tokens:Audience"],
+                        IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(this.Configuration["Tokens:Key"]))
+                    };
+                });
+
+
 
             //****************
 

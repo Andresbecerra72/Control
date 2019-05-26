@@ -19,5 +19,7 @@
 
         Task<IdentityResult> ChangePasswordAsync(User user, string oldPassword, string newPassword);
 
+        Task<SignInResult> ValidatePasswordAsync(User user, string password);//valida el usuario para acceso al API
+
     }
 }

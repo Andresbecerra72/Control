@@ -1,19 +1,29 @@
-﻿using Control.Web.Data.Entities;
-using Control.Web.Helpers;
-using Control.Web.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Control.Web.Controllers
+﻿namespace Control.Web.Controllers
 {
+    using System;
+    using System.IdentityModel.Tokens.Jwt;
+    using System.Linq;
+    using System.Security.Claims;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Data.Entities;
+    using Helpers;
+    using Models;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.IdentityModel.Tokens;
     public class AccountController : Controller
     {
         private readonly IUserHelper userHelper;
-        public AccountController(IUserHelper userHelper)
+        private readonly IConfiguration configuration;
+
+        public AccountController(
+                IUserHelper userHelper,
+                IConfiguration configuration)
         {
             this.userHelper = userHelper;
+            this.configuration = configuration;
 
         }
 
@@ -128,7 +138,7 @@ namespace Control.Web.Controllers
                 model.LastName = user.LastName;
                 model.Document = user.Document;
                 model.PhoneNumber = user.PhoneNumber;
-                
+
             }
 
             return this.View(model);
@@ -202,6 +212,48 @@ namespace Control.Web.Controllers
             return this.View(model);
         }
 
+        //VALIDATION USER-PASSWORD TO ACCESS API 
+        [HttpPost]
+        public async Task<IActionResult> CreateToken([FromBody] LoginViewModel model)//este metodo solo tien POST solo se consume por un llamado de API no se usa por pagina web
+        {
+            if (this.ModelState.IsValid)
+            {
+                var user = await this.userHelper.GetUserByEmailAsync(model.Username);//llama el usuario
+                if (user != null) //pregunta si el usuario existe
+                {
+                    var result = await this.userHelper.ValidatePasswordAsync(//llama el metodo para validar el password del usuario consultado
+                        user,
+                        model.Password);
+
+                    if (result.Succeeded)//si el resultado es satisfactorio
+                    {
+                        var claims = new[]
+                        {
+                    new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                };
+
+                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.configuration["Tokens:Key"]));//se toma el key que esta en ar appsetting.json
+                        var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);//algoritmo de seguridad
+                        var token = new JwtSecurityToken(
+                            this.configuration["Tokens:Issuer"],//se toma el Issuer que esta en ar appsetting.json
+                            this.configuration["Tokens:Audience"],//se toma el Audience que esta en ar appsetting.json
+                            claims,
+                            expires: DateTime.UtcNow.AddDays(15), //vigencia del token, en este caso solo dura 15 dias, teminado este tiempo debe volvel a loggerse 
+                            signingCredentials: credentials);
+                        var results = new
+                        {
+                            token = new JwtSecurityTokenHandler().WriteToken(token),
+                            expiration = token.ValidTo
+                        };
+
+                        return this.Created(string.Empty, results);
+                    }
+                }
+            }
+
+            return this.BadRequest();
+        }
 
     }
 }

@@ -53,6 +53,15 @@
         {
             return await this.userManager.ChangePasswordAsync(user, oldPassword, newPassword);
         }
+
+        public async Task<SignInResult> ValidatePasswordAsync(User user, string password)//metodo que valida el usuario logeado para acceso al api
+        {
+            return await this.signInManager.CheckPasswordSignInAsync(
+         user,
+         password,
+         false);
+
+        }
     }
 
 }
