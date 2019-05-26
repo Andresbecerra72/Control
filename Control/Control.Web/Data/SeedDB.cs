@@ -26,6 +26,10 @@
         {
             await this.context.Database.EnsureCreatedAsync();
 
+            //verificacion de roles
+            await this.userHelper.CheckRoleAsync("Admin");
+            await this.userHelper.CheckRoleAsync("Customer");
+
             //adiciona el nuevo usuario
             var user = await this.userHelper.GetUserByEmailAsync("andres.becerra@satena.com");
             if (user == null)
@@ -46,7 +50,17 @@
                 {
                     throw new InvalidOperationException("Could not create the user in seeder");
                 }
+
+                await this.userHelper.AddUserToRoleAsync(user, "Admin");
+
             }
+
+            var isInRole = await this.userHelper.IsUserInRoleAsync(user, "Admin");
+            if (!isInRole)
+            {
+                await this.userHelper.AddUserToRoleAsync(user, "Admin");
+            }
+
 
 
             if (!this.context.Passangers.Any())

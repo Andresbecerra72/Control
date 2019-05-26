@@ -49,7 +49,9 @@
             return View(passanger);
         }
 
+
         // GET: Passangers/Create
+        [Authorize(Roles = "Admin")]//acesso con login a usuarios con rol de administrador
         public IActionResult Create()
         {
             return View();
@@ -114,6 +116,7 @@
         }
 
         // GET: Passangers/Edit/5
+        [Authorize(Roles = "Admin")]//acesso con login a usuarios con rol de administrador
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -197,9 +200,10 @@
             return View(view);
         }
 
-       
+
 
         // GET: Passangers/Delete/5
+        [Authorize(Roles = "Admin")]//acesso con login a usuarios con rol de administrador
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

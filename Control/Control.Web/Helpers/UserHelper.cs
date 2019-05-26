@@ -9,13 +9,16 @@
     {
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
+        public readonly RoleManager<IdentityRole> roleManager; //IdentityRol es una clase predefinida
 
         public UserHelper(
             UserManager<User> userManager,      //esta clase userhelper es la unica que inyecta el usermanager
-            SignInManager<User> signInManager)  //esta propiedad permite login - logout
+            SignInManager<User> signInManager,  //esta propiedad permite login - logout
+        RoleManager<IdentityRole> roleManager)  //permite asignacion de roles a los usuarios 
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.roleManager = roleManager;
         }
 
         public async Task<IdentityResult> AddUserAsync(User user, string password)
@@ -61,6 +64,29 @@
          password,
          false);
 
+        }
+
+        public async Task CheckRoleAsync(string roleName)//metodo que verifica el role y si no exite lo crea
+        {
+            var roleExists = await this.roleManager.RoleExistsAsync(roleName);
+            if (!roleExists)
+            {
+                await this.roleManager.CreateAsync(new IdentityRole
+                {
+                    Name = roleName
+                });
+            }
+
+        }
+
+        public async Task AddUserToRoleAsync(User user, string roleName)
+        {
+            await this.userManager.AddToRoleAsync(user, roleName);
+        }
+
+        public async Task<bool> IsUserInRoleAsync(User user, string roleName)
+        {
+            return await this.userManager.IsInRoleAsync(user, roleName);
         }
     }
 

@@ -21,5 +21,11 @@
 
         Task<SignInResult> ValidatePasswordAsync(User user, string password);//valida el usuario para acceso al API
 
+        Task CheckRoleAsync(string roleName); //metodo para verificar los roles de los usuarios
+
+        Task AddUserToRoleAsync(User user, string roleName);
+
+        Task<bool> IsUserInRoleAsync(User user, string roleName);
+
     }
 }
