@@ -84,7 +84,7 @@
                     }
                     //crea los datos del conteo de pasajeros ingresados en el formulario
                     var passanger = this.ToPassanger(view, path);
-                    passanger.User = await this.userHelper.GetUserByEmailAsync("andres.becerra@satena.com");//TODO:****pendiente por cambio por usuario logueado
+                    passanger.User = await this.userHelper.GetUserByEmailAsync(this.User.Identity.Name); //ingresa con usuario logueado
                     await this.passangerRepository.CreateAsync(passanger);
                     return RedirectToAction(nameof(Index));
                 }
@@ -177,7 +177,7 @@
 
                     //actualiza los cambios del vuelo editado
                     var passanger = this.ToPassanger(view, path);
-                    passanger.User = await this.userHelper.GetUserByEmailAsync("andres.becerra@satena.com");
+                    passanger.User = await this.userHelper.GetUserByEmailAsync(this.User.Identity.Name);
                     await this.passangerRepository.UpdateAsync(passanger);
                 }
                 catch (DbUpdateConcurrencyException)

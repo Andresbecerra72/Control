@@ -20,10 +20,6 @@
         [Display(Name = "Numero de Documento")]
         public string Document { get; set; }
 
-        [MaxLength(100, ErrorMessage = "The field {0} only can contain {1} characters length.")]
-        [Display(Name = "Direccion")]
-        public string Address { get; set; }
-
         [MaxLength(20, ErrorMessage = "The field {0} only can contain {1} characters length.")]
         [Display(Name = "Celular")]
         public string PhoneNumber { get; set; }
