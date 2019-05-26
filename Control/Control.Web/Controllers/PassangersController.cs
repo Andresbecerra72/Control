@@ -11,8 +11,9 @@
     using System.IO;
     using System.Threading.Tasks;
     using System.Linq;
+    using Microsoft.AspNetCore.Authorization;
 
-
+    [Authorize]
     public class PassangersController : Controller
     {
         private readonly IPassangerRepository passangerRepository;//esta es la coneccion al repository para que modifique la base de datos por medio del repositorio
