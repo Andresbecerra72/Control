@@ -1,9 +1,9 @@
 ﻿namespace Control.Web.Helpers
 {
-    using System.Threading.Tasks;
     using Control.Web.Models;
     using Data.Entities;
     using Microsoft.AspNetCore.Identity;
+    using System.Threading.Tasks;
 
     public class UserHelper : IUserHelper //hereda la interface
     {
@@ -23,9 +23,11 @@
             return await this.userManager.CreateAsync(user, password);
         }
 
+
+
         public async Task<User> GetUserByEmailAsync(string email)
         {
-           return await this.userManager.FindByEmailAsync(email);
+            return await this.userManager.FindByEmailAsync(email);
         }
 
         public async Task<SignInResult> LoginAsync(LoginViewModel model)
@@ -40,6 +42,16 @@
         public async Task LogoutAsync()
         {
             await this.signInManager.SignOutAsync();
+        }
+
+        public async Task<IdentityResult> UpdateUserAsync(User user) //modifica el usuario
+        {
+            return await this.userManager.UpdateAsync(user);
+        }
+
+        public async Task<IdentityResult> ChangePasswordAsync(User user, string oldPassword, string newPassword)//modifica el password
+        {
+            return await this.userManager.ChangePasswordAsync(user, oldPassword, newPassword);
         }
     }
 
