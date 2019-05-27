@@ -3,6 +3,7 @@
     using Entities;
     using Microsoft.EntityFrameworkCore;
     using System.Linq;
+    using System.Threading.Tasks;
 
     //esta clase establece el repositorio solo para la tabla pasajeros
     public class PassangerRepository : GenericRepository<Passanger>, IPassangerRepository
@@ -19,6 +20,20 @@
         {
             return this.context.Passangers.Include(p => p.User);
         }
+
+        public async Task DeleteDetailTempAsync(int id)
+        {
+            var orderDetailTemp = await this.context.Passangers.FindAsync(id);
+            if (orderDetailTemp == null)
+            {
+                return;
+            }
+
+            this.context.Passangers.Remove(orderDetailTemp);
+            await this.context.SaveChangesAsync();
+        }
+
+
     }
 
 }

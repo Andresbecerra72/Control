@@ -4,8 +4,8 @@
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] //autenticacion para validar el acceso al api
+    //TODO:*********************************************************OJO TOKEN*********************************
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] //autenticacion para validar el acceso al api
     [Route("api/[Controller]")] //este es el enrutamiento
     public class PassangerController : Controller
     {

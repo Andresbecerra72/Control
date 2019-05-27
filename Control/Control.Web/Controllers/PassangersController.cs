@@ -13,7 +13,7 @@
     using System.Linq;
     using Microsoft.AspNetCore.Authorization;
 
-    [Authorize]
+    //[Authorize] //TODO: ACTIVAR SOLICITAR LOGUEO
     public class PassangersController : Controller
     {
         private readonly IPassangerRepository passangerRepository;//esta es la coneccion al repository para que modifique la base de datos por medio del repositorio
@@ -31,6 +31,9 @@
         {
             return View(this.passangerRepository.GetAll().OrderBy(p => p.PublishOn));//llama del repositorio generico el metodo getAll y lo ordena por fecha
         }                                                                           //por que es esecifico del repositorio passanger
+
+
+
 
         // GET: Passangers/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -222,7 +225,7 @@
 
         // POST: Passangers/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]//TODO:*************************OJO TOKEN************************
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var passanger = await this.passangerRepository.GetByIdAsync(id);//pasa el dato
@@ -236,6 +239,19 @@
             return this.View();
         }
 
+        //DELETE from MODAL WONDOWS
+        public async Task<IActionResult> DeleteItem(int? id)
+        {
+            if (id == null)
+            {
+                return new NotFoundViewResult("ProductNotFound");//Redireccionamiento Pagina NOT FOUND
+            }
 
+            await this.passangerRepository.DeleteDetailTempAsync(id.Value);
+            return this.RedirectToAction(nameof(Index));
+           
+
+            
+        }
     }
 }

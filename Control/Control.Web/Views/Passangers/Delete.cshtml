@@ -53,14 +53,60 @@
         <dd>
             @if (!string.IsNullOrEmpty(Model.ImageUrl))
             {
-                <img src="@Url.Content(Model.ImageUrl)" alt="Image" style="width:300px;height:450px;max-width: 100%; height: auto;" />
+            <img src="@Url.Content(Model.ImageUrl)" alt="Image" style="width:300px;height:450px;max-width: 100%; height: auto;" />
             }
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> 
-        <a asp-action="Index"class="btn btn-success"><i class="fa fa-chevron-left"></i> Back to List</a>
+        <input type="hidden" asp-for="Id" id="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger"/>
+        @*<a asp-action="Delete"  class="btn btn-danger" id="btnDelete">Delete</a>*@
+        <a asp-action="Index" class="btn btn-success"><i class="fa fa-chevron-left"></i> Back to List</a>
     </form>
 </div>
+
+<div id="confirmDialog" class="modal fade">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-window-close"></i></button>
+                <h4 class="modal-title">Delete</h4>
+            </div>
+            <div class="modal-body">
+                <p>Do you want to Delete?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="btnYes">Yes</button>
+                <button type="button" class="btn btn-success" id="btnNo">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            
+            $("#btnDelete").click(function () {
+                $("#confirmDialog").modal('show');
+                return false;
+            });
+
+            
+            $("#btnNo").click(function () {
+                $("#confirmDialog").modal('hide');
+                return false;
+            });
+
+                       
+            $("#btnYes").click(function () {
+                window.location.href = '/Passangers/DeleteItem/'+ ("#Id").var() ;
+            });
+        });
+    </script>
+}
