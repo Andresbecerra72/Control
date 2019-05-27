@@ -64,18 +64,19 @@
             //inyeccion del UserHelper
             services.AddScoped<IUserHelper, UserHelper>();//AddScoped se usa y mantiene hasta cerrar el proyecto
 
+            //TODO:***********************************OJO TOKEN****************************
             //uso de TOKEN de seguridad para el acceso al API
-            services.AddAuthentication()
-                .AddCookie()
-                .AddJwtBearer(cfg =>
-                {
-                    cfg.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-                    {
-                        ValidIssuer = this.Configuration["Tokens:Issuer"],
-                        ValidAudience = this.Configuration["Tokens:Audience"],
-                        IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(this.Configuration["Tokens:Key"]))
-                    };
-                });
+            //services.AddAuthentication()
+            //    .AddCookie()
+            //    .AddJwtBearer(cfg =>
+            //    {
+            //        cfg.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+            //        {
+            //            ValidIssuer = this.Configuration["Tokens:Issuer"],
+            //            ValidAudience = this.Configuration["Tokens:Audience"],
+            //            IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(this.Configuration["Tokens:Key"]))
+            //        };
+            //    });
 
 
 
@@ -119,54 +120,3 @@
     }
 }
 
-
-///***************************
-//    public class Startup
-//    {
-//        public Startup(IHostingEnvironment env)
-//        {
-//            var builder = new ConfigurationBuilder()
-//                .SetBasePath(env.ContentRootPath)
-//                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-//                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-//                .AddEnvironmentVariables();
-//            Configuration = builder.Build();
-//        }
-
-//        public IConfigurationRoot Configuration { get; }
-
-//        // This method gets called by the runtime. Use this method to add services to the container.  
-//        public void ConfigureServices(IServiceCollection services)
-//        {
-//            // Add framework services.  
-//            services.AddMvc();
-//            services.Add(new ServiceDescriptor(typeof(DataContext), new DataContext(Configuration.GetConnectionString("DefaultConnection"))));
-//        }
-
-//        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.  
-//        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-//        {
-//            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-//            loggerFactory.AddDebug();
-
-//            if (env.IsDevelopment())
-//            {
-//                app.UseDeveloperExceptionPage();
-//                app.UseBrowserLink();
-//            }
-//            else
-//            {
-//                app.UseExceptionHandler("/Home/Error");
-//            }
-
-//            app.UseStaticFiles();
-
-//            app.UseMvc(routes =>
-//            {
-//                routes.MapRoute(
-//                    name: "default",
-//                    template: "{controller=Home}/{action=Index}/{id?}");
-//            });
-//        }
-//    }
-//}  
