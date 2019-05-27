@@ -89,6 +89,14 @@
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //Redireccionamiento cuando el usuario no esta autorizado
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Account/NotAuthorized";
+                options.AccessDeniedPath = "/Account/NotAuthorized";
+            });
+
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -106,6 +114,7 @@
                
             }
 
+            app.UseStatusCodePagesWithReExecute("/error/{0}");//Codigo de pagina no existe Error 404
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseCookiePolicy();

@@ -255,5 +255,12 @@
             return this.BadRequest();
         }
 
+        //REDIRECCIONAMIENTO vista para usuarios no autorizados
+        public IActionResult NotAuthorized()
+        {
+            return this.View();
+        }
+
+
     }
 }

@@ -37,13 +37,13 @@
         {
             if (id == null)
             {
-                return NotFound();
+                return new NotFoundViewResult("ProductNotFound");//Redireccionamiento Pagina NOT FOUND
             }
 
             var passanger = await this.passangerRepository.GetByIdAsync(id.Value);//se pasa el valor del repositorio
             if (passanger == null)
             {
-                return NotFound();
+                return new NotFoundViewResult("ProductNotFound");//Redireccionamiento Pagina NOT FOUND
             }
 
             return View(passanger);
@@ -121,13 +121,13 @@
         {
             if (id == null)
             {
-                return NotFound();
+                return new NotFoundViewResult("ProductNotFound");//Redireccionamiento Pagina NOT FOUND
             }
 
             var passanger = await this.passangerRepository.GetByIdAsync(id.Value);//consulta el vuelo que va a editar
             if (passanger == null)
             {
-                return NotFound();
+                return new NotFoundViewResult("ProductNotFound");//Redireccionamiento Pagina NOT FOUND
             }
             var view = this.ToPassangerViewModel(passanger);
             return View(view);
@@ -187,7 +187,7 @@
                 {
                     if (!await this.passangerRepository.ExistAsync(view.Id))
                     {
-                        return NotFound();
+                        return new NotFoundViewResult("ProductNotFound");//Redireccionamiento Pagina NOT FOUND
                     }
                     else
                     {
@@ -208,13 +208,13 @@
         {
             if (id == null)
             {
-                return NotFound();
+                return new NotFoundViewResult("ProductNotFound");//Redireccionamiento Pagina NOT FOUND
             }
 
             var passanger = await this.passangerRepository.GetByIdAsync(id.Value);//consulta el vuelo que va a eliminar
             if (passanger == null)
             {
-                return NotFound();
+                return new NotFoundViewResult("ProductNotFound");//Redireccionamiento Pagina NOT FOUND
             }
 
             return View(passanger);
@@ -228,6 +228,12 @@
             var passanger = await this.passangerRepository.GetByIdAsync(id);//pasa el dato
             await this.passangerRepository.DeleteAsync(passanger);//y salva el cambio en la base de datos
             return RedirectToAction(nameof(Index));
+        }
+
+        //REDIRECCIONAMIENTO PAGE NOT FOUND
+        public IActionResult ProductNotFound()
+        {
+            return this.View();
         }
 
 
