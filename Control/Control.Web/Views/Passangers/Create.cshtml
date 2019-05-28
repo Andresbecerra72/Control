@@ -65,6 +65,10 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 <script type="text/javascript">
+     $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+        $('#date').datepicker({
+            startDate: '-3d'
+                });
     $('#date').datepicker().attr('type','text').click(function (e) {
         e.preventDefault();
     }).datepicker({
