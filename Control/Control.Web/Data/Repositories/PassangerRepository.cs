@@ -21,8 +21,8 @@
             return this.context.Passangers.Include(p => p.User);
         }
 
-        public async Task DeleteDetailTempAsync(int id)
-        {
+        public async Task DeleteItemAsync(int id)
+       {
             var orderDetailTemp = await this.context.Passangers.FindAsync(id);
             if (orderDetailTemp == null)
             {

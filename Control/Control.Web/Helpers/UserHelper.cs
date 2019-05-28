@@ -21,7 +21,7 @@
             this.roleManager = roleManager;
         }
 
-        public async Task<IdentityResult> AddUserAsync(User user, string password)
+        public async Task<IdentityResult> AddUserAsync(User user, string password)//ADICIONAR USUARIO
         {
             return await this.userManager.CreateAsync(user, password);
         }
@@ -33,7 +33,7 @@
             return await this.userManager.FindByEmailAsync(email);
         }
 
-        public async Task<SignInResult> LoginAsync(LoginViewModel model)
+        public async Task<SignInResult> LoginAsync(LoginViewModel model) //LOGIN
         {
             return await this.signInManager.PasswordSignInAsync(
                 model.Username,

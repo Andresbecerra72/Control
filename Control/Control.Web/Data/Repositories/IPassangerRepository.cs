@@ -8,7 +8,8 @@
     {
         IQueryable GetAllWithUsers();
 
-        Task DeleteDetailTempAsync(int id);
+        Task DeleteItemAsync(int id);
+
     }
 
 }

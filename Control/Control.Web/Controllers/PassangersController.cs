@@ -55,7 +55,7 @@
 
         // GET: Passangers/Create
         
-        //[Authorize(Roles = "Admin")]//acesso con login a usuarios con rol de administrador
+        [Authorize(Roles = "Admin")]//acesso con login a usuarios con rol de administrador
         public IActionResult Create()
         {
             return View();
@@ -243,18 +243,13 @@
         }
 
         //DELETE from MODAL WONDOWS**
-        public async Task<IActionResult> DeleteItem(int? id)
+        public async Task<IActionResult> DeleteItem(int id)
         {
-            if (id == null)
-            {
-                return new NotFoundViewResult("ProductNotFound");//Redireccionamiento Pagina NOT FOUND
-            }
-
-            await this.passangerRepository.DeleteDetailTempAsync(id.Value);
-            return this.RedirectToAction(nameof(Index));
            
-
-            
+            await this.passangerRepository.DeleteItemAsync(id);
+             return this.RedirectToAction(nameof(Index));
+           
+                        
         }
     }
 }

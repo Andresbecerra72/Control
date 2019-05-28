@@ -7,7 +7,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    //TODO: ***esta clase es el alimentador de la base de datos cundo esta vacia ***pendiente modificar startp y program
+   
     public class SeedDB
     {
         private readonly DataContext context;
