@@ -26,6 +26,7 @@
         public int Total { get; set; }
 
         [Display(Name = "Fecha")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime PublishOn { get; set; }
 
         [Display(Name = "Image")]
