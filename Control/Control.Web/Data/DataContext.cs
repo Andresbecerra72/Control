@@ -22,7 +22,7 @@
                 .Where(fk => !fk.IsOwnership && fk.DeleteBehavior == DeleteBehavior.Casca­de);
             foreach (var fk in cascadeFKs)
             {
-                fk.DeleteBehavior = DeleteBehavior.Restr­ict;
+                fk.DeleteBehavior = DeleteBehavior.Restr­ict; //restringe el borrado
             }
 
             base.OnModelCreating(modelBuilder);

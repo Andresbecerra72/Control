@@ -13,7 +13,7 @@
     using System.Linq;
     using Microsoft.AspNetCore.Authorization;
 
-    //[Authorize] //TODO: ACTIVAR SOLICITAR LOGUEO
+    [Authorize] // ACTIVAR SOLICITAR LOGUEO
     public class PassangersController : Controller
     {
         private readonly IPassangerRepository passangerRepository;//esta es la coneccion al repository para que modifique la base de datos por medio del repositorio
@@ -54,7 +54,8 @@
 
 
         // GET: Passangers/Create
-        [Authorize(Roles = "Admin")]//acesso con login a usuarios con rol de administrador
+        
+        //[Authorize(Roles = "Admin")]//acesso con login a usuarios con rol de administrador
         public IActionResult Create()
         {
             return View();
@@ -62,7 +63,8 @@
 
         // POST: Passangers/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //TODO:******************************OJO TOKEN*********************************
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(PassangerViewModel view)
         {
             {
@@ -154,7 +156,8 @@
 
         // POST: Passangers/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //TODO: *******************************OJO TOKEN********************
+       // [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(PassangerViewModel view)
         {
             if (ModelState.IsValid)
@@ -239,7 +242,7 @@
             return this.View();
         }
 
-        //DELETE from MODAL WONDOWS
+        //DELETE from MODAL WONDOWS**
         public async Task<IActionResult> DeleteItem(int? id)
         {
             if (id == null)

@@ -43,7 +43,7 @@
             //inyeccion del alimentador
             services.AddTransient<SeedDB>();//AddTrasient se usa y se destruye
 
-                //codigo para configurar el passwor de los usuarios
+                //codigo para configurar el password de los usuarios
             services.AddIdentity<User, IdentityRole>(cfg =>
             {
                 cfg.User.RequireUniqueEmail = true;
@@ -116,7 +116,7 @@
 
             app.UseStatusCodePagesWithReExecute("/error/{0}");//Codigo de pagina no existe Error 404
             app.UseStaticFiles();
-            app.UseAuthentication();
+            app.UseAuthentication(); //permite las autorizaciones
             app.UseCookiePolicy();
 
             app.UseMvc(routes =>
