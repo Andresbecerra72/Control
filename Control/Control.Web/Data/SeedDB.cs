@@ -4,6 +4,7 @@
     using Entities;
     using Microsoft.AspNetCore.Identity;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -30,6 +31,25 @@
             await this.userHelper.CheckRoleAsync("Admin");
             await this.userHelper.CheckRoleAsync("Customer");
 
+            if (!this.context.Countries.Any())
+            {
+                var cities = new List<City>();
+                cities.Add(new City { Name = "Villavicencio" });
+                cities.Add(new City { Name = "Barranquilla" });
+                cities.Add(new City { Name = "Medellín" });
+                cities.Add(new City { Name = "Bogotá" });
+                cities.Add(new City { Name = "Calí" });
+
+                this.context.Countries.Add(new Country
+                {
+                    Cities = cities,
+                    Name = "Colombia"
+                });
+
+                await this.context.SaveChangesAsync();
+            }
+
+
             //adiciona el nuevo usuario
             var user = await this.userHelper.GetUserByEmailAsync("andres.becerra@satena.com");
             if (user == null)
@@ -41,7 +61,10 @@
                     Document = "1234567",
                     Email = "andres.becerra@satena.com",
                     UserName = "andres.becerra@satena.com",
-                    PhoneNumber = "3202456321"
+                    PhoneNumber = "3202456321",
+                    CityId = this.context.Countries.FirstOrDefault().Cities.FirstOrDefault().Id,
+                    City = this.context.Countries.FirstOrDefault().Cities.FirstOrDefault()
+
 
                 };
 
