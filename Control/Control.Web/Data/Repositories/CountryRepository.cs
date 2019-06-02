@@ -76,6 +76,7 @@
             return await this.context.Cities.FindAsync(id);
         }
 
+        //arma las listas de los paises y ciudades
         public IEnumerable<SelectListItem> GetComboCountries()
         {
             var list = this.context.Countries.Select(c => new SelectListItem
@@ -86,7 +87,7 @@
 
             list.Insert(0, new SelectListItem
             {
-                Text = "(Select a country...)",
+                Text = "(Select a country...)",//primera opcion del combobox
                 Value = "0"
             });
 
@@ -118,7 +119,7 @@
         public async Task<Country> GetCountryAsync(City city)
         {
             return await this.context.Countries
-                .Where(c => c.Cities.Any(ci => ci.Id == city.Id))
+                .Where(c => c.Cities.Any(ci => ci.Id == city.Id))//con la ciudad devuelve el pais
                 .FirstOrDefaultAsync();
         }
 

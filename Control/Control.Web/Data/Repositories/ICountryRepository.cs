@@ -9,7 +9,7 @@
 
     public interface ICountryRepository : IGenericRepository<Country>
     {
-        IQueryable GetCountriesWithCities();
+        IQueryable GetCountriesWithCities(); //paises y ciudades
 
         Task<Country> GetCountryWithCitiesAsync(int id);
 
@@ -25,7 +25,7 @@
 
         IEnumerable<SelectListItem> GetComboCities(int conuntryId);
 
-        Task<Country> GetCountryAsync(City city);
+        Task<Country> GetCountryAsync(City city); //con la ciudad devuelve el pais
 
     }
 }

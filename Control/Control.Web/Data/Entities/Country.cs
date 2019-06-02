@@ -15,6 +15,6 @@
         public ICollection<City> Cities { get; set; }
 
         [Display(Name = "# Cities")]
-        public int NumberCities { get { return this.Cities == null ? 0 : this.Cities.Count; } }
+        public int NumberCities { get { return this.Cities == null ? 0 : this.Cities.Count; } } //propiedad de lectura que indica cuantas ciudades tiene el pais
     }
 }

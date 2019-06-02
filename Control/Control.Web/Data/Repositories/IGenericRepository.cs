@@ -9,9 +9,9 @@
 
         Task<T> GetByIdAsync(int id);//devuelve un item de la tabla
 
-        Task CreateAsync(T entity);
+        Task<T> CreateAsync(T entity);
 
-        Task UpdateAsync(T entity);
+        Task<T> UpdateAsync(T entity);
 
         Task DeleteAsync(T entity);
 

@@ -31,6 +31,7 @@
             await this.userHelper.CheckRoleAsync("Admin");
             await this.userHelper.CheckRoleAsync("Customer");
 
+            //adiciona ciudades de y pais colombia
             if (!this.context.Countries.Any())
             {
                 var cities = new List<City>();
@@ -59,6 +60,7 @@
                     FirstName = "Andres",
                     LastName = "Becerra",
                     Document = "1234567",
+                    Address = "Carrera 87 17-35",
                     Email = "andres.becerra@satena.com",
                     UserName = "andres.becerra@satena.com",
                     PhoneNumber = "3202456321",

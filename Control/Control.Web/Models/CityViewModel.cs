@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class CityViewModel
+    public class CityViewModel //modelo para gestionar las ciudades y paises
     {
         public int CountryId { get; set; }
 

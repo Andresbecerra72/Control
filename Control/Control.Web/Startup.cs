@@ -1,5 +1,6 @@
 ﻿namespace Control.Web
 {
+    using Control.Web.Data.Repositories;
     using Data;
     using Data.Entities;
     using Helpers;
@@ -60,6 +61,9 @@
 
             //inyeccion del repositorio
             services.AddScoped<IPassangerRepository, PassangerRepository>();//AddScoped se usa y mantiene hasta cerrar el proyecto
+
+            //inyeccion del repositorio
+            services.AddScoped<ICountryRepository, CountryRepository>();//AddScoped se usa y mantiene hasta cerrar el proyecto
 
             //inyeccion del UserHelper
             services.AddScoped<IUserHelper, UserHelper>();//AddScoped se usa y mantiene hasta cerrar el proyecto
