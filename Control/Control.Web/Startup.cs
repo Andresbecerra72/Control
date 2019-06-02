@@ -47,6 +47,8 @@
                 //codigo para configurar el password de los usuarios
             services.AddIdentity<User, IdentityRole>(cfg =>
             {
+                cfg.Tokens.AuthenticatorTokenProvider = TokenOptions.DefaultAuthenticatorProvider;
+                cfg.SignIn.RequireConfirmedEmail = true; //es para la confirmacion de usuarios que se registran
                 cfg.User.RequireUniqueEmail = true;
                 cfg.Password.RequireDigit = false;
                 cfg.Password.RequiredUniqueChars = 0;
@@ -55,6 +57,7 @@
                 cfg.Password.RequireUppercase = false;
                 cfg.Password.RequiredLength = 6;
             })
+                .AddDefaultTokenProviders()//token de seguridad para confirmar por medio del correo
         .AddEntityFrameworkStores<DataContext>();
 
 
@@ -68,19 +71,22 @@
             //inyeccion del UserHelper
             services.AddScoped<IUserHelper, UserHelper>();//AddScoped se usa y mantiene hasta cerrar el proyecto
 
+            //inyeccion del MailHelper
+            services.AddScoped<IMailHelper, MailHelper>();//AddScoped se usa y mantiene hasta cerrar el proyecto
+
             //TODO:***********************************OJO TOKEN****************************
             //uso de TOKEN de seguridad para el acceso al API
-            //services.AddAuthentication()
-            //    .AddCookie()
-            //    .AddJwtBearer(cfg =>
-            //    {
-            //        cfg.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-            //        {
-            //            ValidIssuer = this.Configuration["Tokens:Issuer"],
-            //            ValidAudience = this.Configuration["Tokens:Audience"],
-            //            IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(this.Configuration["Tokens:Key"]))
-            //        };
-            //    });
+            services.AddAuthentication()
+                .AddCookie()
+                .AddJwtBearer(cfg =>
+                {
+                    cfg.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    {
+                        ValidIssuer = this.Configuration["Tokens:Issuer"],
+                        ValidAudience = this.Configuration["Tokens:Audience"],
+                        IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(this.Configuration["Tokens:Key"]))
+                    };
+                });
 
 
 

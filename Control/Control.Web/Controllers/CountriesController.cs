@@ -133,7 +133,7 @@
 
         [HttpPost]
         //TODO: *********************OJO TOKEN**************
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Country country)
         {
             if (ModelState.IsValid)
@@ -164,7 +164,7 @@
 
         [HttpPost]
         //TODO: *********************OJO TOKEN**************
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Country country)
         {
             if (ModelState.IsValid)

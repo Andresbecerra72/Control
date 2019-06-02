@@ -27,5 +27,19 @@
 
         Task<bool> IsUserInRoleAsync(User user, string roleName);
 
+        //metodos para la confirmacion de usuarios por medio de correo
+        Task<string> GenerateEmailConfirmationTokenAsync(User user);
+
+        Task<IdentityResult> ConfirmEmailAsync(User user, string token);
+
+        Task<User> GetUserByIdAsync(string userId);
+
+        //metodos de recuperacion de password
+        Task<string> GeneratePasswordResetTokenAsync(User user);
+
+        Task<IdentityResult> ResetPasswordAsync(User user, string token, string password);
+
+
+
     }
 }

@@ -64,7 +64,7 @@
         // POST: Passangers/Create
         [HttpPost]
         //TODO:******************************OJO TOKEN*********************************
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(PassangerViewModel view)
         {
             {
@@ -157,7 +157,7 @@
         // POST: Passangers/Edit/5
         [HttpPost]
         //TODO: *******************************OJO TOKEN********************
-       // [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(PassangerViewModel view)
         {
             if (ModelState.IsValid)
