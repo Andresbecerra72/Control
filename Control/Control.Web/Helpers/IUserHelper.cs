@@ -3,6 +3,7 @@
     using Control.Web.Models;
     using Data.Entities;
     using Microsoft.AspNetCore.Identity;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     public interface IUserHelper//es la interface de UserHelper contiene los metodos para la administracion de usuarios
@@ -38,6 +39,13 @@
         Task<string> GeneratePasswordResetTokenAsync(User user);
 
         Task<IdentityResult> ResetPasswordAsync(User user, string token, string password);
+
+        //administracion de usuarios
+        Task<List<User>> GetAllUsersAsync();
+
+        Task RemoveUserFromRoleAsync(User user, string roleName);//quitq el permiso del role
+
+        Task DeleteUserAsync(User user);//elimina usuarios registrados
 
 
 

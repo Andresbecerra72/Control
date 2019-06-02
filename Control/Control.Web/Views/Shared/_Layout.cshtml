@@ -38,7 +38,7 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">Nosotros</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contacto</a></li>
-               
+
                     @if (this.User.Identity.IsAuthenticated)
                     {
                         <li><a asp-area="" asp-controller="Passangers" asp-action="Index">Pasajeros</a></li>
@@ -46,6 +46,7 @@
                         @if (this.User.IsInRole("Admin"))
                         {
                             <li><a asp-area="" asp-controller="Countries" asp-action="Index">Paises</a></li>
+                            <li><a asp-area="" asp-controller="Account" asp-action="Index">Users</a></li>
                         }
                     }
 
