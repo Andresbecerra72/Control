@@ -6,10 +6,14 @@
     using Models;
     using Newtonsoft.Json;
     using System.Threading.Tasks;
+    using System.Net.Http.Headers;
+    using System.Text;
+
     //esta clase conecta el backend API con el Frontend
-    public class ApiService   ////////////****pendiente verificar el servicio API ** verificar codigo
+    public class ApiService   
     {
-        //metodo asyn (asincrono) es comunicacion con el api
+                                   
+        //metodo asyn (asincrono) es comunicacion con el api, se consume sin seguridad
         public async Task<Response> GetListAsync<T>(string urlBase, string servicePrefix, string controller)
         {                                           //urlBase es la direccion del API htps://controlweb.azurewebsites.net
             try
@@ -47,5 +51,102 @@
                 };
             }
         }
+   
+            //usa token para obtener lista, este metodo se consume con seguridad
+            public async Task<Response> GetListAsync<T>(
+            string urlBase,
+            string servicePrefix,
+            string controller,
+            string tokenType,
+            string accessToken)
+            {
+                try
+                {
+                    var client = new HttpClient
+                    {
+                        BaseAddress = new Uri(urlBase),
+                    };
+
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
+
+                    var url = $"{servicePrefix}{controller}";
+                    var response = await client.GetAsync(url);
+                    var result = await response.Content.ReadAsStringAsync();
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        return new Response
+                        {
+                            IsSuccess = false,
+                            Message = result,
+                        };
+                    }
+
+                    var list = JsonConvert.DeserializeObject<List<T>>(result);
+                    return new Response
+                    {
+                        IsSuccess = true,
+                        Result = list
+                    };
+                }
+                catch (Exception ex)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = ex.Message
+                    };
+                }
+            }
+
+
+            //este metodo permite obtener el token
+            public async Task<Response> GetTokenAsync(
+                string urlBase,
+                string servicePrefix,
+                string controller,
+                TokenRequest request)
+            {
+                try
+                {
+                    var requestString = JsonConvert.SerializeObject(request);
+                    var content = new StringContent(requestString, Encoding.UTF8, "application/json");
+                    var client = new HttpClient
+                    {
+                        BaseAddress = new Uri(urlBase)
+                    };
+
+                    var url = $"{servicePrefix}{controller}";
+                    var response = await client.PostAsync(url, content);
+                    var result = await response.Content.ReadAsStringAsync();
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        return new Response
+                        {
+                            IsSuccess = false,
+                            Message = result,
+                        };
+                    }
+
+                    var token = JsonConvert.DeserializeObject<TokenResponse>(result);
+                    return new Response
+                    {
+                        IsSuccess = true,
+                        Result = token
+                    };
+                }
+                catch (Exception ex)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = ex.Message
+                    };
+                }
+            }
+
     }
+
+
 }

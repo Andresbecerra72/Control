@@ -35,10 +35,15 @@
         {
             this.IsRefreshing = true;
 
+            
+            var url = Application.Current.Resources["UrlAPI"].ToString();//este es el Urlbase que es la pagina donde esta el API, el dato de la url esta en el diccionario de recursos
             var response = await this.apiService.GetListAsync<Passanger>(
-                "https://controlweb.azurewebsites.net", //este es el Urlbase que es la pagina donde esta el API
-                "/api",     //servicePrefix
-                "/Passanger"); //controller
+                url,
+                "/api",//servicePrefix
+                "/Products",//controller
+                "bearer", //token
+                MainViewModel.GetInstance().Token.Token);
+
 
             this.IsRefreshing = false;
 

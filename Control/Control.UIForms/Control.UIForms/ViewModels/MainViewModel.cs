@@ -1,11 +1,14 @@
 ﻿namespace Control.UIForms.ViewModels
 {
+    using Control.Common.Models;
     using System;
     using System.Collections.Generic;
     using System.Text;
     public class MainViewModel
     {
         private static MainViewModel instance; //esto es un apuntador
+
+        public TokenResponse Token { get; set; }//almacena el token en memoria
 
         //en esta parte se referencias las viewmodels de las paginas creadas
         public LoginViewModel Login { get; set; }

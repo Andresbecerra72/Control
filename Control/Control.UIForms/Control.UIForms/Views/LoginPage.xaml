@@ -24,8 +24,12 @@
                     Placeholder="Enter Password"
                     Text="{Binding Password}"> <!--este es el vinculo del objeto Entry con la variable Password en el loginViewModel -->
                 </Entry>
+                <ActivityIndicator
+                	IsRunning="{Binding IsRunning}">
+                </ActivityIndicator>
                 <Button
                     Command="{Binding LoginCommand}"
+                    IsEnabled="{Binding IsEnabled}"
                     Text="Login">        <!--este es el vinculo del objeto LoginCommand para controlar la accion del Boton en el loginViewModel -->
 
                 </Button>
