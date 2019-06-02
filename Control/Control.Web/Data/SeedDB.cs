@@ -28,77 +28,125 @@
             await this.context.Database.EnsureCreatedAsync();
 
             //verificacion de roles
-            await this.userHelper.CheckRoleAsync("Admin");
-            await this.userHelper.CheckRoleAsync("Customer");
+            await this.CheckRoles();
 
             //adiciona ciudades de y pais colombia
             if (!this.context.Countries.Any())
             {
-                var cities = new List<City>();
-                cities.Add(new City { Name = "Villavicencio" });
-                cities.Add(new City { Name = "Barranquilla" });
-                cities.Add(new City { Name = "Medellín" });
-                cities.Add(new City { Name = "Bogotá" });
-                cities.Add(new City { Name = "Calí" });
+                await this.AddCountriesAndCitiesAsync();
+            }
 
-                this.context.Countries.Add(new Country
-                {
-                    Cities = cities,
-                    Name = "Colombia"
-                });
+           
+            //await this.CheckUser("carolina@satena.com", "carolina", "Pit", "Customer");
+            await this.CheckUser("administrador.kiu@satena.com", "Milena", "Carranza", "Customer");
+            var user = await this.CheckUser("andres.becerra@satena.com", "Andres", "Becerra", "Admin");
 
+            // Add Passangers
+            if (!this.context.Passangers.Any())
+            {
+                this.AddProduct("8710", user);
+                this.AddProduct("8711", user);
+                this.AddProduct("8740", user);
+                this.AddProduct("8741", user);
+                this.AddProduct("8702", user);
+                this.AddProduct("8703", user);
+                this.AddProduct("8864", user);
+                this.AddProduct("8616", user);
+                this.AddProduct("8619", user);
+                this.AddProduct("8422", user);
+                this.AddProduct("8423", user);
+                this.AddProduct("8788", user);
+                this.AddProduct("8789", user);
+                this.AddProduct("8888", user);
                 await this.context.SaveChangesAsync();
             }
 
+                        
+            }//***end
 
-            //adiciona el nuevo usuario
-            var user = await this.userHelper.GetUserByEmailAsync("andres.becerra@satena.com");
-            if (user == null)
+
+            //user y roles
+            private async Task<User> CheckUser(string userName, string firstName, string lastName, string role)
             {
-                user = new User
+                // Add user
+                var user = await this.userHelper.GetUserByEmailAsync(userName);
+                if (user == null)
                 {
-                    FirstName = "Andres",
-                    LastName = "Becerra",
-                    Document = "1234567",
+                    user = await this.AddUser(userName, firstName, lastName, role);
+                }
+
+                var isInRole = await this.userHelper.IsUserInRoleAsync(user, role);
+                if (!isInRole)
+                {
+                    await this.userHelper.AddUserToRoleAsync(user, role);
+                }
+
+                return user;
+            }
+
+            //User
+            private async Task<User> AddUser(string userName, string firstName, string lastName, string role)
+            {
+                var user = new User
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Email = userName,
+                    UserName = userName,
+                    Document = "888888",
                     Address = "Carrera 87 17-35",
-                    Email = "andres.becerra@satena.com",
-                    UserName = "andres.becerra@satena.com",
                     PhoneNumber = "3202456321",
                     CityId = this.context.Countries.FirstOrDefault().Cities.FirstOrDefault().Id,
                     City = this.context.Countries.FirstOrDefault().Cities.FirstOrDefault()
-
-
                 };
 
-                var result = await this.userHelper.AddUserAsync(user, "123456");//passsword
+                var result = await this.userHelper.AddUserAsync(user, "123456");
                 if (result != IdentityResult.Success)
                 {
                     throw new InvalidOperationException("Could not create the user in seeder");
                 }
 
-                await this.userHelper.AddUserToRoleAsync(user, "Admin");
-                var token = await this.userHelper.GenerateEmailConfirmationTokenAsync(user);
+                await this.userHelper.AddUserToRoleAsync(user, role);
+                var token = await this.userHelper.GenerateEmailConfirmationTokenAsync(user);//valida el token verificandole la validacion
                 await this.userHelper.ConfirmEmailAsync(user, token);
-
-
+                return user;
             }
 
-            var isInRole = await this.userHelper.IsUserInRoleAsync(user, "Admin");
-            if (!isInRole)
-            {
-                await this.userHelper.AddUserToRoleAsync(user, "Admin");
-            }
+                             
 
 
-
-            if (!this.context.Passangers.Any())
-            {
-                this.AddProduct("0001", user);
-                this.AddProduct("0002", user);
-                this.AddProduct("0003", user);
-                await this.context.SaveChangesAsync();
-            }
+        private async Task AddCountriesAndCitiesAsync()
+        {
+            this.AddCountry("Colombia", new string[] { "Villavicencio", "Medellín", "Bogota", "Calí", "Barranquilla", "Bucaramanga", "Cartagena", "Pereira", "Tunja" });
+            this.AddCountry("Argentina", new string[] { "Córdoba", "Buenos Aires", "Rosario", "Tandil", "Salta", "Mendoza" });
+            this.AddCountry("Estados Unidos", new string[] { "New York", "Los Ángeles", "Chicago", "Washington", "San Francisco", "Miami", "Boston" });
+            this.AddCountry("Ecuador", new string[] { "Quito", "Guayaquil", "Ambato", "Manta", "Loja", "Santo" });
+            this.AddCountry("Peru", new string[] { "Lima", "Arequipa", "Cusco", "Trujillo", "Chiclayo", "Iquitos" });
+            this.AddCountry("Chile", new string[] { "Santiago", "Valdivia", "Concepcion", "Puerto Montt", "Temucos", "La Sirena" });
+            this.AddCountry("Uruguay", new string[] { "Montevideo", "Punta del Este", "Colonia del Sacramento", "Las Piedras" });
+            this.AddCountry("Bolivia", new string[] { "La Paz", "Sucre", "Potosi", "Cochabamba" });
+            this.AddCountry("Venezuela", new string[] { "Caracas", "Valencia", "Maracaibo", "Ciudad Bolivar", "Maracay", "Barquisimeto" });
+            this.AddCountry("Paraguay", new string[] { "Asunción", "Ciudad del Este", "Encarnación", "San  Lorenzo", "Luque", "Areguá" });
+            this.AddCountry("Brasil", new string[] { "Rio de Janeiro", "São Paulo", "Salvador", "Porto Alegre", "Curitiba", "Recife", "Belo Horizonte", "Fortaleza" });
+            await this.context.SaveChangesAsync();
         }
+
+        private void AddCountry(string country, string[] cities)
+        {
+            var theCities = cities.Select(c => new City { Name = c }).ToList();
+            this.context.Countries.Add(new Country
+            {
+                Cities = theCities,
+                Name = country
+            });
+        }
+
+        private async Task CheckRoles()
+        {
+            await this.userHelper.CheckRoleAsync("Admin");
+            await this.userHelper.CheckRoleAsync("Customer");
+        }
+
 
         private void AddProduct(string name, User user)
         {
