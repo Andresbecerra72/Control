@@ -1,13 +1,12 @@
-﻿using Control.UIForms.ViewModels;
-using Control.UIForms.Views;
-using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-namespace Control.UIForms
+﻿namespace Control.UIForms
 {
+    using Control.UIForms.ViewModels;
+    using Control.UIForms.Views;
+    using Xamarin.Forms;
     public partial class App : Application
     {
+        public static NavigationPage Navigator { get; internal set; } //nueva navegacion 
+
         public App()
         {
             InitializeComponent();

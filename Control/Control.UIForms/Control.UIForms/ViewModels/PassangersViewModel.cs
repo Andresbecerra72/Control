@@ -40,7 +40,7 @@
             var response = await this.apiService.GetListAsync<Passanger>(
                 url,
                 "/api",//servicePrefix
-                "/Products",//controller
+                "/Passanger",//controller
                 "bearer", //token
                 MainViewModel.GetInstance().Token.Token);
 

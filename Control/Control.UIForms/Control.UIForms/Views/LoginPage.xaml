@@ -14,7 +14,7 @@
                 </Label>
                 <Entry
                     Placeholder="Enter User"
-                    Text="{Binding Usuario}"><!--este es el vinculo del objeto Entry con la variable Usuario en el loginViewModel -->
+                    Text="{Binding Email}"><!--este es el vinculo del objeto Entry con la variable Usuario en el loginViewModel -->
                 </Entry>
                 <Label 
                     Text="Password:">
