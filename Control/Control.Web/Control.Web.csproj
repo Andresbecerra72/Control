@@ -23,4 +23,8 @@
     <Folder Include="wwwroot\images\Passangers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Control.Common\Control.Common.csproj" />
+  </ItemGroup>
+
 </Project>

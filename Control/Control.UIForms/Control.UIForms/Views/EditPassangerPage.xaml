@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Control.UIForms.Views.EditPassangerPage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+         	Title="Editar Registro">
+    <ContentPage.Content>
+        <ScrollView
+        	BindingContext="{Binding EditPassanger}">
+            <StackLayout
+            	Padding="10">
+                <Image
+                	HeightRequest="150"
+                	Source="{Binding Passanger.ImageFullPath}">
+                </Image>
+                <Label
+                	FontSize="Micro"
+                	HorizontalOptions="Center"
+                	Text="Tap the image to change it...">
+                </Label>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label
+                    	Grid.Column="0"
+                    	Grid.Row="0"
+                    	Text="Vuelo"
+                    	VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                    	Grid.Column="1"
+                    	Grid.Row="0"
+                    	Placeholder="Product name..."
+                    	Text="{Binding Passanger.Flight}">
+                    </Entry>
+                    <Label
+                    	Grid.Column="0"
+                    	Grid.Row="1"
+                    	Text="Adulto"
+                    	VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                    	Grid.Column="1"
+                    	Grid.Row="1"
+                    	Keyboard="Numeric"
+                    	Placeholder="Product price..."
+                    	Text="{Binding Passanger.Adult}">
+                    </Entry>
+                    <Label
+                    	Grid.Column="0"
+                    	Grid.Row="2"
+                    	Text="Child"
+                    	VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                    	Grid.Column="1"
+                    	Grid.Row="2"
+                    	Keyboard="Numeric"
+                    	Placeholder="Product price..."
+                    	Text="{Binding Passanger.Child}">
+                    </Entry>
+                    <Label
+                    	Grid.Column="0"
+                    	Grid.Row="3"
+                    	Text="Infant"
+                    	VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                    	Grid.Column="1"
+                    	Grid.Row="3"
+                    	Keyboard="Numeric"
+                    	Placeholder="Product price..."
+                    	Text="{Binding Passanger.Infant}">
+                    </Entry>
+                    <Label
+                    	Grid.Column="0"
+                    	Grid.Row="4"
+                    	Text="Total Pax"
+                    	VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                    	Grid.Column="1"
+                    	Grid.Row="4"
+                    	Keyboard="Numeric"
+                    	Placeholder="Product price..."
+                    	Text="{Binding Passanger.Total}">
+                    </Entry>
+                </Grid>
+                <ActivityIndicator
+                	IsRunning="{Binding IsRunning}"
+                	VerticalOptions="CenterAndExpand">
+                </ActivityIndicator>
+                <StackLayout
+                	Orientation="Horizontal">
+                    <Button
+                    	BackgroundColor="Navy"
+                    	BorderRadius="23"
+                    	Command="{Binding SaveCommand}"
+                    	HeightRequest="46"
+                    	HorizontalOptions="FillAndExpand"
+                    	IsEnabled="{Binding IsEnabled}"
+                    	Text="Save"
+                    	TextColor="White">
+                    </Button>
+                    <Button
+                    	BackgroundColor="Red"
+                    	BorderRadius="23"
+                    	Command="{Binding DeleteCommand}"
+                    	HeightRequest="46"
+                    	HorizontalOptions="FillAndExpand"
+                    	IsEnabled="{Binding IsEnabled}"
+                    	Text="Delete"
+                    	TextColor="White">
+                    </Button>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

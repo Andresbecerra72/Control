@@ -4,60 +4,115 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Control.UIForms.Views.InsertPassangerPage"  BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title="Insertar Conteo Pasajeros">
+             x:Class="Control.UIForms.Views.InsertPassangerPage" 
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Title="Registro Conteo Pax">
     <!--este es el vinculo que gobierna toda la pagina desde MainViewModel -->
     <ContentPage.Content>
-        <StackLayout>
-            <ScrollView
+          <ScrollView
             BindingContext="{Binding InsertPassanger}">
                 <StackLayout
-                Padding="10">
-                    <Label 
-                    Text="Vuelo:">
+                 Padding="10">
+                    <Image
+                	HeightRequest="150"
+                	Source="{Binding Image}">
+                    </Image>
+                    <Label
+                	FontSize="Micro"
+                	HorizontalOptions="Center"
+                	Text="Tap the image to change it...">
                     </Label>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Grid.Column="0"
+                    	    Grid.Row="0"
+                    	    Text="Vuelo:"
+                    	    VerticalOptions="Center">
+                        </Label>
                     <Entry
-                    Placeholder="Enter Numero Vuelo"
-                    Text="{Binding Vuelo}">
+                        Grid.Column="1"
+                    	Grid.Row="0"
+                    	Placeholder="Ingresa Numero de vuelo"
+                    	Text="{Binding Flight}">
                     </Entry>
                     <Label 
-                    Text="Adultos:">
+                        Grid.Column="0"
+                    	Grid.Row="1"
+                    	Text="Adultos:"
+                    	VerticalOptions="Center">
                     </Label>
                     <Entry
-                    Placeholder="Enter Total Adultos"
-                    Text="{Binding Adultos}">
+                        Grid.Column="1"
+                    	Grid.Row="1"
+                    	Keyboard="Numeric"
+                    	Placeholder="Enter Total Adultos"
+                        Text="{Binding Adult}">
                     </Entry>
                     <Label 
-                    Text="Niños:">
+                        Grid.Column="0"
+                    	Grid.Row="2"
+                    	Text="Niños:"
+                    	VerticalOptions="Center">
                     </Label>
                     <Entry
-                    Placeholder="Enter Total Niños"
-                    Text="{Binding Ninos}">
+                        Grid.Column="1"
+                    	Grid.Row="2"
+                    	Keyboard="Numeric"
+                    	Placeholder="Enter Total Niños"
+                        Text="{Binding Child}">
                     </Entry>
                     <Label 
-                    Text="Nibras:">
+                        Grid.Column="0"
+                    	Grid.Row="3"
+                    	Text="Nibras:"
+                    	VerticalOptions="Center">
                     </Label>
                     <Entry
-                    Placeholder="Enter Total Nibras"
-                    Text="{Binding Nibras}">
+                        Grid.Column="1"
+                    	Grid.Row="3"
+                    	Keyboard="Numeric"
+                    	Placeholder="Enter Total Nibras"
+                        Text="{Binding Infant}">
                     </Entry>
-                    <Label 
-                    Text="Total Pasajeros:">
+                    <Label
+                         Grid.Column="0"
+                    	Grid.Row="4"
+                    	Text="Total Pasajeros:"
+                    	VerticalOptions="Center">
                     </Label>
                     <Entry
-                    Placeholder="Total Pax"
-                    Text="{Binding TotalPax}">
+                        Grid.Column="1"
+                    	Grid.Row="4"
+                    	Keyboard="Numeric"
+                    	Placeholder="Total Pax"
+                        Text="{Binding Total}">
                     </Entry>
+                    </Grid>
+                    <ActivityIndicator
+                	IsRunning="{Binding IsRunning}"
+                	VerticalOptions="CenterAndExpand">
+                    </ActivityIndicator>
 
                     <Button
-                    Command="{Binding PassangerCommand}"
-                    Text="Save">
-
+                        BackgroundColor="Navy"
+                        BorderRadius="23"
+                        Command="{Binding SaveCommand}"
+                	    HeightRequest="46"
+                	    IsEnabled="{Binding IsEnabled}"
+                	    Text="Save"
+                	    TextColor="White">
                     </Button>
+
+
+                    
 
                 </StackLayout>
             </ScrollView>
-        </StackLayout>
+       
 
        
     </ContentPage.Content>

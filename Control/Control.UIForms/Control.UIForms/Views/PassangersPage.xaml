@@ -4,6 +4,9 @@
              x:Class="Control.UIForms.Views.PassangersPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Title="Reporte Conteo Pasajeros">    <!--este es el vinculo que gobierna toda la pagina desde MainViewModel -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_add" Command="{Binding AddPassangerCommand}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <!--el siguiente  binding es una instancia de la MainViewModel -->
         <StackLayout
@@ -17,9 +20,14 @@
                     <DataTemplate>
                         <ViewCell>
                             <Grid>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectPassangerCommand}"/>
+                                </Grid.GestureRecognizers>
+
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 
                                 <StackLayout
@@ -43,9 +51,8 @@
                                     </Label>
                                 </StackLayout>
                                 <Image
-                                	Grid.Column="1"
-                                	Source="{Binding ImageFullPath}"
-                                	WidthRequest="100">
+                                	Grid.Column="2"
+                                	Source="ic_more">
                                 </Image>
                             </Grid>
                         </ViewCell>

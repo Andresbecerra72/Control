@@ -6,25 +6,25 @@
     public class Passanger //esta clase es para ser usada en movil **contiene la conversion de json del postman a c#
     {
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty("flight")]
-        public long Flight { get; set; }
+        public string Flight { get; set; }
 
         [JsonProperty("adult")]
-        public long Adult { get; set; }
+        public int Adult { get; set; }
 
         [JsonProperty("child")]
-        public long Child { get; set; }
+        public int Child { get; set; }
 
         [JsonProperty("infant")]
-        public long Infant { get; set; }
+        public int Infant { get; set; }
 
         [JsonProperty("total")]
-        public long Total { get; set; }
+        public int Total { get; set; }
 
         [JsonProperty("publishOn")]
-        public DateTimeOffset PublishOn { get; set; }
+        public DateTime PublishOn { get; set; }
 
         [JsonProperty("imageUrl")]
         public string ImageUrl { get; set; }
@@ -33,9 +33,9 @@
         public User User { get; set; }
 
         [JsonProperty("imageFullPath")]
-        public Uri ImageFullPath { get; set; }
+        public string ImageFullPath { get; set; }
 
-        public override string ToString()//codigo para el list view de app movil forms
+        public override string ToString()//codigo para el listview de app movil forms
         {
             return $"{this.Flight}{this.Total}";
         }

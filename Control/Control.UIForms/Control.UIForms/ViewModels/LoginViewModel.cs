@@ -83,6 +83,8 @@
             var mainViewModel = MainViewModel.GetInstance();
             mainViewModel.Token = token;
             mainViewModel.Passangers = new PassangersViewModel();
+            mainViewModel.UserEmail = this.Email;
+            mainViewModel.UserPassword = this.Password;
             //await Application.Current.MainPage.Navigation.PushAsync(new PassangersPage()); //esto cambia las paginas
             Application.Current.MainPage = new MasterPage();//inicia con la master pagedespues de login valido
         }

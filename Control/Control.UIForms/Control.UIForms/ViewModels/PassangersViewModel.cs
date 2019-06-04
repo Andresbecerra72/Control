@@ -4,16 +4,18 @@
     using Control.Common.Services;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using Xamarin.Forms;
 
     public class PassangersViewModel : BaseViewModel
     {
         private readonly ApiService apiService;
-        private ObservableCollection<Passanger> passangers;
+        private List<Passanger> myPassangers; //es una lista del objeto Passanger
+        private ObservableCollection<PassangerItemViewModel> passangers;
         private bool isRefreshing;
 
         //esta es la lista de productos que se van mostrar en la listview
-        public ObservableCollection<Passanger> Passangers
+        public ObservableCollection<PassangerItemViewModel> Passangers
         {
             get => this.passangers; 
             set => this.SetValue(ref this.passangers, value); 
@@ -56,9 +58,58 @@
                 return;
             }
 
-            var myPassangers = (List<Passanger>)response.Result;
-            this.Passangers = new ObservableCollection<Passanger>(myPassangers);
+            this.myPassangers = (List<Passanger>)response.Result;
+            this.RefresProductsList();//**
         }
+
+        public void AddProductToList(Passanger passanger)
+        {
+            this.myPassangers.Add(passanger);
+            this.RefresProductsList();//**
+        }
+
+        public void UpdateProductInList(Passanger passanger)
+        {
+            var previousProduct = this.myPassangers.Where(p => p.Id == passanger.Id).FirstOrDefault();
+            if (previousProduct != null)
+            {
+                this.myPassangers.Remove(previousProduct);
+            }
+
+            this.myPassangers.Add(passanger);
+            this.RefresProductsList();//**
+        }
+
+        public void DeleteProductInList(int productId)
+        {
+            var previousProduct = this.myPassangers.Where(p => p.Id == productId).FirstOrDefault();
+            if (previousProduct != null)
+            {
+                this.myPassangers.Remove(previousProduct);
+            }
+
+            this.RefresProductsList();//**
+        }
+
+        private void RefresProductsList()//este metodo arma nuevamente la Observable collection
+        {
+            this.Passangers = new ObservableCollection<PassangerItemViewModel>(myPassangers.Select(p => new PassangerItemViewModel
+            {
+                Id = p.Id,
+                ImageUrl = p.ImageUrl,
+                ImageFullPath = p.ImageFullPath,
+                Flight = p.Flight,
+                Adult = p.Adult,
+                Child = p.Child,
+                Infant = p.Infant,
+                Total = p.Total,
+                PublishOn = p.PublishOn,
+                User = p.User
+            })
+            .OrderBy(p => p.PublishOn)
+            .ToList());
+        }
+
 
     }
 }

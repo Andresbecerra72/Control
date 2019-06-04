@@ -9,6 +9,11 @@
             BindingContext="{Binding Login}"><!--este es el vinculo del objeto ScrollView con el objeto Login de loginViewModel -->
             <StackLayout
                 Padding="10">
+                <Image
+                	HeightRequest="150"
+                	Source="logo">
+                </Image>
+
                 <Label 
                     Text="Usuario:">
                 </Label>
@@ -25,12 +30,17 @@
                     Text="{Binding Password}"> <!--este es el vinculo del objeto Entry con la variable Password en el loginViewModel -->
                 </Entry>
                 <ActivityIndicator
-                	IsRunning="{Binding IsRunning}">
+                	IsRunning="{Binding IsRunning}"
+                    VerticalOptions="CenterAndExpand">
                 </ActivityIndicator>
                 <Button
                     Command="{Binding LoginCommand}"
                     IsEnabled="{Binding IsEnabled}"
-                    Text="Login">        <!--este es el vinculo del objeto LoginCommand para controlar la accion del Boton en el loginViewModel -->
+                    Text="Login"
+                    BackgroundColor="Navy"
+                	BorderRadius="23"
+                    HeightRequest="46"
+                    TextColor="White">        <!--este es el vinculo del objeto LoginCommand para controlar la accion del Boton en el loginViewModel -->
 
                 </Button>
 
