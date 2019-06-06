@@ -12,6 +12,7 @@
     public class MainViewModel
     {
         private static MainViewModel instance; //esto es un apuntador
+        public User User { get; set; }
 
         public TokenResponse Token { get; set; }//almacena el token en memoria
 

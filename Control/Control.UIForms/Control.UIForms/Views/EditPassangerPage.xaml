@@ -29,67 +29,77 @@
                     <Label
                     	Grid.Column="0"
                     	Grid.Row="0"
-                    	Text="Vuelo"
+                    	Text="Vuelo:"
                     	VerticalOptions="Center">
                     </Label>
                     <Entry
                     	Grid.Column="1"
                     	Grid.Row="0"
-                    	Placeholder="Product name..."
+                    	Placeholder="Enter Flight Number"
                     	Text="{Binding Passanger.Flight}">
                     </Entry>
                     <Label
                     	Grid.Column="0"
                     	Grid.Row="1"
-                    	Text="Adulto"
+                    	Text="Adultos:"
                     	VerticalOptions="Center">
                     </Label>
                     <Entry
                     	Grid.Column="1"
                     	Grid.Row="1"
                     	Keyboard="Numeric"
-                    	Placeholder="Product price..."
+                    	Placeholder="Enter Adult Number"
                     	Text="{Binding Passanger.Adult}">
                     </Entry>
                     <Label
                     	Grid.Column="0"
                     	Grid.Row="2"
-                    	Text="Child"
+                    	Text="Niños:"
                     	VerticalOptions="Center">
                     </Label>
                     <Entry
                     	Grid.Column="1"
                     	Grid.Row="2"
                     	Keyboard="Numeric"
-                    	Placeholder="Product price..."
+                    	Placeholder="Enter Child Number"
                     	Text="{Binding Passanger.Child}">
                     </Entry>
                     <Label
                     	Grid.Column="0"
                     	Grid.Row="3"
-                    	Text="Infant"
+                    	Text="Infantes:"
                     	VerticalOptions="Center">
                     </Label>
                     <Entry
                     	Grid.Column="1"
                     	Grid.Row="3"
                     	Keyboard="Numeric"
-                    	Placeholder="Product price..."
+                    	Placeholder="Enter Infant Number"
                     	Text="{Binding Passanger.Infant}">
                     </Entry>
                     <Label
                     	Grid.Column="0"
                     	Grid.Row="4"
-                    	Text="Total Pax"
+                    	Text="Total Pax:"
                     	VerticalOptions="Center">
                     </Label>
                     <Entry
                     	Grid.Column="1"
                     	Grid.Row="4"
                     	Keyboard="Numeric"
-                    	Placeholder="Product price..."
+                    	Placeholder="Enter total Pax"
                     	Text="{Binding Passanger.Total}">
                     </Entry>
+                    <Label
+                    	Grid.Column="0"
+                    	Grid.Row="5"
+                    	Text="Fecha:"
+                    	VerticalOptions="Center">
+                    </Label>
+                    <DatePicker
+                        Grid.Column="1"
+                    	Grid.Row="5"
+                        Date="{Binding Passanger.PublishOn}" />
                 </Grid>
                 <ActivityIndicator
                 	IsRunning="{Binding IsRunning}"

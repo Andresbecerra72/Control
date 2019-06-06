@@ -46,7 +46,7 @@
                 return this.BadRequest(ModelState);
             }
 
-            var user = await this.userHelper.GetUserByEmailAsync(passanger.User.Email);
+            var user = await this.userHelper.GetUserByEmailAsync(passanger.User.UserName);
             if (user == null)
             {
                 return this.BadRequest("Invalid user");

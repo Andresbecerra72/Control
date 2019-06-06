@@ -40,6 +40,10 @@
 
         public DateTime PublishOn { get; set; }
 
+       
+        
+        
+
 
         public ICommand SaveCommand => new RelayCommand(this.Save);
 
@@ -49,7 +53,9 @@
         {
             this.apiService = new ApiService();// se instancian los servicios del API, para crear un nuevo registro de pasajeros
             this.Image = "no_image";
+            this.PublishOn = DateTime.Now;
             this.IsEnabled = true;
+            
         }
 
         private async void Save()
@@ -104,8 +110,9 @@
                 Child = child,
                 Infant = infant,
                 Total = total,
-                //PublishOn = DateTime.Now,
+                PublishOn = this.PublishOn,
                 User = new User { UserName = MainViewModel.GetInstance().UserEmail }
+                
             };
 
             //se ejecuta el POST para crear el registro en BD

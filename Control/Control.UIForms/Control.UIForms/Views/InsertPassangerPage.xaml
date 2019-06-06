@@ -68,14 +68,14 @@
                     <Label 
                         Grid.Column="0"
                     	Grid.Row="3"
-                    	Text="Nibras:"
+                    	Text="Infantes:"
                     	VerticalOptions="Center">
                     </Label>
                     <Entry
                         Grid.Column="1"
                     	Grid.Row="3"
                     	Keyboard="Numeric"
-                    	Placeholder="Enter Total Nibras"
+                    	Placeholder="Enter Total Infantes"
                         Text="{Binding Infant}">
                     </Entry>
                     <Label
@@ -91,7 +91,22 @@
                     	Placeholder="Total Pax"
                         Text="{Binding Total}">
                     </Entry>
-                    </Grid>
+                    <Label
+                        Grid.Column="0"
+                    	Grid.Row="5"
+                    	Text="Fecha:"
+                    	VerticalOptions="Center">
+                    </Label>
+                    
+                        <DatePicker
+                        Grid.Column="1"
+                    	Grid.Row="5"
+                       MinimumDate="{Binding PublishOn}"
+                        MaximumDate="12/31/2030"
+                         Date="{Binding PublishOn}" />
+                    
+                    
+                </Grid>
                     <ActivityIndicator
                 	IsRunning="{Binding IsRunning}"
                 	VerticalOptions="CenterAndExpand">
