@@ -35,6 +35,8 @@
         [JsonProperty("imageFullPath")]
         public string ImageFullPath { get; set; }
 
+        public byte[] ImageArray { get; set; }//atributo para almacenar la imagen capturada desde el movil
+
         public override string ToString()//codigo para el listview de app movil forms
         {
             return $"{this.Flight}{this.Total}";

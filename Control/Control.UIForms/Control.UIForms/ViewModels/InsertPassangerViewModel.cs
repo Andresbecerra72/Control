@@ -4,8 +4,11 @@
     using System.Windows.Input;
     using Common.Models;
     using Common.Services;
+    using Control.Common.Helpers;
     using Control.UIForms.Helpers;
     using GalaSoft.MvvmLight.Command;
+    using Plugin.Media;
+    using Plugin.Media.Abstractions;
     using Xamarin.Forms;
 
     public class InsertPassangerViewModel : BaseViewModel
@@ -13,8 +16,16 @@
         private bool isRunning;
         private bool isEnabled;
         private readonly ApiService apiService;
-        
-        
+        private ImageSource imageSource;
+        private MediaFile file; //Para la captura de fotos
+
+        public ImageSource ImageSource
+        {
+            get => this.imageSource;
+            set => this.SetValue(ref this.imageSource, value);
+        }
+
+
         public bool IsRunning
         {
             get => this.isRunning;
@@ -26,8 +37,6 @@
             get => this.isEnabled;
             set => this.SetValue(ref this.isEnabled, value);
         }
-
-        public string Image { get; set; }
 
         public string Flight { get; set; }
 
@@ -41,11 +50,9 @@
 
         public DateTime PublishOn { get; set; }
 
-       
-        
-        
-
-
+        //acciones por comandos 
+        public ICommand ChangeImageCommand => new RelayCommand(this.ChangeImage);
+                
         public ICommand SaveCommand => new RelayCommand(this.Save);
 
         //METODOS:
@@ -53,12 +60,13 @@
         public InsertPassangerViewModel()//contructor
         {
             this.apiService = new ApiService();// se instancian los servicios del API, para crear un nuevo registro de pasajeros
-            this.Image = "no_image";
+            this.ImageSource = "no_image";
             this.PublishOn = DateTime.Now;
             this.IsEnabled = true;
             
         }
 
+        //metodo para salvar el registro de pasajeros
         private async void Save()
         {
             if (string.IsNullOrEmpty(this.Flight))
@@ -103,7 +111,14 @@
             this.IsRunning = true;
             this.IsEnabled = false;
 
-            //TODO: Add image
+            //codigo para armar el image array de la foto tomada por el movil
+            byte[] imageArray = null;
+            if (this.file != null)
+            {
+                imageArray = FilesHelper.ReadFully(this.file.GetStream());
+            }
+
+              //codigo que construye el modelo para el api
             var passanger = new Passanger
             {
                 Flight = this.Flight,
@@ -112,8 +127,9 @@
                 Infant = infant,
                 Total = total,
                 PublishOn = this.PublishOn,
-                User = new User { UserName = MainViewModel.GetInstance().UserEmail }
-                
+                User = new User { UserName = MainViewModel.GetInstance().UserEmail },
+                ImageArray = imageArray
+
             };
 
             //se ejecuta el POST para crear el registro en BD
@@ -139,6 +155,56 @@
             this.IsEnabled = true;
             await App.Navigator.PopAsync();
         }
+
+
+        //metodo para cambiar la imagen 
+        private async void ChangeImage()
+        {
+            await CrossMedia.Current.Initialize();
+
+            //se muesta un mensaje con las opciones para la captura de la imagen
+            var source = await Application.Current.MainPage.DisplayActionSheet(
+                "Where do you take the picture?",
+                "Cancel",
+                null,
+                "From Gallery",
+                "From Camera");
+
+            if (source == "Cancel")
+            {
+                this.file = null;
+                return;
+            }
+
+            if (source == "From Camera")
+            {
+                //toma la foto desde la camara del dispositivo
+                this.file = await CrossMedia.Current.TakePhotoAsync(
+                    new StoreCameraMediaOptions
+                    {
+                        Directory = "Pictures",
+                        Name = "test.jpg",
+                        PhotoSize = PhotoSize.Small,
+                    }
+                );
+            }
+            else
+            {
+                //toma la imagen desde la galeria
+                this.file = await CrossMedia.Current.PickPhotoAsync();
+            }
+
+            if (this.file != null)
+            {
+                //si el usuario captura la imagen se almacena
+                this.ImageSource = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                    return stream;
+                });
+            }
+        }
+
     }
 
 }

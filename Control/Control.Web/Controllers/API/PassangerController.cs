@@ -37,7 +37,7 @@
             return this.Ok(this.passangerRepository.GetAllWithUsers());
         }
 
-        //POST PASSANGER metodo para crear
+        //POST PASSANGER metodo para crear desde el movil
         [HttpPost]
         public async Task<IActionResult> PostPassanger([FromBody] Common.Models.Passanger passanger)
         {
@@ -52,7 +52,24 @@
                 return this.BadRequest("Invalid user");
             }
 
-            //TODO: Upload images
+            //crea la imagen
+            var imageUrl = string.Empty;
+            if (passanger.ImageArray != null && passanger.ImageArray.Length > 0)
+            {
+                var stream = new MemoryStream(passanger.ImageArray);//coleccion de bytes para enviar la imagen
+                var guid = Guid.NewGuid().ToString();
+                var file = $"{guid}.jpg";
+                var folder = "wwwroot\\images\\Passangers";
+                var fullPath = $"~/images/Passangers/{file}";
+                var response = FilesHelper.UploadPhoto(stream, folder, file);
+
+                if (response)
+                {
+                    imageUrl = fullPath;
+                }
+            }
+
+            //construye el modelo del entity contodos los datos ingresados por el usuario desde la app movil
             var entityPassanger = new Passanger
             {
                 Flight = passanger.Flight,
@@ -61,7 +78,8 @@
                 Infant = passanger.Infant,
                 Total = passanger.Total,
                 PublishOn = passanger.PublishOn,
-                User = user
+                User = user,
+                ImageUrl = imageUrl
             };
 
             var newPassanger = await this.passangerRepository.CreateAsync(entityPassanger);
