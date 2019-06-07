@@ -9,7 +9,7 @@
 
 
 
-    [Activity(Label = "TCPApp",
+    [Activity(Label = "TCP App",
         Icon = "@mipmap/icon",
         Theme = "@style/MainTheme",
         MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]

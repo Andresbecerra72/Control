@@ -37,6 +37,7 @@
 	<key>CFBundleLocalizations</key>
 	<array>
 		<string>es-CO</string>
+		<string>es-ES</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>

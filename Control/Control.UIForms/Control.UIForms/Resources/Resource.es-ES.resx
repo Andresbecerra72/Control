@@ -127,10 +127,10 @@
     <value>Email o contraseña incorrectos</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>¡Error!</value>
+    <value>Error</value>
   </data>
   <data name="PasswordError" xml:space="preserve">
-    <value>Debes ingresar una contraseña</value>
+    <value>Debe especificar una contraseña.</value>
   </data>
   <data name="AdultEnter" xml:space="preserve">
     <value>Debes ingresar el Total de Adultos.</value>
@@ -151,16 +151,16 @@
     <value>Inicio de sesión</value>
   </data>
   <data name="User" xml:space="preserve">
-    <value>Nombre de Usuario</value>
+    <value>Usuario</value>
   </data>
   <data name="UserPlaceHolder" xml:space="preserve">
-    <value>Ingrese su dirección de correo</value>
+    <value>Ingrese su direccion Email</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Contraseña</value>
+    <value>Contraseña:</value>
   </data>
   <data name="PasswordPlaceHolder" xml:space="preserve">
-    <value>Introduce tu Contraseña</value>
+    <value>Escriba la contraseña.</value>
   </data>
   <data name="Remember" xml:space="preserve">
     <value>Recuérdame en este dispositivo!</value>
@@ -184,19 +184,19 @@
     <value>Infantes:</value>
   </data>
   <data name="TotalPassangers" xml:space="preserve">
-    <value>Total de Pasajeros:</value>
+    <value>Total pasajeros:</value>
   </data>
   <data name="Date" xml:space="preserve">
     <value>Fecha:</value>
   </data>
   <data name="AdultsEntry" xml:space="preserve">
-    <value>Ingrese el total de adultos</value>
+    <value>Ingrese el total de adultos.</value>
   </data>
   <data name="FlightEntry" xml:space="preserve">
-    <value>Ingrese Número de vuelo</value>
+    <value>Ingrese un Número de vuelo</value>
   </data>
   <data name="ChildrenEntry" xml:space="preserve">
-    <value>Ingrese el total de niños!</value>
+    <value>Ingrese el total de niños</value>
   </data>
   <data name="InfantsEntry" xml:space="preserve">
     <value>Ingrese el total de bebés</value>
@@ -208,18 +208,18 @@
     <value>Guardar</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Borrar</value>
+    <value>Eliminar</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Editar</value>
   </data>
   <data name="Create" xml:space="preserve">
-    <value>﻿Crear</value>
+    <value>Crear</value>
   </data>
   <data name="EditTitle" xml:space="preserve">
     <value>Editar Vuelo</value>
   </data>
   <data name="PaxTitle" xml:space="preserve">
-    <value>Vuelos Reportados</value>
+    <value>Reporte de Vuelos</value>
   </data>
 </root>
