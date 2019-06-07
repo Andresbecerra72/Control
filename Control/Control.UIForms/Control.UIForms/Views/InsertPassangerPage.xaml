@@ -4,9 +4,10 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:i18n="clr-namespace:Control.UIForms.Helpers"
              x:Class="Control.UIForms.Views.InsertPassangerPage" 
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title="Registro Conteo Pax">
+             Title="{i18n:Translate AddTitle}">
     <!--este es el vinculo que gobierna toda la pagina desde MainViewModel -->
     <ContentPage.Content>
           <ScrollView
@@ -20,7 +21,7 @@
                     <Label
                 	FontSize="Micro"
                 	HorizontalOptions="Center"
-                	Text="Tap the image to change it...">
+                	Text="{i18n:Translate ImageTap}">
                     </Label>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -30,71 +31,71 @@
                         <Label
                             Grid.Column="0"
                     	    Grid.Row="0"
-                    	    Text="Vuelo:"
+                    	    Text="{i18n:Translate Flight}"
                     	    VerticalOptions="Center">
                         </Label>
                     <Entry
                         Grid.Column="1"
                     	Grid.Row="0"
-                    	Placeholder="Ingresa Numero de vuelo"
+                    	Placeholder="{i18n:Translate FlightEntry}"
                     	Text="{Binding Flight}">
                     </Entry>
                     <Label 
                         Grid.Column="0"
                     	Grid.Row="1"
-                    	Text="Adultos:"
+                    	Text="{i18n:Translate Adults}"
                     	VerticalOptions="Center">
                     </Label>
                     <Entry
                         Grid.Column="1"
                     	Grid.Row="1"
                     	Keyboard="Numeric"
-                    	Placeholder="Enter Total Adultos"
+                    	Placeholder="{i18n:Translate AdultsEntry}"
                         Text="{Binding Adult}">
                     </Entry>
                     <Label 
                         Grid.Column="0"
                     	Grid.Row="2"
-                    	Text="Niños:"
+                    	Text="{i18n:Translate Children}"
                     	VerticalOptions="Center">
                     </Label>
                     <Entry
                         Grid.Column="1"
                     	Grid.Row="2"
                     	Keyboard="Numeric"
-                    	Placeholder="Enter Total Niños"
+                    	Placeholder="{i18n:Translate ChildrenEntry}"
                         Text="{Binding Child}">
                     </Entry>
                     <Label 
                         Grid.Column="0"
                     	Grid.Row="3"
-                    	Text="Infantes:"
+                    	Text="{i18n:Translate Infants}"
                     	VerticalOptions="Center">
                     </Label>
                     <Entry
                         Grid.Column="1"
                     	Grid.Row="3"
                     	Keyboard="Numeric"
-                    	Placeholder="Enter Total Infantes"
+                    	Placeholder="{i18n:Translate InfantsEntry}"
                         Text="{Binding Infant}">
                     </Entry>
                     <Label
                          Grid.Column="0"
                     	Grid.Row="4"
-                    	Text="Total Pasajeros:"
+                    	Text="{i18n:Translate TotalPassangers}"
                     	VerticalOptions="Center">
                     </Label>
                     <Entry
                         Grid.Column="1"
                     	Grid.Row="4"
                     	Keyboard="Numeric"
-                    	Placeholder="Total Pax"
+                    	Placeholder="{i18n:Translate TotalEntry}"
                         Text="{Binding Total}">
                     </Entry>
                     <Label
                         Grid.Column="0"
                     	Grid.Row="5"
-                    	Text="Fecha:"
+                    	Text="{i18n:Translate Date}"
                     	VerticalOptions="Center">
                     </Label>
                     
@@ -118,7 +119,7 @@
                         Command="{Binding SaveCommand}"
                 	    HeightRequest="46"
                 	    IsEnabled="{Binding IsEnabled}"
-                	    Text="Save"
+                	    Text="{i18n:Translate Save}"
                 	    TextColor="White">
                     </Button>
 

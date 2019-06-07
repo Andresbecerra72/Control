@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:Control.UIForms.Helpers"
              x:Class="Control.UIForms.Views.LoginPage"
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
-             Title="Login">  <!--este es el vinculo Binding que gobierna toda la pagina desde MainViewModel -->
+             Title="{i18n:Translate Login}">  <!--este es el vinculo Binding que gobierna toda la pagina desde MainViewModel -->
     <ContentPage.Content>
         <ScrollView
             BindingContext="{Binding Login}"><!--este es el vinculo del objeto ScrollView con el objeto Login de loginViewModel -->
@@ -15,25 +16,25 @@
                 </Image>
 
                 <Label 
-                    Text="Usuario:">
+                    Text="{i18n:Translate User}">
                 </Label>
                 <Entry
-                    Placeholder="Enter User"
+                    Placeholder="{i18n:Translate UserPlaceHolder}"
                     Text="{Binding Email}"><!--este es el vinculo del objeto Entry con la variable Usuario en el loginViewModel -->
                 </Entry>
                 <Label 
-                    Text="Password:">
+                    Text="{i18n:Translate Password}">
                 </Label>
                 <Entry
                     IsPassword="True"
-                    Placeholder="Enter Password"
+                    Placeholder="{i18n:Translate PasswordPlaceHolder}"
                     Text="{Binding Password}"> <!--este es el vinculo del objeto Entry con la variable Password en el loginViewModel -->
                 </Entry>
                 <StackLayout
 	                  HorizontalOptions="Center"
 	                  Orientation="Horizontal">
                         <Label
-    	                 Text="Rememberme in this device"
+    	                 Text="{i18n:Translate Remember}"
     	                 VerticalOptions="Center">
                         </Label>
                     <Switch
@@ -48,7 +49,7 @@
                 <Button
                     Command="{Binding LoginCommand}"
                     IsEnabled="{Binding IsEnabled}"
-                    Text="Login"
+                    Text="{i18n:Translate Login}"
                     BackgroundColor="Navy"
                 	BorderRadius="23"
                     HeightRequest="46"

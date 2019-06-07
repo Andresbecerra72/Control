@@ -4,6 +4,7 @@
     using System.Windows.Input;
     using Common.Models;
     using Common.Services;
+    using Control.UIForms.Helpers;
     using GalaSoft.MvvmLight.Command;
     using Xamarin.Forms;
 
@@ -62,13 +63,13 @@
         {
             if (string.IsNullOrEmpty(this.Flight))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "You must enter a Flight Number.", "Accept");
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.FlightEnter, Languages.Accept);//"Error", "You must enter a Flight Number.", "Accept"
                 return;
             }
 
             if (string.IsNullOrEmpty(this.Adult))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "You must enter a Adult Number.", "Accept");
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.AdultEnter, Languages.Accept);//"Error", "You must enter an Adults Total.", "Accept"
                 return;
             }
 
@@ -76,7 +77,7 @@
 
             if (string.IsNullOrEmpty(this.Child))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "You must enter a Child Number.", "Accept");
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.ChlidEnter, Languages.Accept);//"Error", "You must enter a Children Total.", "Accept"
                 return;
             }
 
@@ -84,7 +85,7 @@
 
             if (string.IsNullOrEmpty(this.Infant))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "You must enter an Infant Number.", "Accept");
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.InfantEnter, Languages.Accept);//"Error", "You must enter an Infants Total.", "Accept"
                 return;
             }
 
@@ -92,7 +93,7 @@
 
             if (string.IsNullOrEmpty(this.Total))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "You must enter a Total Passangers.", "Accept");
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.TotalEnter, Languages.Accept);//"Error", "You must enter a Total Passangers.", "Accept"
                 return;
             }
                                   

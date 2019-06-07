@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:i18n="clr-namespace:Control.UIForms.Helpers"
              x:Class="Control.UIForms.Views.PassangersPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title="Reporte Conteo Pasajeros">    <!--este es el vinculo que gobierna toda la pagina desde MainViewModel -->
+             Title="{i18n:Translate PaxTitle}">    <!--este es el vinculo que gobierna toda la pagina desde MainViewModel -->
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="ic_add" Command="{Binding AddPassangerCommand}"/>
     </ContentPage.ToolbarItems>

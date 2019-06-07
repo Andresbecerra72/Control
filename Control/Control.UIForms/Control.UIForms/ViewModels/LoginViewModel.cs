@@ -4,6 +4,7 @@
     using Common.Services;
     using Control.Common.Helpers;
     using Control.Common.Models;
+    using Control.UIForms.Helpers;
     using GalaSoft.MvvmLight.Command;
     using Newtonsoft.Json;
     using Views;
@@ -46,13 +47,13 @@
         {
             if (string.IsNullOrEmpty(this.Email))  //condicion cuando el no ingresa usuario
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "You must enter an email.", "Accept");
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.EmailError, Languages.Accept); //"Error", "You must enter an email.", "Accept"
                 return;
             }
 
             if (string.IsNullOrEmpty(this.Password))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "You must enter a password.", "Accept");
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.PasswordError, Languages.Accept);//"Error", "You must enter a password.", "Accept"
                 return;
             }
 
@@ -77,7 +78,7 @@
 
             if (!response.IsSuccess)//si no fue satisfactoria la consulta de usuario y password
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "Email or password incorrect.", "Accept");
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.EmailPasswordError, Languages.Accept);//"Error", "Email or password incorrect.", "Accept"
                 return;
             }
 
