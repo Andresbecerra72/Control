@@ -29,6 +29,18 @@
                     Placeholder="Enter Password"
                     Text="{Binding Password}"> <!--este es el vinculo del objeto Entry con la variable Password en el loginViewModel -->
                 </Entry>
+                <StackLayout
+	                  HorizontalOptions="Center"
+	                  Orientation="Horizontal">
+                        <Label
+    	                 Text="Rememberme in this device"
+    	                 VerticalOptions="Center">
+                        </Label>
+                    <Switch
+    	              IsToggled="{Binding IsRemember}">
+                    </Switch>   
+                </StackLayout>
+
                 <ActivityIndicator
                 	IsRunning="{Binding IsRunning}"
                     VerticalOptions="CenterAndExpand">
