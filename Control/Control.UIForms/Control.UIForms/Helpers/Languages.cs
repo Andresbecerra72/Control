@@ -18,7 +18,7 @@
         public static string PasswordError => Resource.PasswordError;
         public static string EmailPasswordError => Resource.EmailPasswordError;
         public static string AdultEnter => Resource.AdultEnter;
-        public static string ChlidEnter => Resource.ChlidEnter;
+        public static string ChildEnter => Resource.ChildEnter;
         public static string EmailError => Resource.EmailError;
         public static string FlightEnter => Resource.FlightEnter;
         public static string InfantEnter => Resource.InfantEnter;
@@ -28,6 +28,7 @@
         public static string LoginTitle => Resource.LoginTitle;
         public static string AddTitle => Resource.AddTitle;
         public static string EditTitle => Resource.EditTitle;
+        public static string RegisterUserTitle => Resource.RegisterUserTitle;
         public static string PaxTitle => Resource.PaxTitle;
         public static string FlightEntry => Resource.FlightEntry;
         public static string AdultsEntry => Resource.AdultsEntry;
@@ -46,11 +47,15 @@
         public static string Remember => Resource.Remember;
         public static string ImageTap => Resource.ImageTap;
 
+
         //botones y CRUD
         public static string Save => Resource.Save;
         public static string Edit => Resource.Edit;
         public static string Delete => Resource.Delete;
         public static string Create => Resource.Create;
+        public static string RegisterNewUser => Resource.RegisterNewUser;
+        public static string Login => Resource.Login;
+
 
 
 

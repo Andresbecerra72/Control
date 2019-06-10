@@ -1,5 +1,6 @@
 ﻿namespace Control.UIForms.ViewModels
 {
+    using System;
     using System.Windows.Input;
     using Common.Services;
     using Control.Common.Helpers;
@@ -33,7 +34,16 @@
 
         public string Password { get; set; }
 
-        public ICommand LoginCommand => new RelayCommand(this.Login);//codigo para la accion del boton
+        public ICommand RegisterCommand => new RelayCommand(this.Register);//codigo para la accion del boton registrar nuevo usuario
+
+        private async void Register()
+        {
+            MainViewModel.GetInstance().Register = new RegisterViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new RegisterPage());//muestra la pagina de registro de usuario
+
+        }
+
+        public ICommand LoginCommand => new RelayCommand(this.Login);//codigo para la accion del boton login
 
         public LoginViewModel()
         {

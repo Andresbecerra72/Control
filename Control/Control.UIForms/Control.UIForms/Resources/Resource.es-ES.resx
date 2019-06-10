@@ -135,7 +135,7 @@
   <data name="AdultEnter" xml:space="preserve">
     <value>Debes ingresar el Total de Adultos.</value>
   </data>
-  <data name="ChlidEnter" xml:space="preserve">
+  <data name="ChildEnter" xml:space="preserve">
     <value>Debes ingresar el total de niños.</value>
   </data>
   <data name="FlightEnter" xml:space="preserve">
@@ -221,5 +221,14 @@
   </data>
   <data name="PaxTitle" xml:space="preserve">
     <value>Reporte de Vuelos</value>
+  </data>
+  <data name="RegisterNewUser" xml:space="preserve">
+    <value>Nuevo Usuario</value>
+  </data>
+  <data name="RegisterUserTitle" xml:space="preserve">
+    <value>Registrar Nuevo Usuario</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Iniciar Sesión</value>
   </data>
 </root>

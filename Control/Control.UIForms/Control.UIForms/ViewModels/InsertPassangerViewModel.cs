@@ -85,7 +85,7 @@
 
             if (string.IsNullOrEmpty(this.Child))
             {
-                await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.ChlidEnter, Languages.Accept);//"Error", "You must enter a Children Total.", "Accept"
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.ChildEnter, Languages.Accept);//"Error", "You must enter a Children Total.", "Accept"
                 return;
             }
 

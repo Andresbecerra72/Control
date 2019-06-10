@@ -12,6 +12,9 @@
     public class MainViewModel
     {
         private static MainViewModel instance; //esto es un apuntador
+
+        public RegisterViewModel Register { get; set; }//para el registro de usuarios desde app
+
         public User User { get; set; }
 
         public TokenResponse Token { get; set; }//almacena el token en memoria

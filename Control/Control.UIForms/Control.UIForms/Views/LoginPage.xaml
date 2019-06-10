@@ -46,16 +46,31 @@
                 	IsRunning="{Binding IsRunning}"
                     VerticalOptions="CenterAndExpand">
                 </ActivityIndicator>
-                <Button
-                    Command="{Binding LoginCommand}"
-                    IsEnabled="{Binding IsEnabled}"
-                    Text="{i18n:Translate Login}"
-                    BackgroundColor="Navy"
-                	BorderRadius="23"
-                    HeightRequest="46"
-                    TextColor="White">        <!--este es el vinculo del objeto LoginCommand para controlar la accion del Boton en el loginViewModel -->
+               
+                <StackLayout
+	                Orientation="Horizontal">
+                    <Button
+    	                BackgroundColor="Navy"
+    	                BorderRadius="23"
+    	                Command="{Binding LoginCommand}"
+    	                HeightRequest="46"
+    	                HorizontalOptions="FillAndExpand"
+    	                IsEnabled="{Binding IsEnabled}"
+    	                Text="{i18n:Translate Login}"
+    	                TextColor="White">
+                    </Button>
+                    <Button
+    	                BackgroundColor="Purple"
+    	                BorderRadius="23"
+    	                Command="{Binding RegisterCommand}"
+    	                HeightRequest="46"
+    	                HorizontalOptions="FillAndExpand"
+    	                IsEnabled="{Binding IsEnabled}"
+    	                Text="{i18n:Translate RegisterNewUser}"
+    	                TextColor="White">    <!--este es el vinculo del objeto LoginCommand para controlar la accion del Boton en el loginViewModel -->
+                    </Button>       
+                </StackLayout>
 
-                </Button>
 
             </StackLayout>
         </ScrollView>

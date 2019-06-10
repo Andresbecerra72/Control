@@ -106,6 +106,15 @@ namespace Control.UIForms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must enter a Children Total..
+        /// </summary>
+        public static string ChildEnter {
+            get {
+                return ResourceManager.GetString("ChildEnter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Children:.
         /// </summary>
         public static string Children {
@@ -120,15 +129,6 @@ namespace Control.UIForms.Resources {
         public static string ChildrenEntry {
             get {
                 return ResourceManager.GetString("ChildrenEntry", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You must enter a Children Total..
-        /// </summary>
-        public static string ChlidEnter {
-            get {
-                return ResourceManager.GetString("ChlidEnter", resourceCulture);
             }
         }
         
@@ -270,6 +270,15 @@ namespace Control.UIForms.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
         public static string LoginTitle {
             get {
                 return ResourceManager.GetString("LoginTitle", resourceCulture);
@@ -309,6 +318,24 @@ namespace Control.UIForms.Resources {
         public static string PaxTitle {
             get {
                 return ResourceManager.GetString("PaxTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New User.
+        /// </summary>
+        public static string RegisterNewUser {
+            get {
+                return ResourceManager.GetString("RegisterNewUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register New User.
+        /// </summary>
+        public static string RegisterUserTitle {
+            get {
+                return ResourceManager.GetString("RegisterUserTitle", resourceCulture);
             }
         }
         
