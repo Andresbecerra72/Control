@@ -13,6 +13,8 @@
     {
         private static MainViewModel instance; //esto es un apuntador
 
+        public RememberPasswordViewModel RememberPassword { get; set; }//para recuperar el password
+
         public RegisterViewModel Register { get; set; }//para el registro de usuarios desde app
 
         public User User { get; set; }

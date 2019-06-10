@@ -232,6 +232,15 @@ namespace Control.UIForms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Forgot my password.
+        /// </summary>
+        public static string ForgotPassword {
+            get {
+                return ResourceManager.GetString("ForgotPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tap the image to change it....
         /// </summary>
         public static string ImageTap {
@@ -345,6 +354,15 @@ namespace Control.UIForms.Resources {
         public static string Remember {
             get {
                 return ResourceManager.GetString("Remember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recover password.
+        /// </summary>
+        public static string RememberPasswordTitle {
+            get {
+                return ResourceManager.GetString("RememberPasswordTitle", resourceCulture);
             }
         }
         

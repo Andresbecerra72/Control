@@ -96,6 +96,44 @@
                 Message = "A Confirmation email was sent. Plese confirm your account and log into the App."
             });
         }
+
+        //POST RECOVER PASSWORD FROM APP MOVIL
+        [HttpPost]
+        [Route("RecoverPasswordApp")]
+        public async Task<IActionResult> RecoverPasswordApp([FromBody] RecoverPasswordRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.BadRequest(new Response
+                {
+                    IsSuccess = false,
+                    Message = "Bad request"
+                });
+            }
+
+            var user = await this.userHelper.GetUserByEmailAsync(request.Email); //Valida el usuario
+            if (user == null)
+            {
+                return this.BadRequest(new Response
+                {
+                    IsSuccess = false,
+                    Message = "This email is not assigned to any user."
+                });
+            }
+
+            var myToken = await this.userHelper.GeneratePasswordResetTokenAsync(user);
+            var link = this.Url.Action("ResetPassword", "Account", new { token = myToken }, protocol: HttpContext.Request.Scheme);
+            this.mailHelper.SendMail(request.Email, "Password Reset", $"<h1>Recover Password</h1>" +
+                $"To reset the password click in this link:</br></br>" +
+                $"<a href = \"{link}\">Reset Password</a>");
+
+            return Ok(new Response
+            {
+                IsSuccess = true,
+                Message = "An email with instructions to change the password was sent."
+            });
+        }
+
     }
 
 }

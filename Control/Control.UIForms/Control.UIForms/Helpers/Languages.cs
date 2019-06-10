@@ -30,6 +30,7 @@
         public static string EditTitle => Resource.EditTitle;
         public static string RegisterUserTitle => Resource.RegisterUserTitle;
         public static string PaxTitle => Resource.PaxTitle;
+        public static string RememberPasswordTitle => Resource.RememberPasswordTitle;
         public static string FlightEntry => Resource.FlightEntry;
         public static string AdultsEntry => Resource.AdultsEntry;
         public static string ChildrenEntry => Resource.ChildrenEntry;
@@ -55,6 +56,7 @@
         public static string Create => Resource.Create;
         public static string RegisterNewUser => Resource.RegisterNewUser;
         public static string Login => Resource.Login;
+        public static string ForgotPassword => Resource.ForgotPassword;
 
 
 

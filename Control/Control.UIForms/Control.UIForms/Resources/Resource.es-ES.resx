@@ -231,4 +231,10 @@
   <data name="Login" xml:space="preserve">
     <value>Iniciar Sesión</value>
   </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Olvidé mi contraseña</value>
+  </data>
+  <data name="RememberPasswordTitle" xml:space="preserve">
+    <value>Recuperar contraseña</value>
+  </data>
 </root>

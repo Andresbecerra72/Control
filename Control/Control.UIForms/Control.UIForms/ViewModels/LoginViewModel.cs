@@ -34,6 +34,16 @@
 
         public string Password { get; set; }
 
+        //Comandos por botones o gesture reconizer
+        public ICommand RememberPasswordCommand => new RelayCommand(this.RememberPassword);
+
+        private async void RememberPassword()
+        {
+            MainViewModel.GetInstance().RememberPassword = new RememberPasswordViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new RememberPasswordPage());//muestra la pagina de Recobro del password
+
+        }
+
         public ICommand RegisterCommand => new RelayCommand(this.Register);//codigo para la accion del boton registrar nuevo usuario
 
         private async void Register()
