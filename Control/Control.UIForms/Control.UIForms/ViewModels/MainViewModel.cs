@@ -1,23 +1,25 @@
 ﻿namespace Control.UIForms.ViewModels
 {
+    using Control.Common.Models;
+    using Control.UIForms.Views;
+    using GalaSoft.MvvmLight.Command;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Input;
-    using Control.Common.Models;
-    using Control.UIForms.Views;
-    using GalaSoft.MvvmLight.Command;
-    
+
 
     public class MainViewModel
     {
         private static MainViewModel instance; //esto es un apuntador
 
+        public ProfileViewModel Profile { get; set; }//para actualizar el usuario por "profilepage"
+
         public RememberPasswordViewModel RememberPassword { get; set; }//para recuperar el password
 
         public RegisterViewModel Register { get; set; }//para el registro de usuarios desde app
 
-        public User User { get; set; }
+        public User User { get; set; }//se guarda el usuario para consultarlo y actualizarlo
 
         public TokenResponse Token { get; set; }//almacena el token en memoria
 
@@ -31,7 +33,7 @@
 
         public PassangersViewModel Passangers { get; set; }
 
-      
+
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
 
         public InsertPassangerViewModel InsertPassanger { get; set; }//se liga la pagina InsertPassangerViewModel
@@ -69,6 +71,14 @@
                         PageName = "AboutPage",
                         Title = "About"
                     },
+
+                    new Menu
+                    {
+                        Icon = "ic_person",
+                        PageName = "ProfilePage",
+                        Title = "Modify User"
+                    },
+
 
                     new Menu
                     {

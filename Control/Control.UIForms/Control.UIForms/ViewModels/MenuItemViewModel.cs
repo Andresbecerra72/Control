@@ -23,8 +23,14 @@
                 case "SetupPage":
                     await App.Navigator.PushAsync(new SetupPage());
                     break;
+                case "ProfilePage": //codigo que muestra la pagina del usuario "profilepage"
+                    mainViewModel.Profile = new ProfileViewModel();
+                    await App.Navigator.PushAsync(new ProfilePage());
+                    break;
+
                 default:
                     //modifica los valores por defecto del usuario recordado cuando se realiza logout
+                    Settings.User = string.Empty; //inicializa el usuario despues de logout
                     Settings.IsRemember = false;
                     Settings.Token = string.Empty;
                     Settings.UserEmail = string.Empty;

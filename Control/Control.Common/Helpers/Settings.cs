@@ -5,15 +5,23 @@
 
     public static class Settings
     {
-        //se definen las varoables constantes que requiere la aplicacion
+        //se definen las variables constantes que requiere la aplicacion
         private const string token = "token";// el token es un objeto
         private const string userEmail = "userEmail";
         private const string userPassword = "userPassword";
         private const string isRemember = "isRemember";
+        private const string user = "user";//almacena el objeto user en persistencia para que sea recordado por la aplicacion
         private static readonly string stringDefault = string.Empty;
         private static readonly bool boolDefault = false;
 
         private static ISettings AppSettings => CrossSettings.Current;
+
+        public static string User
+        {
+            get => AppSettings.GetValueOrDefault(user, stringDefault);
+            set => AppSettings.AddOrUpdateValue(user, value);
+        }
+
 
         public static string Token
         {

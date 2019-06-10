@@ -104,16 +104,30 @@
 
             //este codigo permite que despues de validar el usuario y la clave se muestre la pagina de pasajeros.
             var token = (TokenResponse)response.Result;
+            //Trae los datos del usuario que se acaba de loguear desde el api
+            var response2 = await this.apiService.GetUserByEmailAsync(
+                        url,
+                        "/api",
+                        "/Account/GetUserByEmail",
+                        this.Email,
+                        "bearer",
+                        token.Token);
+
+            var user = (User)response2.Result;
+
             var mainViewModel = MainViewModel.GetInstance();
+            mainViewModel.User = user;//este es el usuario que se loguea y es consultado desde el api
             mainViewModel.Token = token;
             mainViewModel.Passangers = new PassangersViewModel();
             mainViewModel.UserEmail = this.Email;
             mainViewModel.UserPassword = this.Password;
+
             //recuerda el usuario logueado
             Settings.IsRemember = this.IsRemember;
             Settings.UserEmail = this.Email;
             Settings.UserPassword = this.Password;
             Settings.Token = JsonConvert.SerializeObject(token);//se convierte el objeto token en string
+            Settings.User = JsonConvert.SerializeObject(user);//serializa el objeto User como un string en persistencia
 
             //await Application.Current.MainPage.Navigation.PushAsync(new PassangersPage()); //esto cambia las paginas
             Application.Current.MainPage = new MasterPage();//inicia con la master pagedespues de login valido
