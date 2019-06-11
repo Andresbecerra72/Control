@@ -17,16 +17,20 @@
         //esta es la lista de productos que se van mostrar en la listview
         public ObservableCollection<PassangerItemViewModel> Passangers
         {
-            get => this.passangers; 
-            set => this.SetValue(ref this.passangers, value); 
+            get => this.passangers;
+            set => this.SetValue(ref this.passangers, value);
         }
 
         public bool IsRefreshing //codigo para que refresque la lista de passajeros
         {
-            get => this.isRefreshing; 
-            set => this.SetValue(ref this.isRefreshing, value); 
+            get => this.isRefreshing;
+            set => this.SetValue(ref this.isRefreshing, value);
         }
 
+
+
+
+        //Constructor
         public PassangersViewModel()
         {
             this.apiService = new ApiService();
@@ -37,7 +41,7 @@
         {
             this.IsRefreshing = true;
 
-            
+
             var url = Application.Current.Resources["UrlAPI"].ToString();//este es el Urlbase que es la pagina donde esta el API, el dato de la url esta en el diccionario de recursos
             var response = await this.apiService.GetListAsync<Passanger>(
                 url,
@@ -106,7 +110,7 @@
                 PublishOn = p.PublishOn,
                 User = p.User
             })
-            .OrderBy(p => p.PublishOn)
+            .OrderByDescending(p => p.PublishOn)
             .ToList());
         }
 

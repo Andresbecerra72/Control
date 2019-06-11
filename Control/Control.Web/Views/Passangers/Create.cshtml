@@ -40,7 +40,7 @@
             <div class="form-group">
                 <label asp-for="PublishOn" class="control-label"></label>
                 <div class="input-group date" data-provide="datepicker">
-                    <input asp-for="PublishOn" class="form-control" id="date"/>
+                    <input asp-for="PublishOn" class="form-control" id="date" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -65,7 +65,7 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 <script type="text/javascript">
-     $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+     $.fn.datepicker.defaults.format = "mm/dd/yyyy";
         $('#date').datepicker({
             startDate: '-3d'
                 });
@@ -74,7 +74,7 @@
     }).datepicker({
         onSelect: function (dateText) {
             var d = new Date(dateText),
-                dv = d.getFullYear().toString().pad(4) + '-' + (d.getMonth() + 1).toString().pad(2) + '-' + d.getDay().toString().pad(2);
+                dv = (d.getMonth() + 1).toString().pad(2) + '/' +  d.getDay().toString().pad(2)  + '/' + d.getFullYear().toString().pad(4);
             $(this).val(dv).trigger('change');
         }
     });

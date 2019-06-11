@@ -41,6 +41,7 @@
                     <Entry
                         Grid.Column="1"
                     	Grid.Row="0"
+                        Keyboard="Numeric"
                     	Placeholder="{i18n:Translate FlightEntry}"
                     	Text="{Binding Flight}">
                     </Entry>
@@ -125,7 +126,8 @@
                 	    IsEnabled="{Binding IsEnabled}"
                 	    Text="{i18n:Translate Save}"
                 	    TextColor="White">
-                    </Button>
+                    
+                </Button>
 
 
                     

@@ -118,6 +118,7 @@
             var mainViewModel = MainViewModel.GetInstance();
             mainViewModel.User = user;//este es el usuario que se loguea y es consultado desde el api
             mainViewModel.Token = token;
+            //mainViewModel.InsertPassanger = new InsertPassangerViewModel();//todo: cambio
             mainViewModel.Passangers = new PassangersViewModel();
             mainViewModel.UserEmail = this.Email;
             mainViewModel.UserPassword = this.Password;
@@ -129,7 +130,8 @@
             Settings.Token = JsonConvert.SerializeObject(token);//se convierte el objeto token en string
             Settings.User = JsonConvert.SerializeObject(user);//serializa el objeto User como un string en persistencia
 
-            //await Application.Current.MainPage.Navigation.PushAsync(new PassangersPage()); //esto cambia las paginas
+            await Application.Current.MainPage.Navigation.PushAsync(new PassangersPage()); //esto cambia las paginas
+            //await Application.Current.MainPage.Navigation.PushAsync(new InsertPassangerPage());//todo: cambio
             Application.Current.MainPage = new MasterPage();//inicia con la master pagedespues de login valido
         }
     }

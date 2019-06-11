@@ -106,7 +106,7 @@
                 return this.BadRequest("Product Id don't exists.");
             }
 
-            //TODO: Upload images
+            
             oldPassanger.Adult = passanger.Adult;
             oldPassanger.Child = passanger.Child;
             oldPassanger.Infant = passanger.Infant;

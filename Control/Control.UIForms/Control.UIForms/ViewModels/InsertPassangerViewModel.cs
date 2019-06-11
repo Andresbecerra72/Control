@@ -6,6 +6,7 @@
     using Common.Services;
     using Control.Common.Helpers;
     using Control.UIForms.Helpers;
+    using Control.UIForms.Views;
     using GalaSoft.MvvmLight.Command;
     using Plugin.Media;
     using Plugin.Media.Abstractions;
@@ -55,16 +56,21 @@
                 
         public ICommand SaveCommand => new RelayCommand(this.Save);
 
-        //METODOS:
-
-        public InsertPassangerViewModel()//contructor
+       
+        //contructor
+        public InsertPassangerViewModel()
         {
             this.apiService = new ApiService();// se instancian los servicios del API, para crear un nuevo registro de pasajeros
             this.ImageSource = "no_image";
             this.PublishOn = DateTime.Now;
             this.IsEnabled = true;
-            
+            this.Flight = string.Empty;
+            this.Adult = string.Empty;
+
         }
+
+        //METODOS:
+
 
         //metodo para salvar el registro de pasajeros
         private async void Save()
@@ -144,19 +150,26 @@
 
             if (!response.IsSuccess)
             {
-                await Application.Current.MainPage.DisplayAlert("ErrorXX", response.Message, "Accept");
+                await Application.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
                 return;
             }
 
             var newPassanger = (Passanger)response.Result;
             MainViewModel.GetInstance().Passangers.AddProductToList(newPassanger);
 
+            
+
             this.IsRunning = false;
             this.IsEnabled = true;
+                      
             await App.Navigator.PopAsync();
+            //MainViewModel.GetInstance().Passangers = new PassangersViewModel();//todo: cambio
+            //await App.Navigator.PushAsync(new PassangersPage());//todo: cambio
+           
         }
 
 
+        
         //metodo para cambiar la imagen 
         private async void ChangeImage()
         {

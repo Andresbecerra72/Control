@@ -28,6 +28,7 @@
                     mainViewModel.UserEmail = Settings.UserEmail;
                     mainViewModel.UserPassword = Settings.UserPassword;
                     mainViewModel.Passangers = new PassangersViewModel();//si el usuario esta recordado pasa directo a la pagina PassangerPage
+                   // mainViewModel.InsertPassanger = new InsertPassangerViewModel();//todo: cambio
                     this.MainPage = new MasterPage();
                     return;
                 }
