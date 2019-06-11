@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
              x:Class="Control.UIForms.Views.ProfilePage"
              Title="Modify User">
     <ContentPage.Content>

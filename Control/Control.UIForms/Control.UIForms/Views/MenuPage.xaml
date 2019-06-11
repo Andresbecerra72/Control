@@ -18,7 +18,7 @@
             	Source="tcplogo">
             </Image>
             <Label
-                FontAttributes="Italic"
+                FontAttributes="Bold"
 	            FontSize="Large"
 	            Text="{Binding User.FullName, StringFormat='Welcome: {0}'}"
 	            TextColor="Black">

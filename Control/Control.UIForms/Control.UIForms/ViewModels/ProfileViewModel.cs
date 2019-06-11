@@ -1,15 +1,15 @@
 ﻿namespace Control.UIForms.ViewModels
 {
-    using System;
+    using Common.Models;
+    using Common.Services;
+    using Control.Common.Helpers;
+    using Control.UIForms.Views;
+    using GalaSoft.MvvmLight.Command;
+    using Newtonsoft.Json;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Input;
-    using Common.Models;
-    using Common.Services;
-    using Control.Common.Helpers;
-    using GalaSoft.MvvmLight.Command;
-    using Newtonsoft.Json;
     using Xamarin.Forms;
 
     public class ProfileViewModel : BaseViewModel //esta clase permite mostrar los datos del usuario y actualizarlos
@@ -72,7 +72,9 @@
 
         public ICommand SaveCommand => new RelayCommand(this.Save);//comando del boton SAVE
 
-        
+        public ICommand ModifyPasswordCommand => new RelayCommand(this.ModifyPassword);//comando del boton Modify Password
+
+
 
         //Constructor
         public ProfileViewModel()
@@ -215,6 +217,13 @@
                 "User updated!",
                 "Accept");
             await App.Navigator.PopAsync();
+        }
+
+        //metodo del boton Modify Password
+        private async void ModifyPassword()
+        {
+            MainViewModel.GetInstance().ChangePassword = new ChangePasswordViewModel();
+            await App.Navigator.PushAsync(new ChangePasswordPage());
         }
 
 

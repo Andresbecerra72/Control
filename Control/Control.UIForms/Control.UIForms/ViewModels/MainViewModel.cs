@@ -13,6 +13,8 @@
     {
         private static MainViewModel instance; //esto es un apuntador
 
+        public ChangePasswordViewModel ChangePassword { get; set; }//para cambiar el password desde el app movil
+
         public ProfileViewModel Profile { get; set; }//para actualizar el usuario por "profilepage"
 
         public RememberPasswordViewModel RememberPassword { get; set; }//para recuperar el password
