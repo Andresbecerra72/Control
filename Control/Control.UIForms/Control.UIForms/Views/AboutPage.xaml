@@ -4,11 +4,23 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:i18n="clr-namespace:Control.UIForms.Helpers"
              x:Class="Control.UIForms.Views.AboutPage"
-             	Title="About">
+             	Title="{i18n:Translate AboutTitle}">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="About"
+            <Image
+            	HeightRequest="100"
+                WidthRequest="100"
+            	Source="logo">
+            </Image>
+            <Label FontSize = "Medium" Text="Cordial Saludo,"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="Start" />
+            <Label FontSize = "Medium" Text="   Para nosotros es un gusto contar con su apoyo, su funcion operacional es un aporte valioso para la seguridad del vuelo y el bienestar de la empresa, gracias por registrar esta informacion de manera responsable."
+                     VerticalOptions="CenterAndExpand" 
+                     HorizontalOptions="Center" />
+            <Label FontSize = "Medium" Text="Oficina Asesora de Planeacion"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

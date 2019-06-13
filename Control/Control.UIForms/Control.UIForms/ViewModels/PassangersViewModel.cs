@@ -2,6 +2,7 @@
 {
     using Control.Common.Models;
     using Control.Common.Services;
+    using Control.UIForms.Views;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
@@ -33,10 +34,20 @@
         //Constructor
         public PassangersViewModel()
         {
+            
             this.apiService = new ApiService();
             this.LoadProducts();
+            //this.GoAddPageAsync();
         }
 
+        private async void GoAddPageAsync()//todo: cambio
+        {
+           
+            MainViewModel.GetInstance().InsertPassanger = new InsertPassangerViewModel();//todo: cambio
+            await App.Navigator.PushAsync(new InsertPassangerPage());//todo: cambio
+        }
+
+        //carga el listado de pasajeros que estan en la BD
         private async void LoadProducts()
         {
             this.IsRefreshing = true;
@@ -64,6 +75,7 @@
 
             this.myPassangers = (List<Passanger>)response.Result;
             this.RefresProductsList();//**
+           
         }
 
         public void AddProductToList(Passanger passanger)

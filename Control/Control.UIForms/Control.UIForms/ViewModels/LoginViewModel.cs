@@ -63,8 +63,10 @@
             
         }
 
+        //metodo del boton Login
         private async void Login()
         {
+            //realiza las validaciones
             if (string.IsNullOrEmpty(this.Email))  //condicion cuando el no ingresa usuario
             {
                 await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.EmailError, Languages.Accept); //"Error", "You must enter an email.", "Accept"
@@ -76,16 +78,16 @@
                 await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.PasswordError, Languages.Accept);//"Error", "You must enter a password.", "Accept"
                 return;
             }
-
+            //corre la espera
             this.IsRunning = true;
             this.IsEnabled = false;
-
+            //arma el token
             var request = new TokenRequest
             {
                 Password = this.Password,
                 Username = this.Email
             };
-
+            //verifica el token
             var url = Application.Current.Resources["UrlAPI"].ToString();//aqui se consume el servicio del API
             var response = await this.apiService.GetTokenAsync(
                 url,

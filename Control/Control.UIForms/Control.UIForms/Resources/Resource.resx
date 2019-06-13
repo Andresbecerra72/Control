@@ -237,4 +237,34 @@
   <data name="RememberPasswordTitle" xml:space="preserve">
     <value>Recover password</value>
   </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="SetupTitle" xml:space="preserve">
+    <value>Setup</value>
+  </data>
+  <data name="ChangePasswordTitle" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="MenuTitle" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="ModifyUserTitle" xml:space="preserve">
+    <value>Modify User</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome:</value>
+  </data>
+  <data name="BtnRegisterNewUser" xml:space="preserve">
+    <value>Register New User</value>
+  </data>
+  <data name="BtnModifyPassword" xml:space="preserve">
+    <value>Modify Password</value>
+  </data>
+  <data name="BtnRecoverPassword" xml:space="preserve">
+    <value>Recover Password</value>
+  </data>
+  <data name="BtnUpdatePassword" xml:space="preserve">
+    <value>Update Password</value>
+  </data>
 </root>

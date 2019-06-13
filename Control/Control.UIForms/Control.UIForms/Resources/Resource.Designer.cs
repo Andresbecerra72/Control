@@ -61,6 +61,15 @@ namespace Control.UIForms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string AboutTitle {
+            get {
+                return ResourceManager.GetString("AboutTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Accept.
         /// </summary>
         public static string Accept {
@@ -102,6 +111,51 @@ namespace Control.UIForms.Resources {
         public static string AdultsEntry {
             get {
                 return ResourceManager.GetString("AdultsEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modify Password.
+        /// </summary>
+        public static string BtnModifyPassword {
+            get {
+                return ResourceManager.GetString("BtnModifyPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recover Password.
+        /// </summary>
+        public static string BtnRecoverPassword {
+            get {
+                return ResourceManager.GetString("BtnRecoverPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register New User.
+        /// </summary>
+        public static string BtnRegisterNewUser {
+            get {
+                return ResourceManager.GetString("BtnRegisterNewUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Password.
+        /// </summary>
+        public static string BtnUpdatePassword {
+            get {
+                return ResourceManager.GetString("BtnUpdatePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Password.
+        /// </summary>
+        public static string ChangePasswordTitle {
+            get {
+                return ResourceManager.GetString("ChangePasswordTitle", resourceCulture);
             }
         }
         
@@ -295,6 +349,24 @@ namespace Control.UIForms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Menu.
+        /// </summary>
+        public static string MenuTitle {
+            get {
+                return ResourceManager.GetString("MenuTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modify User.
+        /// </summary>
+        public static string ModifyUserTitle {
+            get {
+                return ResourceManager.GetString("ModifyUserTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password:.
         /// </summary>
         public static string Password {
@@ -376,6 +448,15 @@ namespace Control.UIForms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Setup.
+        /// </summary>
+        public static string SetupTitle {
+            get {
+                return ResourceManager.GetString("SetupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You must enter a Total Passengers..
         /// </summary>
         public static string TotalEnter {
@@ -417,6 +498,15 @@ namespace Control.UIForms.Resources {
         public static string UserPlaceHolder {
             get {
                 return ResourceManager.GetString("UserPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome:.
+        /// </summary>
+        public static string Welcome {
+            get {
+                return ResourceManager.GetString("Welcome", resourceCulture);
             }
         }
     }

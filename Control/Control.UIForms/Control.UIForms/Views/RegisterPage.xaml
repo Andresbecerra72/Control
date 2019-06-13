@@ -147,7 +147,7 @@
                 	HeightRequest="46"
                 	HorizontalOptions="FillAndExpand"
                 	IsEnabled="{Binding IsEnabled}"
-                	Text="Register New User"
+                	Text="{i18n:Translate BtnRegisterNewUser}"
                 	TextColor="White">
                 </Button>
             </StackLayout>

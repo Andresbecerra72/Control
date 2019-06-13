@@ -4,9 +4,10 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+              xmlns:i18n="clr-namespace:Control.UIForms.Helpers"
+              x:Class="Control.UIForms.Views.ProfilePage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             x:Class="Control.UIForms.Views.ProfilePage"
-             Title="Modify User">
+             Title="{i18n:Translate ModifyUserTitle}">
     <ContentPage.Content>
         <ScrollView
         	BindingContext="{Binding Profile}">
@@ -108,7 +109,7 @@
                     	HeightRequest="46"
                     	HorizontalOptions="FillAndExpand"
                     	IsEnabled="{Binding IsEnabled}"
-                    	Text="Save"
+                    	Text="{i18n:Translate Save}"
                     	TextColor="White">
                     </Button>
                     <Button
@@ -118,7 +119,7 @@
                     	HeightRequest="46"
                     	HorizontalOptions="FillAndExpand"
                     	IsEnabled="{Binding IsEnabled}"
-                    	Text="Modify Password"
+                    	Text="{i18n:Translate BtnModifyPassword}"
                     	TextColor="White">
                     </Button>
                 </StackLayout>

@@ -171,4 +171,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_person.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\lock.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\setup.png" />
+  </ItemGroup>
 </Project>

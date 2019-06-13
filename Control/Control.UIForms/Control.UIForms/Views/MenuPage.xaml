@@ -4,11 +4,11 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+              xmlns:i18n="clr-namespace:Control.UIForms.Helpers"
              x:Class="Control.UIForms.Views.MenuPage"
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
              BackgroundColor="Gainsboro"
-         	 Title="Menu">
-
+         	 Title="{i18n:Translate MenuTitle}">
 
     <ContentPage.Content>
         <StackLayout

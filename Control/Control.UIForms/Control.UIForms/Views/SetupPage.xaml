@@ -4,13 +4,24 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+              xmlns:i18n="clr-namespace:Control.UIForms.Helpers"
              x:Class="Control.UIForms.Views.SetupPage"
-             Title="Setup">
+             Title="{i18n:Translate SetupTitle}">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Setup"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Image
+            	HeightRequest="80"
+                WidthRequest="80"
+            	Source="setup">
+            </Image>
+            <Label FontSize = "Medium" TextColor="#512DA8" Text="Contacto:" TextDecorations="Underline"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" />
+            <Label FontSize = "Medium" Text=" Cualquier inquietud comunicarse con el Departamento TI al correo electronico: departamento.ti@satena.com o a través de nuestra mesa de ayuda. " 
+                VerticalOptions="Start" 
+                HorizontalOptions="Center" />
+           
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -31,6 +31,13 @@
         public static string RegisterUserTitle => Resource.RegisterUserTitle;
         public static string PaxTitle => Resource.PaxTitle;
         public static string RememberPasswordTitle => Resource.RememberPasswordTitle;
+        public static string AboutTitle => Resource.AboutTitle;
+        public static string SetupTitle => Resource.SetupTitle;
+        public static string ModifyUserTitle => Resource.ModifyUserTitle;
+        public static string MenuTitle => Resource.MenuTitle;
+        public static string ChangePasswordTitle => Resource.ChangePasswordTitle;
+
+        //Entradas
         public static string FlightEntry => Resource.FlightEntry;
         public static string AdultsEntry => Resource.AdultsEntry;
         public static string ChildrenEntry => Resource.ChildrenEntry;
@@ -47,6 +54,7 @@
         public static string PasswordPlaceHolder => Resource.PasswordPlaceHolder;
         public static string Remember => Resource.Remember;
         public static string ImageTap => Resource.ImageTap;
+        public static string Welcome => Resource.Welcome;
 
 
         //botones y CRUD
@@ -57,9 +65,10 @@
         public static string RegisterNewUser => Resource.RegisterNewUser;
         public static string Login => Resource.Login;
         public static string ForgotPassword => Resource.ForgotPassword;
-
-
-
+        public static string BtnModifyPassword => Resource.BtnModifyPassword;
+        public static string BtnRecoverPassword => Resource.BtnRecoverPassword;
+        public static string BtnRegisterNewUser => Resource.BtnRegisterNewUser;
+        public static string BtnUpdatePassword => Resource.BtnUpdatePassword;
 
     }
 
