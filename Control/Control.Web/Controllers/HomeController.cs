@@ -29,6 +29,13 @@ namespace Control.Web.Controllers
             return View();
         }
 
+        public IActionResult Directorio()
+        {
+            ViewData["Message"] = "Directorio Satena 2019";
+
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
@@ -47,7 +54,6 @@ namespace Control.Web.Controllers
             return View();
         }
 
-
-
+       
     }
 }
