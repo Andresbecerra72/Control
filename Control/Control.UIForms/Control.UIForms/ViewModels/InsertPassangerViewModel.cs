@@ -51,6 +51,8 @@
 
         public DateTime PublishOn { get; set; }
 
+        public int ImageFlag = 0;
+
         //acciones por comandos 
         public ICommand ChangeImageCommand => new RelayCommand(this.ChangeImage);
                 
@@ -75,6 +77,7 @@
         //metodo para salvar el registro de pasajeros
         private async void Save()
         {
+           
             if (string.IsNullOrEmpty(this.Flight))
             {
                 await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.FlightEnter, Languages.Accept);//"Error", "You must enter a Flight Number.", "Accept"
@@ -113,6 +116,12 @@
                                   
             var total = int.Parse(this.Total);
 
+            if (ImageFlag == 0)
+            {
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.ImageEnter, Languages.Accept);//"Error", "You must enter an Image.", "Accept"
+                return;
+            }
+
 
             this.IsRunning = true;
             this.IsEnabled = false;
@@ -122,6 +131,7 @@
             if (this.file != null)
             {
                 imageArray = FilesHelper.ReadFully(this.file.GetStream());
+                
             }
 
               //codigo que construye el modelo para el api
@@ -173,6 +183,7 @@
         //metodo para cambiar la imagen 
         private async void ChangeImage()
         {
+            ImageFlag = 1;
             await CrossMedia.Current.Initialize();
 
             //se muesta un mensaje con las opciones para la captura de la imagen

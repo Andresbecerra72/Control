@@ -23,6 +23,7 @@
         public static string FlightEnter => Resource.FlightEnter;
         public static string InfantEnter => Resource.InfantEnter;
         public static string TotalEnter => Resource.TotalEnter;
+        public static string ImageEnter => Resource.ImageEnter;
 
         //XAML lables, titulos y placeholders 
         public static string LoginTitle => Resource.LoginTitle;

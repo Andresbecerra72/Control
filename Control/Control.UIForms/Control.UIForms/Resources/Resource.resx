@@ -267,4 +267,7 @@
   <data name="BtnUpdatePassword" xml:space="preserve">
     <value>Update Password</value>
   </data>
+  <data name="ImageEnter" xml:space="preserve">
+    <value>You must enter an Image</value>
+  </data>
 </root>

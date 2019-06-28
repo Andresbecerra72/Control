@@ -91,6 +91,13 @@
 
                     new Menu
                     {
+                        Icon = "ic_arrow",
+                        PageName = "SetupPage",
+                        Title = "Pending Data"
+                    },
+
+                    new Menu
+                    {
                         Icon = "ic_exit",
                         PageName = "LoginPage",
                         Title = "Close session"

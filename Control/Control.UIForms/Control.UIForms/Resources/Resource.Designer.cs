@@ -295,6 +295,15 @@ namespace Control.UIForms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must enter an Image.
+        /// </summary>
+        public static string ImageEnter {
+            get {
+                return ResourceManager.GetString("ImageEnter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tap the image to change it....
         /// </summary>
         public static string ImageTap {

@@ -38,7 +38,7 @@
 
            
             //await this.CheckUser("carolina@satena.com", "carolina", "Pit", "Customer");
-            await this.CheckUser("administrador.kiu@satena.com", "Milena", "Carranza", "Customer");
+            await this.CheckUser("administrador.kiu@satena.com", "Aministrador", "KIU", "Customer");
             var user = await this.CheckUser("andres.becerra@satena.com", "Andres", "Becerra", "Admin");
 
             // Add Passangers

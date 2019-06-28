@@ -177,4 +177,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\setup.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_arrow.png" />
+  </ItemGroup>
 </Project>
