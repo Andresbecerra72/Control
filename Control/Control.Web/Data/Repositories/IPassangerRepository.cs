@@ -10,6 +10,8 @@
 
         Task DeleteItemAsync(int id);
 
+        IQueryable GetAllWithUsersAuthenticated(string user);
+
     }
 
 }

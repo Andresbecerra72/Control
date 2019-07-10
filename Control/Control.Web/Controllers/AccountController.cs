@@ -270,7 +270,7 @@
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 };
 
-                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.configuration["Tokens:Key"]));//se toma el key que esta en ar appsetting.json
+                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.configuration["Tokens:Key"]));//se toma el key que esta en archivo appsetting.json
                         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);//algoritmo de seguridad
                         var token = new JwtSecurityToken(
                             this.configuration["Tokens:Issuer"],//se toma el Issuer que esta en ar appsetting.json

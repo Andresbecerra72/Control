@@ -47,7 +47,11 @@
                 </div>
                 <span asp-validation-for="PublishOn" class="text-danger"></span>
             </div>
-
+            <div class="form-group">
+                <label asp-for="Remark" class="control-label"></label>
+                <input asp-for="Remark" class="form-control" />
+                <span asp-validation-for="Remark" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="ImageFile" class="control-label"></label>
                 <input asp-for="ImageFile" class="form-control" type="file" />

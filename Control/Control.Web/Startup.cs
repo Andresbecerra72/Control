@@ -44,7 +44,7 @@
             //inyeccion del alimentador
             services.AddTransient<SeedDB>();//AddTrasient se usa y se destruye
 
-                //codigo para configurar el password de los usuarios
+            //codigo para configurar el password de los usuarios
             services.AddIdentity<User, IdentityRole>(cfg =>
             {
                 cfg.Tokens.AuthenticatorTokenProvider = TokenOptions.DefaultAuthenticatorProvider;
@@ -114,20 +114,26 @@
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-               
-            }
+            //TODO: mientra se realizan pruebas..para productivo se debe quitar los comentarios
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
+            //else
+            //{
+            //    app.UseExceptionHandler("/Home/Error");
 
+            //}
+
+            app.UseDeveloperExceptionPage();//TODO: MUESTRA ERRORES EN PRODUCTIVO
+            app.UseDatabaseErrorPage();//TODO: MUESTRA ERRORES EN PRODUCTIVO
             app.UseStatusCodePagesWithReExecute("/error/{0}");//Codigo de pagina no existe Error 404
             app.UseStaticFiles();
             app.UseAuthentication(); //permite las autorizaciones
             app.UseCookiePolicy();
+
+
+
 
             app.UseMvc(routes =>
             {
@@ -135,6 +141,8 @@
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
         }
     }
 }

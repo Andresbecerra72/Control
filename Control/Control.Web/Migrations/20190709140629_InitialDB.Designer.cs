@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Control.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190531124730_CountriesAndCities")]
-    partial class CountriesAndCities
+    [Migration("20190709140629_InitialDB")]
+    partial class InitialDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -65,6 +65,8 @@ namespace Control.Web.Migrations
 
                     b.Property<int>("Child");
 
+                    b.Property<string>("Day");
+
                     b.Property<string>("Flight")
                         .IsRequired()
                         .HasMaxLength(4);
@@ -73,11 +75,17 @@ namespace Control.Web.Migrations
 
                     b.Property<int>("Infant");
 
+                    b.Property<string>("Month");
+
                     b.Property<DateTime>("PublishOn");
+
+                    b.Property<string>("Remark");
 
                     b.Property<int>("Total");
 
                     b.Property<string>("UserId");
+
+                    b.Property<string>("Year");
 
                     b.HasKey("Id");
 
@@ -92,6 +100,9 @@ namespace Control.Web.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccessFailedCount");
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(100);
 
                     b.Property<int>("CityId");
 

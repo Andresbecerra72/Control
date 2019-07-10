@@ -11,6 +11,7 @@
    
     public class SeedDB
     {
+
         private readonly DataContext context;
         private readonly IUserHelper userHelper;
         private Random random;
@@ -30,16 +31,16 @@
             //verificacion de roles
             await this.CheckRoles();
 
-            //adiciona ciudades de y pais colombia
+            //adiciona ciudades y pais colombia
             if (!this.context.Countries.Any())
             {
                 await this.AddCountriesAndCitiesAsync();
             }
 
-           
-            //await this.CheckUser("carolina@satena.com", "carolina", "Pit", "Customer");
-            await this.CheckUser("administrador.kiu@satena.com", "Aministrador", "KIU", "Customer");
-            var user = await this.CheckUser("andres.becerra@satena.com", "Andres", "Becerra", "Admin");
+
+            await this.CheckUser("customer.test@satena.com", "Customer", "Test", "Customer");
+            await this.CheckUser("administrador.kiu@satena.com", "Administrador", "KIU", "Admin");
+            var user = await this.CheckUser("andres.becerra@satena.com", "Andres", "Becerra", "Super");
 
             // Add Passangers
             if (!this.context.Passangers.Any())
@@ -61,63 +62,63 @@
                 await this.context.SaveChangesAsync();
             }
 
-                        
-            }//***end
+
+        }//***end
 
 
-            //user y roles
-            private async Task<User> CheckUser(string userName, string firstName, string lastName, string role)
+        //user y roles
+        private async Task<User> CheckUser(string userName, string firstName, string lastName, string role)
+        {
+            // Add user
+            var user = await this.userHelper.GetUserByEmailAsync(userName);
+            if (user == null)
             {
-                // Add user
-                var user = await this.userHelper.GetUserByEmailAsync(userName);
-                if (user == null)
-                {
-                    user = await this.AddUser(userName, firstName, lastName, role);
-                }
-
-                var isInRole = await this.userHelper.IsUserInRoleAsync(user, role);
-                if (!isInRole)
-                {
-                    await this.userHelper.AddUserToRoleAsync(user, role);
-                }
-
-                return user;
+                user = await this.AddUser(userName, firstName, lastName, role);
             }
 
-            //User
-            private async Task<User> AddUser(string userName, string firstName, string lastName, string role)
+            var isInRole = await this.userHelper.IsUserInRoleAsync(user, role);
+            if (!isInRole)
             {
-                var user = new User
-                {
-                    FirstName = firstName,
-                    LastName = lastName,
-                    Email = userName,
-                    UserName = userName,
-                    Document = "888888",
-                    Address = "Carrera 87 17-35",
-                    PhoneNumber = "3202456321",
-                    CityId = this.context.Countries.FirstOrDefault().Cities.FirstOrDefault().Id,
-                    City = this.context.Countries.FirstOrDefault().Cities.FirstOrDefault()
-                };
-
-                var result = await this.userHelper.AddUserAsync(user, "123456");
-                if (result != IdentityResult.Success)
-                {
-                    throw new InvalidOperationException("Could not create the user in seeder");
-                }
-
                 await this.userHelper.AddUserToRoleAsync(user, role);
-                var token = await this.userHelper.GenerateEmailConfirmationTokenAsync(user);//valida el token verificandole la validacion
-                await this.userHelper.ConfirmEmailAsync(user, token);
-                return user;
             }
 
-                             
+            return user;
+        }
+
+        //User
+        private async Task<User> AddUser(string userName, string firstName, string lastName, string role)
+        {
+            var user = new User
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                Email = userName,
+                UserName = userName,
+                Document = "888888",
+                Address = "Carrera 87 17-35",
+                PhoneNumber = "3202456321",
+                CityId = this.context.Countries.FirstOrDefault().Cities.FirstOrDefault().Id,
+                City = this.context.Countries.FirstOrDefault().Cities.FirstOrDefault()
+            };
+
+            var result = await this.userHelper.AddUserAsync(user, "123456");
+            if (result != IdentityResult.Success)
+            {
+                throw new InvalidOperationException("Could not create the user in seeder");
+            }
+
+            await this.userHelper.AddUserToRoleAsync(user, role);
+            var token = await this.userHelper.GenerateEmailConfirmationTokenAsync(user);//valida el token verificandole la validacion
+            await this.userHelper.ConfirmEmailAsync(user, token);
+            return user;
+        }
+
+
 
 
         private async Task AddCountriesAndCitiesAsync()
         {
-            this.AddCountry("Colombia", new string[] { "Villavicencio", "Medellín", "Bogota", "Calí", "Barranquilla", "Bucaramanga", "Cartagena", "Pereira", "Tunja" });
+            this.AddCountry("Colombia", new string[] { "Bogota", "Medellín", "Calí", "Barranquilla", "Bucaramanga", "Cartagena", "Pereira", "Tunja", "Villavicencio", "Otro" });
             this.AddCountry("Argentina", new string[] { "Córdoba", "Buenos Aires", "Rosario", "Tandil", "Salta", "Mendoza" });
             this.AddCountry("Estados Unidos", new string[] { "New York", "Los Ángeles", "Chicago", "Washington", "San Francisco", "Miami", "Boston" });
             this.AddCountry("Ecuador", new string[] { "Quito", "Guayaquil", "Ambato", "Manta", "Loja", "Santo" });
@@ -128,8 +129,11 @@
             this.AddCountry("Venezuela", new string[] { "Caracas", "Valencia", "Maracaibo", "Ciudad Bolivar", "Maracay", "Barquisimeto" });
             this.AddCountry("Paraguay", new string[] { "Asunción", "Ciudad del Este", "Encarnación", "San  Lorenzo", "Luque", "Areguá" });
             this.AddCountry("Brasil", new string[] { "Rio de Janeiro", "São Paulo", "Salvador", "Porto Alegre", "Curitiba", "Recife", "Belo Horizonte", "Fortaleza" });
+            this.AddCountry("Otro", new string[] { "Otro..." });
             await this.context.SaveChangesAsync();
         }
+
+        
 
         private void AddCountry(string country, string[] cities)
         {
@@ -143,8 +147,10 @@
 
         private async Task CheckRoles()
         {
+            await this.userHelper.CheckRoleAsync("Super");
             await this.userHelper.CheckRoleAsync("Admin");
             await this.userHelper.CheckRoleAsync("Customer");
+           
         }
 
 
@@ -159,7 +165,11 @@
                 Total = this.random.Next(10),
                 PublishOn = DateTime.Now,
                 ImageUrl = $"~/images/Passangers/{name}.png",
-                User = user
+                Remark = "Discrepancias",
+                User = user,
+                Day = DateTime.Now.ToString("dd"),
+                Month = DateTime.Now.ToString("MMMM"),
+                Year = DateTime.Now.ToString("yyyy")
             });
 
         }

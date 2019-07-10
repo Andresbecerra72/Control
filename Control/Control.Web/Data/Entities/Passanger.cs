@@ -10,7 +10,7 @@
 
     public class Passanger: IEntity //hereda la clase IEntity.. para obligar a las tablas a tener id
     {
-        //private DataContext context;
+        
         public int Id { get; set; }
 
         [Required]
@@ -32,8 +32,16 @@
         [Display(Name = "Image")]
         public string ImageUrl { get; set; }
 
-
         public User User { get; set; }//relacion de usuarios con los datos reportados
+
+        //[MaxLength(80, ErrorMessage = "The field {0} only can contain {1} characters length.")]
+        public string Remark { get; set; }
+
+        public string Day { get; set; }
+
+        public string Month { get; set; }
+
+        public string Year { get; set; }
 
         //Atributo para el control de la imagen en el API por medio del path en el json
         public string ImageFullPath
@@ -49,6 +57,7 @@
             }
         }
 
+        
 
     }
 }

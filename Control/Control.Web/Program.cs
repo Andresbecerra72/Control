@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-
-namespace Control.Web
+﻿namespace Control.Web
 {
-    using Data;
+    using Control.Web.Data;
     using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +9,7 @@ namespace Control.Web
     {
         public static void Main(string[] args)
         {
+            //CreateWebHostBuilder(args).Build().Run();
             var host = CreateWebHostBuilder(args).Build();
             RunSeeding(host);
             host.Run();

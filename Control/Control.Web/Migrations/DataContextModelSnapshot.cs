@@ -63,6 +63,8 @@ namespace Control.Web.Migrations
 
                     b.Property<int>("Child");
 
+                    b.Property<string>("Day");
+
                     b.Property<string>("Flight")
                         .IsRequired()
                         .HasMaxLength(4);
@@ -71,11 +73,17 @@ namespace Control.Web.Migrations
 
                     b.Property<int>("Infant");
 
+                    b.Property<string>("Month");
+
                     b.Property<DateTime>("PublishOn");
+
+                    b.Property<string>("Remark");
 
                     b.Property<int>("Total");
 
                     b.Property<string>("UserId");
+
+                    b.Property<string>("Year");
 
                     b.HasKey("Id");
 

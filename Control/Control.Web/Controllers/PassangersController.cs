@@ -12,7 +12,7 @@
     using System.Threading.Tasks;
     using System.Linq;
     using Microsoft.AspNetCore.Authorization;
-
+    //TODO: ACTIVAR PARA PRODUCTIVO
     [Authorize] // ACTIVAR SOLICITAR LOGUEO
     public class PassangersController : Controller
     {
@@ -29,10 +29,17 @@
         // GET: Passangers 
         public IActionResult Index()//pagina INDEX
         {
-            return View(this.passangerRepository.GetAll().OrderBy(p => p.PublishOn));//llama del repositorio generico el metodo getAll y lo ordena por fecha
-        }                                                                           //por que es esecifico del repositorio passanger
 
+            if (this.User.IsInRole("Admin") || this.User.IsInRole("Super"))
+            {
+                return View(this.passangerRepository.GetAllWithUsers());//llama del repositorio generico el metodo getAll y lo ordena por fecha
+            }                                                                           //por que es esecifico del repositorio passanger
 
+            return View(this.passangerRepository.GetAllWithUsersAuthenticated(this.User.Identity.Name.ToString()));
+        }
+            
+
+        
 
 
         // GET: Passangers/Details/5
@@ -55,7 +62,7 @@
 
         // GET: Passangers/Create
         
-        [Authorize(Roles = "Admin")]//acesso con login a usuarios con rol de administrador
+        //[Authorize(Roles = "Admin")]//acesso con login a usuarios con rol de administrador
         public IActionResult Create()
         {
             return View();
