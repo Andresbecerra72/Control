@@ -389,7 +389,7 @@
         }
 
         //USER MANAGEMENT administracion y contro de los usuarios
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Super")]
         public async Task<IActionResult> Index()
         {
             var users = await this.userHelper.GetAllUsersAsync();
@@ -406,7 +406,7 @@
         }
 
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Super")]
         public async Task<IActionResult> AdminOff(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -424,7 +424,7 @@
             return this.RedirectToAction(nameof(Index));
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Super")]
         public async Task<IActionResult> AdminOn(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -442,7 +442,7 @@
             return this.RedirectToAction(nameof(Index));
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Super")]
         public async Task<IActionResult> DeleteUser(string id)
         {
             if (string.IsNullOrEmpty(id))

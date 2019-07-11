@@ -115,18 +115,18 @@
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             //TODO: mientra se realizan pruebas..para productivo se debe quitar los comentarios
-            //if (env.IsDevelopment())
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //}
-            //else
-            //{
-            //    app.UseExceptionHandler("/Home/Error");
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
 
-            //}
+            }
 
-            app.UseDeveloperExceptionPage();//TODO: MUESTRA ERRORES EN PRODUCTIVO
-            app.UseDatabaseErrorPage();//TODO: MUESTRA ERRORES EN PRODUCTIVO
+            //app.UseDeveloperExceptionPage();//TODO: MUESTRA ERRORES EN PRODUCTIVO
+            //app.UseDatabaseErrorPage();//TODO: MUESTRA ERRORES EN PRODUCTIVO
             app.UseStatusCodePagesWithReExecute("/error/{0}");//Codigo de pagina no existe Error 404
             app.UseStaticFiles();
             app.UseAuthentication(); //permite las autorizaciones

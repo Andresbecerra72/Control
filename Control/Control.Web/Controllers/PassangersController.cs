@@ -123,12 +123,16 @@
                 Infant = view.Infant,
                 Total = view.Total,
                 PublishOn = view.PublishOn,
-                User = view.User
+                User = view.User,
+                Remark = view.Remark,
+                Day = view.PublishOn.ToString("dd"),
+                Month = view.PublishOn.ToString("MMMM"),
+                Year = view.PublishOn.ToString("yyyy")
             };
         }
 
         // GET: Passangers/Edit/5
-        [Authorize(Roles = "Admin")]//acesso con login a usuarios con rol de administrador
+        [Authorize(Roles = "Super, Admin")]//acesso con login a usuarios con rol de administrador
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -157,7 +161,8 @@
                 Infant = passanger.Infant,
                 Total = passanger.Total,
                 PublishOn = passanger.PublishOn,
-                User = passanger.User
+                User = passanger.User,
+                Remark = passanger.Remark
             };
         }
 
@@ -216,7 +221,7 @@
 
 
         // GET: Passangers/Delete/5
-        [Authorize(Roles = "Admin")]//acesso con login a usuarios con rol de administrador
+        [Authorize(Roles = "Super, Admin")]//acesso con login a usuarios con rol de administrador
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -235,7 +240,7 @@
 
         // POST: Passangers/Delete/5
         [HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]//TODO:*************************OJO TOKEN************************
+        [ValidateAntiForgeryToken]//TODO:*************************OJO TOKEN************************
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var passanger = await this.passangerRepository.GetByIdAsync(id);//pasa el dato

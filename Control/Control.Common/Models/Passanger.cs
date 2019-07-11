@@ -32,6 +32,9 @@
         [JsonProperty("user")]
         public User User { get; set; }
 
+        [JsonProperty("Remark")]
+        public string Remark { get; set; }
+
         [JsonProperty("imageFullPath")]
         public string ImageFullPath { get; set; }
 

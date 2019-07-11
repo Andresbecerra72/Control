@@ -79,6 +79,10 @@
                 Total = passanger.Total,
                 PublishOn = passanger.PublishOn,
                 User = user,
+                Remark = passanger.Remark,
+                Day = passanger.PublishOn.ToString("dd"),
+                Month = passanger.PublishOn.ToString("MMMM"),
+                Year = passanger.PublishOn.ToString("yyyy"),
                 ImageUrl = imageUrl
             };
 

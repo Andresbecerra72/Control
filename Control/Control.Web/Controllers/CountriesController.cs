@@ -8,7 +8,7 @@
     using Models;
     using System.Threading.Tasks;
 
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Super")]
     public class CountriesController : Controller // permite el crud de paises y ciudades
     {
         private readonly ICountryRepository countryRepository;

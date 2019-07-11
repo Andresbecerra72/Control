@@ -49,16 +49,8 @@
                 this.AddProduct("8711", user);
                 this.AddProduct("8740", user);
                 this.AddProduct("8741", user);
-                this.AddProduct("8702", user);
-                this.AddProduct("8703", user);
-                this.AddProduct("8864", user);
-                this.AddProduct("8616", user);
-                this.AddProduct("8619", user);
-                this.AddProduct("8422", user);
-                this.AddProduct("8423", user);
-                this.AddProduct("8788", user);
-                this.AddProduct("8789", user);
-                this.AddProduct("8888", user);
+              
+                
                 await this.context.SaveChangesAsync();
             }
 
@@ -129,7 +121,7 @@
             this.AddCountry("Venezuela", new string[] { "Caracas", "Valencia", "Maracaibo", "Ciudad Bolivar", "Maracay", "Barquisimeto" });
             this.AddCountry("Paraguay", new string[] { "Asunción", "Ciudad del Este", "Encarnación", "San  Lorenzo", "Luque", "Areguá" });
             this.AddCountry("Brasil", new string[] { "Rio de Janeiro", "São Paulo", "Salvador", "Porto Alegre", "Curitiba", "Recife", "Belo Horizonte", "Fortaleza" });
-            this.AddCountry("Otro", new string[] { "Otro..." });
+            this.AddCountry(" Otro...", new string[] { "Otro..." });
             await this.context.SaveChangesAsync();
         }
 
