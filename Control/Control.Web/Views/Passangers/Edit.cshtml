@@ -8,12 +8,21 @@
 
 <h4>Datos del Vuelo</h4>
 <hr />
+<div class="form-group">
+    <label asp-for="PublishOn" class="control-label"></label>
+    <input type="datetime" asp-for="PublishOn" class="text-center" disabled />  
+
+</div>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="ImageUrl" />
+            <input type="hidden" asp-for="PublishOn" />
+            <input type="hidden" asp-for="Day" />
+            <input type="hidden" asp-for="Month" />
+            <input type="hidden" asp-for="Year" />
             <div class="form-group">
                 <label asp-for="Flight" class="control-label"></label>
                 <input asp-for="Flight" class="form-control" />
@@ -40,16 +49,17 @@
                 <span asp-validation-for="Total" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="PublishOn" class="control-label"></label>
-                <div class="input-group date" data-provide="datepicker">
-                    <input asp-for="PublishOn" class="form-control" id="date" disabled/>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-                <span asp-validation-for="PublishOn" class="text-danger"></span>
+
+            @*<div class="form-group">
+            <label asp-for="PublishOn" class="control-label"></label>
+            <div class="input-group date" data-provide="datepicker">
+                <input asp-for="PublishOn" class="form-control" id="date"/>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
             </div>
+            <span asp-validation-for="PublishOn" class="text-danger"></span>
+        </div>*@
             <div class="form-group">
                 <label asp-for="Remark" class="control-label"></label>
                 <input asp-for="Remark" class="form-control" />
@@ -69,28 +79,28 @@
     <div class="col-md-4">
         @if (!string.IsNullOrEmpty(Model.ImageUrl))
         {
-            <img src="@Url.Content(Model.ImageUrl)" alt="Image" style="width:600px;height:850px;max-width: 100%; height: auto;" />
+        <img src="@Url.Content(Model.ImageUrl)" alt="Image" style="width:600px;height:850px;max-width: 100%; height: auto;" />
         }
     </div>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script type="text/javascript">
+    @*<script type="text/javascript">
 
-        $.fn.datepicker.defaults.format = "dd/MM/yyyy",  
-        $('#date').datepicker({
-            startDate: '-3d'
-                });
-       
-    $('#date').datepicker().attr('type','text').click(function (e) {
-        e.preventDefault();
-    }).datepicker({
-          onSelect: function (dateText) {
-            var d = new Date(dateText),
-                dv = (d.getDay().toString().pad(2)  + '/' + d.getMonth() + 1).toString().pad(2) + '/' + d.getFullYear().toString().pad(4);
-            $(this).val(dv).trigger('change');
-        }
-    });
-    </script>
+            $.fn.datepicker.defaults.format = "dd/MM/yyyy",
+            $('#date').datepicker({
+                startDate: '-3d'
+                    });
+
+        $('#date').datepicker().attr('type','text').click(function (e) {
+            e.preventDefault();
+        }).datepicker({
+              onSelect: function (dateText) {
+                var d = new Date(dateText),
+                    dv = (d.getDay().toString().pad(2)  + '/' + d.getMonth() + 1).toString().pad(2) + '/' + d.getFullYear().toString().pad(4);
+                $(this).val(dv).trigger('change');
+            }
+        });
+        </script>*@
 }

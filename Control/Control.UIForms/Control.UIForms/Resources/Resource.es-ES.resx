@@ -270,4 +270,10 @@
   <data name="ImageEnter" xml:space="preserve">
     <value>Debes ingresar una imagen</value>
   </data>
+  <data name="Remark" xml:space="preserve">
+    <value>Comentario:</value>
+  </data>
+  <data name="RemarkEntry" xml:space="preserve">
+    <value>Introduzca Comentarios</value>
+  </data>
 </root>

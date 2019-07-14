@@ -101,6 +101,20 @@
                         Grid.Column="1"
                     	Grid.Row="5"
                         Date="{Binding Passanger.PublishOn}" />
+                    
+                    <Label
+                    	Grid.Column="0"
+                    	Grid.Row="6"
+                    	Text="{i18n:Translate Remark}"
+                    	VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                    	Grid.Column="1"
+                    	Grid.Row="6"
+                    	Keyboard="Default"
+                    	Placeholder="{i18n:Translate RemarkEntry}"
+                    	Text="{Binding Passanger.Remark}">
+                    </Entry>
                 </Grid>
                 <ActivityIndicator
                 	IsRunning="{Binding IsRunning}"

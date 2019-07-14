@@ -7,9 +7,20 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
 <br />
 
-<p>
+<div>
     <a asp-action="Create" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Create New</a>
-</p>
+
+    @if (this.User.IsInRole("Admin"))
+    {
+        <a class="btn btn-success" href="http://apps.satena.com.co/ControlPlaneacion"><i class="glyphicon glyphicon-arrow-down"></i> KIU Compare</a>
+    }
+    @if (this.User.IsInRole("Super"))
+    {
+        <a class="btn btn-success" href="http://apps.satena.com.co/ControlPlaneacion"><i class="glyphicon glyphicon-arrow-down"></i> KIU Compare</a>
+    }
+</div>
+
+<br />
 
 <div class="row">
     <div class="col-md-12">

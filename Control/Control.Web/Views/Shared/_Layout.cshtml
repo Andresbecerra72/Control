@@ -5,7 +5,8 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Control Page</title>
+    <link rel="shortcut icon" href="https://www.satena.com/aym_image/favicon.png" type="image/png">
+    <title>@ViewData["Title"] - Control</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -20,7 +21,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/css/all.css" />
         <link href="~/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet" />
-       
+
     </environment>
 
 </head>
@@ -41,19 +42,23 @@ xmlns="http://www.w3.org/TR/REC-html40">
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">Nosotros</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contacto</a></li>
-                    
-                    
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+
+
 
                     @if (this.User.Identity.IsAuthenticated)
                     {
-                    <li><a asp-area="" asp-controller="Passangers" asp-action="Index">Pasajeros</a></li>
+                        <li><a asp-area="" asp-controller="Passangers" asp-action="Index">Passengers</a></li>
 
-                    @if (this.User.IsInRole("Super"))
+                        @if (this.User.IsInRole("Admin"))
                         {
-                    <li><a asp-area="" asp-controller="Countries" asp-action="Index">Paises</a></li>
-                    <li><a asp-area="" asp-controller="Account" asp-action="Index">Users</a></li>
+                            <li><a asp-area="" asp-controller="Account" asp-action="Index">Users</a></li>
+                        }
+                        @if (this.User.IsInRole("Super"))
+                        {
+                            <li><a asp-area="" asp-controller="Countries" asp-action="Index">Countries</a></li>
+                            <li><a asp-area="" asp-controller="Account" asp-action="Index">Users</a></li>
                         }
                     }
 

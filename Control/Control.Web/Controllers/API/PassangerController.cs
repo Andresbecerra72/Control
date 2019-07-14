@@ -117,6 +117,7 @@
             oldPassanger.Flight = passanger.Flight;
             oldPassanger.Total = passanger.Total;
             oldPassanger.PublishOn = passanger.PublishOn;
+            oldPassanger.Remark = passanger.Remark;
 
             var updatedProduct = await this.passangerRepository.UpdateAsync(oldPassanger);
             return Ok(updatedProduct);

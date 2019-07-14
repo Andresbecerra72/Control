@@ -44,10 +44,12 @@
         public static string ChildrenEntry => Resource.ChildrenEntry;
         public static string InfantsEntry => Resource.InfantsEntry;
         public static string TotalEntry => Resource.TotalEntry;
+        public static string RemarkEntry => Resource.RemarkEntry;
         public static string Adults => Resource.Adults;
         public static string Children => Resource.Children;
         public static string Infants => Resource.Infants;
         public static string TotalPassangers => Resource.TotalPassangers;
+        public static string Remark => Resource.Remark;
         public static string Flight => Resource.Flight;
         public static string User => Resource.User;
         public static string Password => Resource.Password;

@@ -25,7 +25,7 @@
 
         public int Total { get; set; }
 
-        [Display(Name = "Fecha")]
+        [Display(Name = "Date ")]
         [DisplayFormat(DataFormatString = "{0:dd/MMMM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime PublishOn { get; set; }
 
@@ -53,7 +53,7 @@
                     return null;
                 }
 
-                return $"https://controlweb.azurewebsites.net{this.ImageUrl.Substring(1)}";
+                return $"http://186.154.237.242:8080{this.ImageUrl.Substring(1)}";
             }
         }
 

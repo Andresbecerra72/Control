@@ -1,1 +1,1 @@
-﻿select * from AspNetUsers
+﻿SELECT * FROM Passangers

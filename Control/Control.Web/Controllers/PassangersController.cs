@@ -132,7 +132,7 @@
         }
 
         // GET: Passangers/Edit/5
-        [Authorize(Roles = "Super, Admin")]//acesso con login a usuarios con rol de administrador
+        //[Authorize(Roles = "Super, Admin")]//acesso con login a usuarios con rol de administrador
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)

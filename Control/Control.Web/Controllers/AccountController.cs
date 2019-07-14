@@ -389,7 +389,7 @@
         }
 
         //USER MANAGEMENT administracion y contro de los usuarios
-        [Authorize(Roles = "Super")]
+        [Authorize(Roles = "Super, Admin")]
         public async Task<IActionResult> Index()
         {
             var users = await this.userHelper.GetAllUsersAsync();
@@ -442,7 +442,7 @@
             return this.RedirectToAction(nameof(Index));
         }
 
-        [Authorize(Roles = "Super")]
+        [Authorize(Roles = "Super, Admin")]
         public async Task<IActionResult> DeleteUser(string id)
         {
             if (string.IsNullOrEmpty(id))

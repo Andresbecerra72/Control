@@ -32,8 +32,17 @@
         [JsonProperty("user")]
         public User User { get; set; }
 
-        [JsonProperty("Remark")]
+        [JsonProperty("remark")]
         public string Remark { get; set; }
+
+        [JsonProperty("day")]
+        public string Day { get; set; }
+
+        [JsonProperty("month")]
+        public string Month { get; set; }
+
+        [JsonProperty("year")]
+        public string Year { get; set; }
 
         [JsonProperty("imageFullPath")]
         public string ImageFullPath { get; set; }

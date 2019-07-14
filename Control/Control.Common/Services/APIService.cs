@@ -34,7 +34,7 @@
                         Message = result,
                     };
                 }
-                //aqui es cuando funciona la comunicacion .. y se recube el json
+                //aqui es cuando funciona la comunicacion .. y se recibe el json
                 var list = JsonConvert.DeserializeObject<List<T>>(result); //convierte el string en un Json
                 return new Response
                 {

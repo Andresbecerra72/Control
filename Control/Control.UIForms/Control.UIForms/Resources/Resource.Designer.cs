@@ -430,6 +430,24 @@ namespace Control.UIForms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remark:.
+        /// </summary>
+        public static string Remark {
+            get {
+                return ResourceManager.GetString("Remark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter Remarks.
+        /// </summary>
+        public static string RemarkEntry {
+            get {
+                return ResourceManager.GetString("RemarkEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remember me in this device.
         /// </summary>
         public static string Remember {

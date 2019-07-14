@@ -51,6 +51,14 @@
 
         public DateTime PublishOn { get; set; }
 
+        public string Remark { get; set; }
+
+        public string Day { get; set; }
+
+        public string Month { get; set; }
+
+        public string Year { get; set; }
+
         public int ImageFlag = 0;
 
         //acciones por comandos 
@@ -68,6 +76,11 @@
             this.IsEnabled = true;
             this.Flight = string.Empty;
             this.Adult = string.Empty;
+            this.Remark = string.Empty;
+            this.Day = this.PublishOn.ToString("dd");
+            this.Month = this.PublishOn.ToString("MMMM");
+            this.Year = this.PublishOn.ToString("yyyy");
+
 
         }
 
@@ -143,6 +156,10 @@
                 Infant = infant,
                 Total = total,
                 PublishOn = this.PublishOn,
+                Remark = this.Remark,
+                Day = this.PublishOn.ToString("dd"),
+                Month = this.PublishOn.ToString("MMMM"),
+                Year = this.PublishOn.ToString("yyyy"),
                 User = new User { UserName = MainViewModel.GetInstance().UserEmail },
                 ImageArray = imageArray
 
