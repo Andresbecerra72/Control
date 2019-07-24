@@ -66,6 +66,9 @@
             services.AddScoped<IPassangerRepository, PassangerRepository>();//AddScoped se usa y mantiene hasta cerrar el proyecto
 
             //inyeccion del repositorio
+            services.AddScoped<IKiuReportRepository, KiuReportRepository>();//AddScoped se usa y mantiene hasta cerrar el proyecto
+
+            //inyeccion del repositorio
             services.AddScoped<ICountryRepository, CountryRepository>();//AddScoped se usa y mantiene hasta cerrar el proyecto
 
             //inyeccion del UserHelper

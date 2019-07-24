@@ -45,6 +45,21 @@
 
             return result;
         }
+
+        //consulta para el API lista de pasajeros por fecha actual en la AppMovil
+        public IQueryable GetPassangerByDate(string day, string month, string year)
+        {
+            return this.context.Passangers
+                .Include(p => p.User)//hace la relacion de los registros pasajeros con el usuario
+                .Where(d => d.Day == day)
+                .Where(m => m.Month == month)
+                .Where(y => y.Year == year);
+
+                
+        }
+
+
+
     }
 
 }

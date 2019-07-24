@@ -120,7 +120,13 @@
                 Infant = p.Infant,
                 Total = p.Total,
                 PublishOn = p.PublishOn,
+                Remark = p.Remark,
+                Day = p.PublishOn.ToString("dd"),
+                Month = p.PublishOn.ToString("MMMM"),
+                Year = p.PublishOn.ToString("yyyy"),
                 User = p.User
+                
+
             })
             .OrderByDescending(p => p.PublishOn)
             .ToList());

@@ -47,7 +47,7 @@
                                     	TextColor="Black">
                                     </Label>
                                     <Label
-                                    	Text="{Binding Total, StringFormat='Total: {0}'}"
+                                    	Text="{Binding Total, StringFormat='Total Pax: {0}'}"
                                     	TextColor="Navy">
                                     </Label>
                                 </StackLayout>

@@ -1,0 +1,61 @@
+﻿@model Control.Web.Models.PassangerViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Ingresar Conteo de Pasajeros</h2>
+
+<h4>Datos por Vuelo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Flight" class="control-label"></label>
+                <input asp-for="Flight" class="form-control" />
+                <span asp-validation-for="Flight" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="PublishOn" class="control-label"></label>
+                <div class="input-group date">
+                    <input asp-for="PublishOn" class="form-control" />
+                   
+                </div>
+                <span asp-validation-for="PublishOn" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Create</button>
+               
+            </div>
+        </form>
+    </div>
+</div>
+<div class="form-group">
+    <label asp-for="Total" class="control-label"></label>
+    <input asp-for="Total" class="text-center" />
+
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @*<script type="text/javascript">
+     $.fn.datepicker.defaults.format = "dd/MM/yyyy";
+        $('#date').datepicker({
+            startDate: '-3d'
+                });
+    $('#date').datepicker().attr('type','text').click(function (e) {
+        e.preventDefault();
+    }).datepicker({
+        onSelect: function (dateText) {
+            var d = new Date(dateText),
+                dv = (d.getDay().toString().pad(2)  + '/'+ d.getMonth() + 1).toString().pad(2) + '/' + d.getFullYear().toString().pad(4);
+            $(this).val(dv).trigger('change');
+        }
+    });
+    </script>*@
+}

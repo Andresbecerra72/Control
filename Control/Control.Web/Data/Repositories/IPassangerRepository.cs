@@ -12,6 +12,8 @@
 
         IQueryable GetAllWithUsersAuthenticated(string user);
 
+        IQueryable GetPassangerByDate(string day, string month, string year);
+
     }
 
 }

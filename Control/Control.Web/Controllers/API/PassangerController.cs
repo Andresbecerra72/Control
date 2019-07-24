@@ -30,11 +30,15 @@
             this.passangerRepository = passangerRepository;
             this.userHelper = userHelper;
         }
-        //GET/Passangers
+        //GET/Passangers   este metodo muestra la lista de pasajeros en la Appmovil solo el dia actual
         [HttpGet]
         public IActionResult GetPassagers()
         {
-            return this.Ok(this.passangerRepository.GetAllWithUsers());
+            string day = DateTime.Now.ToString("dd");
+            string month = DateTime.Now.ToString("MMMM");
+            string year = DateTime.Now.ToString("yyyy");
+
+            return this.Ok(this.passangerRepository.GetPassangerByDate(day, month, year));
         }
 
         //POST PASSANGER metodo para crear desde el movil
@@ -118,6 +122,9 @@
             oldPassanger.Total = passanger.Total;
             oldPassanger.PublishOn = passanger.PublishOn;
             oldPassanger.Remark = passanger.Remark;
+            oldPassanger.Day = passanger.PublishOn.ToString("dd");
+            oldPassanger.Month = passanger.PublishOn.ToString("MMMM");
+            oldPassanger.Year = passanger.PublishOn.ToString("yyyy");
 
             var updatedProduct = await this.passangerRepository.UpdateAsync(oldPassanger);
             return Ok(updatedProduct);

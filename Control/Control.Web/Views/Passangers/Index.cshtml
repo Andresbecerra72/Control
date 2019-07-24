@@ -12,11 +12,13 @@
 
     @if (this.User.IsInRole("Admin"))
     {
-        <a class="btn btn-success" href="http://apps.satena.com.co/ControlPlaneacion"><i class="glyphicon glyphicon-arrow-down"></i> KIU Compare</a>
+        <a asp-area="" asp-controller="KiuReport" asp-action="Create" class="btn btn-success"><i class="glyphicon glyphicon-arrow-down"></i> KIU Compare</a>
+        @*<a class="btn btn-success" href="http://apps.satena.com.co/ControlPlaneacion"><i class="glyphicon glyphicon-arrow-down"></i> KIU Compare</a>*@
     }
     @if (this.User.IsInRole("Super"))
     {
-        <a class="btn btn-success" href="http://apps.satena.com.co/ControlPlaneacion"><i class="glyphicon glyphicon-arrow-down"></i> KIU Compare</a>
+        <a asp-area="" asp-controller="KiuReport" asp-action="Create" class="btn btn-success"><i class="glyphicon glyphicon-arrow-down"></i> KIU Compare</a>
+        @*<a class="btn btn-success" href="http://apps.satena.com.co/ControlPlaneacion"><i class="glyphicon glyphicon-arrow-down"></i> KIU Compare</a>*@
     }
 </div>
 

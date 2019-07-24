@@ -9,6 +9,8 @@
     {
         public DbSet<Passanger> Passangers { get; set; } //es una propiedad es para acceder al objeto pasajeros 
 
+        public DbSet<KiuReport> KiuReports { get; set; } //es una propiedad es para acceder al objeto pasajeros 
+
         public DbSet<Country> Countries { get; set; } //es una propiedad es para acceder al objeto Paises 
 
         public DbSet<City> Cities { get; set; } //es una propiedad es para acceder al objeto Ciudades
