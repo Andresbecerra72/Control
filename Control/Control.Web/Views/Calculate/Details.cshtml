@@ -1,0 +1,215 @@
+﻿@using Control.Web.Data.Entities
+@model dynamic
+@{
+    ViewData["Title"] = "Details";
+}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="~/css/StyleSheet.css" />
+
+<h2>DATE Analysis</h2>
+<hr />
+
+
+<section>
+    <div id="contenedor">
+        <div id="lateral">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">KIU Report</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-hover table-responsive table-striped" id="ProductsTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Flight:
+                                </th>
+                                <th>
+                                    Adult:
+                                </th>
+                                <th>
+                                    Child:
+                                </th>
+                                <th>
+                                    Infant:
+                                </th>
+                                <th>
+                                    Total:
+                                </th>
+                                <th>
+                                    Date:
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (KiuPassanger item in Model.Customers)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Vuelo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TotalAdult)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TotalChild)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TotalInfant)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TotalPax)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PublishOnKIU)
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="principal">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">TCP Report</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-hover table-responsive table-striped" id="ProductTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Flight:
+                                </th>
+                                <th>
+                                    Adult:
+                                </th>
+                                <th>
+                                    Child:
+                                </th>
+                                <th>
+                                    Infant:
+                                </th>
+                                <th>
+                                    Total:
+                                </th>
+                                <th>
+                                    Date:
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Passanger item in Model.Employees)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Flight)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Adult)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Child)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Infant)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Total)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PublishOn)
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+@*<section>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">TCP Report</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover table-responsive table-striped" id="ProductTable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Flight:
+                                    </th>
+                                    <th>
+                                        Adult:
+                                    </th>
+                                    <th>
+                                        Child:
+                                    </th>
+                                    <th>
+                                        Infant:
+                                    </th>
+                                    <th>
+                                        Total:
+                                    </th>
+                                    <th>
+                                        Date:
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Passanger item in Model.Employees)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Flight)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Adult)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Child)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Infant)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Total)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PublishOn)
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </section>*@
+
+@section Scripts {
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#ProductsTable').DataTable();
+            $('#ProductTable').DataTable();
+        });
+    </script>
+}

@@ -1,13 +1,14 @@
 ﻿@model Control.Web.Models.KiuReportViewModel
-
-
 @{
     ViewData["Title"] = "Index";
 }
-    <asp:PlaceHolder ID="PlaceHolder1" runat="server" />
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+
 <h2>DATE Analysis</h2>
 <hr />
 <section>
+
 
     <div class="row">
         <div class="col-md-2">
@@ -27,25 +28,9 @@
                 </div>
             </form>
         </div>
+
     </div>
-
 </section>
-
-<section>
-
-    <form id="form1" runat="server">
-        <table style="width: 50%; text-align: center; background-color: skyblue;">
-            <tr>
-                <td align="center">
-                    <asp:PlaceHolder ID="DBDataPlaceHolder" runat="server"></asp:PlaceHolder>
-                </td>
-            </tr>
-        </table>
-    </form>
-
-
-</section>
-
 
 
 @section Scripts {
@@ -53,3 +38,5 @@
 
 
 }
+
+
