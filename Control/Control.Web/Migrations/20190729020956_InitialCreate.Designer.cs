@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Control.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190709140629_InitialDB")]
-    partial class InitialDB
+    [Migration("20190729020956_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,6 +55,106 @@ namespace Control.Web.Migrations
                     b.ToTable("Countries");
                 });
 
+            modelBuilder.Entity("Control.Web.Data.Entities.KiuPassanger", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("PublishOnKIU");
+
+                    b.Property<int>("TotalAdult");
+
+                    b.Property<int>("TotalChild");
+
+                    b.Property<int>("TotalInfant");
+
+                    b.Property<int>("TotalPax");
+
+                    b.Property<string>("Vuelo");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("KiuPassangers");
+                });
+
+            modelBuilder.Entity("Control.Web.Data.Entities.KiuReport", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Agente");
+
+                    b.Property<string>("Carrier");
+
+                    b.Property<string>("Class");
+
+                    b.Property<string>("Contact_pax");
+
+                    b.Property<string>("Cupon");
+
+                    b.Property<string>("Delay");
+
+                    b.Property<string>("Dest");
+
+                    b.Property<string>("Emisor");
+
+                    b.Property<string>("Endoso");
+
+                    b.Property<string>("Equipo");
+
+                    b.Property<string>("Fbasis");
+
+                    b.Property<string>("Fecha_emision");
+
+                    b.Property<string>("Fecha_vuelo_programada");
+
+                    b.Property<string>("Fecha_vuelo_real");
+
+                    b.Property<string>("Fim");
+
+                    b.Property<string>("Foid");
+
+                    b.Property<string>("Hour");
+
+                    b.Property<string>("Implocal");
+
+                    b.Property<string>("Importe");
+
+                    b.Property<string>("Info_adicional_fc");
+
+                    b.Property<string>("Matricula");
+
+                    b.Property<string>("Moneda");
+
+                    b.Property<string>("Monlocal");
+
+                    b.Property<string>("Nrotkt");
+
+                    b.Property<string>("Origen_Itinerario");
+
+                    b.Property<string>("Pais_emision");
+
+                    b.Property<string>("Pax");
+
+                    b.Property<string>("Record_locator");
+
+                    b.Property<string>("Sac");
+
+                    b.Property<string>("Source");
+
+                    b.Property<string>("Tour_code");
+
+                    b.Property<string>("Tpax");
+
+                    b.Property<string>("Vuelo");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("KiuReports");
+                });
+
             modelBuilder.Entity("Control.Web.Data.Entities.Passanger", b =>
                 {
                     b.Property<int>("Id")
@@ -66,6 +166,8 @@ namespace Control.Web.Migrations
                     b.Property<int>("Child");
 
                     b.Property<string>("Day");
+
+                    b.Property<string>("Discriminator");
 
                     b.Property<string>("Flight")
                         .IsRequired()
@@ -79,7 +181,8 @@ namespace Control.Web.Migrations
 
                     b.Property<DateTime>("PublishOn");
 
-                    b.Property<string>("Remark");
+                    b.Property<string>("Remark")
+                        .HasMaxLength(80);
 
                     b.Property<int>("Total");
 

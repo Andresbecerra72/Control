@@ -53,6 +53,29 @@ namespace Control.Web.Migrations
                     b.ToTable("Countries");
                 });
 
+            modelBuilder.Entity("Control.Web.Data.Entities.KiuPassanger", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("PublishOnKIU");
+
+                    b.Property<int>("TotalAdult");
+
+                    b.Property<int>("TotalChild");
+
+                    b.Property<int>("TotalInfant");
+
+                    b.Property<int>("TotalPax");
+
+                    b.Property<string>("Vuelo");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("KiuPassangers");
+                });
+
             modelBuilder.Entity("Control.Web.Data.Entities.KiuReport", b =>
                 {
                     b.Property<int>("Id")
@@ -142,6 +165,8 @@ namespace Control.Web.Migrations
 
                     b.Property<string>("Day");
 
+                    b.Property<string>("Discriminator");
+
                     b.Property<string>("Flight")
                         .IsRequired()
                         .HasMaxLength(4);
@@ -154,7 +179,8 @@ namespace Control.Web.Migrations
 
                     b.Property<DateTime>("PublishOn");
 
-                    b.Property<string>("Remark");
+                    b.Property<string>("Remark")
+                        .HasMaxLength(80);
 
                     b.Property<int>("Total");
 

@@ -1,1 +1,1 @@
-﻿select * from KiuReports
+﻿select * from KiuPassangers

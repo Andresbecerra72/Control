@@ -1,17 +1,16 @@
 ﻿namespace Control.Web.Controllers
 {
 
-    using Models;
     using Data;
     using Data.Entities;
     using Helpers;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
+    using Models;
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using System.Linq;
-    using Microsoft.AspNetCore.Authorization;
     //TODO: ACTIVAR PARA PRODUCTIVO
     [Authorize] // ACTIVAR SOLICITAR LOGUEO
     public class PassangersController : Controller
@@ -37,9 +36,9 @@
 
             return View(this.passangerRepository.GetAllWithUsersAuthenticated(this.User.Identity.Name.ToString()));
         }
-            
 
-        
+
+
 
 
         // GET: Passangers/Details/5
@@ -61,7 +60,7 @@
 
 
         // GET: Passangers/Create
-        
+
         //[Authorize(Roles = "Admin")]//acesso con login a usuarios con rol de administrador
         public IActionResult Create()
         {
@@ -105,7 +104,7 @@
 
                 return View(view);
 
-                
+
             }
 
         }
@@ -257,11 +256,11 @@
         //DELETE from MODAL WONDOWS**
         public async Task<IActionResult> DeleteItem(int id)
         {
-           
+
             await this.passangerRepository.DeleteItemAsync(id);
-             return this.RedirectToAction(nameof(Index));
-           
-                        
+            return this.RedirectToAction(nameof(Index));
+
+
         }
     }
 }

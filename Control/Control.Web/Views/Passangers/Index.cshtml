@@ -58,7 +58,10 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.User)
                             </th>
-                            <th></th>
+                          
+                            <th>
+                              
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -92,6 +95,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.User.FullName)
                             </td>
+                          
                             <td>
                                 <a asp-action="Edit" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i> </a>
                                 <a asp-action="Details" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-list"> </i> </a>

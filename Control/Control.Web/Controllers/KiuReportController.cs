@@ -1,25 +1,29 @@
-﻿using Control.Web.Data.Entities;
-using Control.Web.Data.Repositories;
-using Control.Web.Helpers;
-using Control.Web.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using OfficeOpenXml;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
-
-namespace Control.Web.Controllers
+﻿namespace Control.Web.Controllers
 {
+    using Control.Web.Data.Entities;
+    using Control.Web.Data.Repositories;
+    using Control.Web.Models;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using OfficeOpenXml;
+    using System;
+    using System.IO;
+    using System.Threading.Tasks;
+
+
     [Authorize(Roles = "Super, Admin")]
     public class KiuReportController : Controller
     {
-       
+
+        private string publishOnKiu;
+        private string vuelo;
+        private int totalAdult = 0;
+        private int totalChild = 0;
+        private int totalInfant = 0;
+        private int totalPax = 0;
+        private DateTime dateKiu;
 
         private readonly IKiuReportRepository kiuReportRepository;
-
-
 
         public KiuReportController(IKiuReportRepository kiuReportRepository)
         {
@@ -27,38 +31,36 @@ namespace Control.Web.Controllers
 
         }
 
+        //metodos
 
-
-        // GET: KIU REPORT listado de reortes ingresadors en la BD
+        // GET: KIU REPORT listado de reportes ingresadors en la BD
         public IActionResult Index()//pagina INDEX
         {
 
             return View(this.kiuReportRepository.GetAll());
-           // return View();
+            
         }
 
 
         // POST: KIU REPORT importa el archivo de excel en la BD 
         public IActionResult Create()//pagina INDEX
         {
-
-
             return View();
         }
 
-
+        //ESTE POST PERMITE LEER EL ARCHIVO DE EXCEL Y GUARDARLO EN LA BD KIUPASSANGER
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public async Task<DemoResponse<List<KiuReport>>> Index(KiuReportViewModel formFile)
         public async Task<IActionResult> Create(KiuReportViewModel view)
         {
-            
+
 
             if (view.ExcelFile != null || view.ExcelFile.Length > 0)
             {
                 if (Path.GetExtension(view.ExcelFile.FileName).Equals(".xlsx", StringComparison.OrdinalIgnoreCase))
                 {
-                    var list = new List<KiuReport>();
+
 
                     using (var stream = new MemoryStream())
                     {
@@ -73,48 +75,132 @@ namespace Control.Web.Controllers
                             {
 
 
-                                list.Add(new KiuReport
+                                //Condicion cuando Fecha ==  / vuelo ==
+                                if (worksheet.Cells[row, 13].Text.ToString().Trim() == worksheet.Cells[row + 1, 13].Text.ToString().Trim() &&
+                                    worksheet.Cells[row, 2].Text.ToString().Trim() == worksheet.Cells[row + 1, 2].Text.ToString().Trim())
+                                {
+                                    if (worksheet.Cells[row, 13].Text.ToString().Trim() == worksheet.Cells[row + 1, 13].Text.ToString().Trim() &&
+                                        worksheet.Cells[row, 2].Text.ToString().Trim() == worksheet.Cells[row + 1, 2].Text.ToString().Trim() &&
+                                        worksheet.Cells[row, 19].Text.ToString().Trim() == "A")
+                                    {
+                                        totalAdult = totalAdult + 1;
+
+                                    }
+                                    else if (worksheet.Cells[row, 13].Text.ToString().Trim() == worksheet.Cells[row + 1, 13].Text.ToString().Trim() &&
+                                        worksheet.Cells[row, 2].Text.ToString().Trim() == worksheet.Cells[row + 1, 2].Text.ToString().Trim() &&
+                                        worksheet.Cells[row, 19].Text.ToString().Trim() == "C")
+                                    {
+
+                                        totalChild = totalChild + 1;
+
+                                    }
+                                    else if (worksheet.Cells[row, 13].Text.ToString().Trim() == worksheet.Cells[row + 1, 13].Text.ToString().Trim() &&
+                                        worksheet.Cells[row, 2].Text.ToString().Trim() == worksheet.Cells[row + 1, 2].Text.ToString().Trim() &&
+                                        worksheet.Cells[row, 19].Text.ToString().Trim() == "I")
+                                    {
+
+                                        totalInfant = totalInfant + 1;
+
+                                    }
+
+                                    dateKiu = DateTime.Parse(worksheet.Cells[row, 13].Value.ToString(), null);
+                                    publishOnKiu = dateKiu.ToString("dd/MMMM/yyyy");// cambia el formato de la fecha, quedda como string
+                                    vuelo = worksheet.Cells[row, 2].Text.ToString().Trim();
+
+
+
+
+
+                                }
+                                //Condicion cuando Fecha ==  / vuelo !=
+                                else if (worksheet.Cells[row, 13].Text.ToString().Trim() == worksheet.Cells[row + 1, 13].Text.ToString().Trim() &&
+                                    worksheet.Cells[row, 2].Text.ToString().Trim() != worksheet.Cells[row + 1, 2].Text.ToString().Trim())
+                                {
+                                    if (worksheet.Cells[row, 13].Text.ToString().Trim() == worksheet.Cells[row + 1, 13].Text.ToString().Trim() &&
+                                        worksheet.Cells[row, 2].Text.ToString().Trim() != worksheet.Cells[row + 1, 2].Text.ToString().Trim()
+                                         && worksheet.Cells[row, 19].Text.ToString().Trim() == "A")
+                                    {
+                                        totalAdult = totalAdult + 1;
+                                    }
+                                    else if (worksheet.Cells[row, 13].Text.ToString().Trim() == worksheet.Cells[row + 1, 13].Text.ToString().Trim() &&
+                                        worksheet.Cells[row, 2].Text.ToString().Trim() != worksheet.Cells[row + 1, 2].Text.ToString().Trim()
+                                         && worksheet.Cells[row, 19].Text.ToString().Trim() == "C")
+                                    {
+                                        totalChild = totalChild + 1;
+                                    }
+                                    else if (worksheet.Cells[row, 13].Text.ToString().Trim() == worksheet.Cells[row + 1, 13].Text.ToString().Trim() &&
+                                        worksheet.Cells[row, 2].Text.ToString().Trim() != worksheet.Cells[row + 1, 2].Text.ToString().Trim()
+                                         && worksheet.Cells[row, 19].Text.ToString().Trim() == "I")
+                                    {
+                                        totalInfant = totalInfant + 1;
+                                    }
+
+                                    await GrabarAsync();
+
+
+                                }
+                                //Condicion cuando Fecha !=   / vuelo != 
+                                else if (worksheet.Cells[row, 13].Text.ToString().Trim() != worksheet.Cells[row + 1, 13].Text.ToString().Trim() &&
+                                    worksheet.Cells[row, 2].Text.ToString().Trim() != worksheet.Cells[row + 1, 2].Text.ToString().Trim())
+                                {
+                                    if (worksheet.Cells[row, 13].Text.ToString().Trim() != worksheet.Cells[row + 1, 13].Text.ToString().Trim() &&
+                                        worksheet.Cells[row, 2].Text.ToString().Trim() != worksheet.Cells[row + 1, 2].Text.ToString().Trim()
+                                         && worksheet.Cells[row, 19].Text.ToString().Trim() == "A")
+                                    {
+                                        totalAdult = totalAdult + 1;
+                                    }
+                                    else if (worksheet.Cells[row, 13].Text.ToString().Trim() != worksheet.Cells[row + 1, 13].Text.ToString().Trim() &&
+                                        worksheet.Cells[row, 2].Text.ToString().Trim() != worksheet.Cells[row + 1, 2].Text.ToString().Trim()
+                                         && worksheet.Cells[row, 19].Text.ToString().Trim() == "C")
+                                    {
+                                        totalChild = totalChild + 1;
+                                    }
+                                    else if (worksheet.Cells[row, 13].Text.ToString().Trim() != worksheet.Cells[row + 1, 13].Text.ToString().Trim() &&
+                                        worksheet.Cells[row, 2].Text.ToString().Trim() != worksheet.Cells[row + 1, 2].Text.ToString().Trim()
+                                         && worksheet.Cells[row, 19].Text.ToString().Trim() == "I")
+                                    {
+                                        totalInfant = totalInfant + 1;
+                                    }
+
+                                    await GrabarAsync();
+
+
+
+                                }
+
+                                //Condicion cuando Fecha == RowCount  / vuelo == RowCount
+                                else if (worksheet.Cells[row, 13].Text.ToString().Trim() == worksheet.Cells[rowCount, 13].Text.ToString().Trim())
                                 {
 
-                                    Hour = worksheet.Cells[row, 1].Text.ToString().Trim(),
-                                    Vuelo = worksheet.Cells[row, 2].Text.ToString().Trim(),
-                                    Origen_Itinerario = worksheet.Cells[row, 3].Text.ToString().Trim(),
-                                    Source = worksheet.Cells[row, 4].Text.ToString().Trim(),
-                                    Dest = worksheet.Cells[row, 5].Text.ToString().Trim(),
-                                    Equipo = worksheet.Cells[row, 6].Text.ToString().Trim(),
-                                    Matricula = worksheet.Cells[row, 7].Text.ToString().Trim(),
-                                    Delay = worksheet.Cells[row, 8].Text.ToString().Trim(),
-                                    Pais_emision = worksheet.Cells[row, 9].Text.ToString().Trim(),
-                                    Emisor = worksheet.Cells[row, 10].Text.ToString().Trim(),
-                                    Agente = worksheet.Cells[row, 11].Text.ToString().Trim(),
-                                    Fecha_emision = worksheet.Cells[row, 12].Value.ToString().Trim(),
-                                    Fecha_vuelo_real = worksheet.Cells[row, 13].Value.ToString().Trim(),
-                                    Fecha_vuelo_programada = worksheet.Cells[row, 14].Value.ToString().Trim(),
-                                    Foid = worksheet.Cells[row, 15].Text.ToString().Trim(),
-                                    Nrotkt = worksheet.Cells[row, 16].Value.ToString().Trim(),
-                                    Fim = worksheet.Cells[row, 17].Value.ToString().Trim(),
-                                    Cupon = worksheet.Cells[row, 18].Value.ToString().Trim(),
-                                    Tpax = worksheet.Cells[row, 19].Value.ToString().Trim(),
-                                    Pax = worksheet.Cells[row, 20].Value.ToString().Trim(),
-                                    Contact_pax = worksheet.Cells[row, 21].Text.ToString().Trim(),
-                                    Class = worksheet.Cells[row, 22].Value.ToString().Trim(),
-                                    Fbasis = worksheet.Cells[row, 23].Value.ToString().Trim(),
-                                    Tour_code = worksheet.Cells[row, 24].Text.ToString().Trim(),
-                                    Moneda = worksheet.Cells[row, 25].Value.ToString().Trim(),
-                                    Importe = worksheet.Cells[row, 26].Value.ToString().Trim(),
-                                    Record_locator = worksheet.Cells[row, 27].Value.ToString().Trim(),
-                                    Carrier = worksheet.Cells[row, 28].Value.ToString().Trim(),
-                                    Monlocal = worksheet.Cells[row, 29].Value.ToString().Trim(),
-                                    Implocal = worksheet.Cells[row, 30].Value.ToString().Trim(),
-                                    Endoso = worksheet.Cells[row, 31].Value.ToString().Trim(),
-                                    Info_adicional_fc = worksheet.Cells[row, 32].Text.ToString().Trim(),
-                                    Sac = worksheet.Cells[row, 33].Text.ToString().Trim()
+                                    if (worksheet.Cells[row, 13].Text.ToString().Trim() == worksheet.Cells[rowCount, 13].Text.ToString().Trim() &&
+                                        worksheet.Cells[row, 2].Text.ToString().Trim() == worksheet.Cells[rowCount, 2].Text.ToString().Trim()
+                                         && worksheet.Cells[rowCount, 19].Text.ToString().Trim() == "A")
+                                    {
+                                        totalAdult = totalAdult + 1;
+                                    }
+                                    else if (worksheet.Cells[row, 13].Text.ToString().Trim() == worksheet.Cells[rowCount, 13].Text.ToString().Trim() &&
+                                        worksheet.Cells[row, 2].Text.ToString().Trim() == worksheet.Cells[rowCount, 2].Text.ToString().Trim()
+                                         && worksheet.Cells[rowCount, 19].Text.ToString().Trim() == "C")
+                                    {
+                                        totalChild = totalChild + 1;
+                                    }
+                                    else if (worksheet.Cells[row, 13].Text.ToString().Trim() == worksheet.Cells[rowCount, 13].Text.ToString().Trim() &&
+                                        worksheet.Cells[row, 2].Text.ToString().Trim() == worksheet.Cells[rowCount, 2].Text.ToString().Trim()
+                                         && worksheet.Cells[rowCount, 19].Text.ToString().Trim() == "I")
+                                    {
+                                        totalInfant = totalInfant + 1;
+                                    }
 
-                                    //Age = int.Parse(worksheet.Cells[row, 2].Value.ToString().Trim()),
-                                });
+                                    await GrabarAsync();
+                                }
+
+
                             }
+
+
+
                         }
-                        await this.kiuReportRepository.CreateKiuReportAsync(list);
+                        // await this.kiuReportRepository.CreateKiuReportAsync(list);
                         return RedirectToAction(nameof(Index));
                     }
 
@@ -124,15 +210,38 @@ namespace Control.Web.Controllers
             }
             return NotFound();
 
-            
+
+        }
+
+        //metodo para almacenar la lista en la BD KiuPassanger
+        public async Task GrabarAsync()
+        {
+
+            totalPax = totalAdult + totalChild + totalInfant;
+
+            await this.kiuReportRepository.CreateAsync(new KiuPassanger
+            {
+                Vuelo = vuelo,
+                PublishOnKIU = publishOnKiu,
+                TotalAdult = totalAdult,
+                TotalChild = totalChild,
+                TotalInfant = totalInfant,
+                TotalPax = totalPax
+
+
+            });
+            //reset de las variables
+            totalAdult = 0;
+            totalChild = 0;
+            totalInfant = 0;
+            totalPax = 0;
+
         }
 
 
 
-
-
         // GET: Passangers/Delete/5
-       
+
         public async Task<IActionResult> Delete()
         {
 
@@ -143,7 +252,7 @@ namespace Control.Web.Controllers
 
         }
 
-      
+
 
 
 

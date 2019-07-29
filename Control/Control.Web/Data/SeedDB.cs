@@ -45,10 +45,8 @@
             // Add Passangers
             if (!this.context.Passangers.Any())
             {
-                this.AddProduct("8710", user);
-                this.AddProduct("8711", user);
-                this.AddProduct("8740", user);
-                this.AddProduct("8741", user);
+                this.AddProduct("8888", user);
+                
               
                 
                 await this.context.SaveChangesAsync();
@@ -161,8 +159,9 @@
                 User = user,
                 Day = DateTime.Now.ToString("dd"),
                 Month = DateTime.Now.ToString("MMMM"),
-                Year = DateTime.Now.ToString("yyyy")
-            });
+                Year = DateTime.Now.ToString("yyyy"),
+               
+        });
 
         }
 

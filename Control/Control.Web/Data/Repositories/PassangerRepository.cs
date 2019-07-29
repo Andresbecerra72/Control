@@ -18,7 +18,7 @@
         //este metodo organiza la lista que se consulta por el orden de usuarios
         public IQueryable GetAllWithUsers()
         {
-            return this.context.Passangers.Include(p => p.User).OrderBy(c => c.PublishOn);//hace la relacion de los registros pasajeros con el usuario
+            return this.context.Passangers.Include(p => p.User).Where(b => b.Flight != null).OrderBy(c => c.PublishOn);//hace la relacion de los registros pasajeros con el usuario
         }
 
         public async Task DeleteItemAsync(int id)

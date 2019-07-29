@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Control.Web.Data.Entities
+﻿namespace Control.Web.Data.Entities
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class KiuReport : IEntity
     {
 
         public int Id { get; set; }
-                
+
         public string Hour { get; set; }
 
         public string Vuelo { get; set; }
@@ -25,7 +21,7 @@ namespace Control.Web.Data.Entities
 
         [Display(Name = "Aeronave")]
         public string Equipo { get; set; }
-            
+
         public string Matricula { get; set; }
 
         public string Delay { get; set; }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Control.Web.Data.Entities.KiuReport>
+﻿@model IEnumerable<Control.Web.Data.Entities.KiuPassanger>
 
 @{
     ViewData["Title"] = "Index";
@@ -26,30 +26,24 @@
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.Fecha_vuelo_real)
+                                @Html.DisplayNameFor(model => model.PublishOnKIU)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Vuelo)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Source)
+                                @Html.DisplayNameFor(model => model.TotalAdult)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Dest)
+                                @Html.DisplayNameFor(model => model.TotalChild)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Tpax)
+                                @Html.DisplayNameFor(model => model.TotalInfant)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Pax)
+                            @Html.DisplayNameFor(model => model.TotalPax)
                             </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Equipo)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Agente)
-                            </th>
-                            <th></th>
+                          
                         </tr>
                     </thead>
                     <tbody>
@@ -57,31 +51,25 @@
                         {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Fecha_vuelo_real)
+                                    @Html.DisplayFor(modelItem => item.PublishOnKIU)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Vuelo)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Source)
+                                    @Html.DisplayFor(modelItem => item.TotalAdult)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Dest)
+                                    @Html.DisplayFor(modelItem => item.TotalChild)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Tpax)
+                                    @Html.DisplayFor(modelItem => item.TotalInfant)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Pax)
+                                    @Html.DisplayFor(modelItem => item.TotalPax)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Equipo)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Agente)
-                                </td>
-                                <td>                                  
-                                </td>
+                            
+                                
                             </tr>
                         }
                     </tbody>

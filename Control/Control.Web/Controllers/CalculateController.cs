@@ -1,9 +1,10 @@
 ﻿namespace Control.Web.Controllers
 {
+    using Control.Web.Data;
     using Control.Web.Data.Repositories;
     using Control.Web.Models;
     using Microsoft.AspNetCore.Mvc;
-    using Control.Web.Data;
+    using System.Collections.Generic;
 
     public class CalculateController : Controller
     {
@@ -22,22 +23,18 @@
         // GET:
         public IActionResult Index()//pagina INDEX
         {
+            var model = new KiuReportViewModel
+            {
+                Fechas = this.kiuReportRepository.GetComboFechas()
 
-           //view.Total= int.Parse(this.kiuReportRepository.TotalPaxKiuReportAsync(view.PublishOn.ToString(), view.Flight).ToString());
-            return View();
+            };
+
+            return this.View(model);
+
         }
 
 
-        // GET:
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Index(PassangerViewModel view)//pagina INDEX
-        {
 
-            view.Total = int.Parse(this.kiuReportRepository.TotalPaxKiuReportAsync(view.PublishOn.ToString(), view.Flight).ToString());
-
-            return View(view);
-        }
 
 
     }

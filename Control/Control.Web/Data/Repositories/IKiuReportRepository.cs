@@ -1,17 +1,30 @@
-﻿using Control.Web.Data.Entities;
-namespace Control.Web.Data.Repositories
+﻿namespace Control.Web.Data.Repositories
 {
-    using System;
+    using Microsoft.AspNetCore.Mvc.Rendering;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
-    public interface IKiuReportRepository : IGenericRepository<KiuReport>
+    using Control.Web.Data.Entities;
+    using System.Linq;
+
+    public interface IKiuReportRepository : IGenericRepository<KiuPassanger>
     {
         Task<List<KiuReport>> CreateKiuReportAsync(List<KiuReport> list);
 
         Task DeleteKiuReportAsync();
+               
 
-        IEnumerable TotalPaxKiuReportAsync(string Date, string Flight);
+        //para cargar vuelos
+        IEnumerable<SelectListItem> GetComboFechas();
+
+        //******************************************************************************
+        // IEnumerable TotalPaxKiuReportAsync(string Date, string Flight);
+
+        // IEnumerable TotalAdultKiuReportAsync(string Date, string Flight);
+
+        //  IEnumerable TotalChildKiuReportAsync(string Date, string Flight);
+
+        //  IEnumerable TotalInfantKiuReportAsync(string Date, string Flight);
+
     }
 }
