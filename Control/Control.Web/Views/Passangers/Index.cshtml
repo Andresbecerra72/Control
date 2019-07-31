@@ -35,6 +35,9 @@
                     <thead>
                         <tr>
                             <th>
+                                @Html.DisplayNameFor(model => model.PublishOn)
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.Flight)
                             </th>
                             <th>
@@ -49,18 +52,16 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Total)
                             </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PublishOn)
-                            </th>
+
                             <th>
                                 @Html.DisplayNameFor(model => model.ImageUrl)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.User)
                             </th>
-                          
+
                             <th>
-                              
+
                             </th>
                         </tr>
                     </thead>
@@ -68,6 +69,9 @@
                         @foreach (var item in Model)
                         {
                         <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PublishOn)
+                            </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Flight)
                             </td>
@@ -83,9 +87,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Total)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PublishOn)
-                            </td>
+
                             <td>
                                 @if (!string.IsNullOrEmpty(item.ImageUrl))
                                 {
@@ -95,7 +97,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.User.FullName)
                             </td>
-                          
+
                             <td>
                                 <a asp-action="Edit" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i> </a>
                                 <a asp-action="Details" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-list"> </i> </a>

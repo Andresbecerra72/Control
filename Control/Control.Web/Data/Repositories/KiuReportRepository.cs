@@ -44,7 +44,7 @@
             var list = this.context.KiuPassangers
                 .Select(c => new SelectListItem
             {
-                Text = c.PublishOnKIU
+                Text = c.PublishOn
                 
             }).OrderBy(l => l.Text).Distinct();
 

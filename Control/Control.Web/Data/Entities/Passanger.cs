@@ -9,6 +9,10 @@
 
         public int Id { get; set; }
 
+        [Display(Name = "Date ")]
+        [DisplayFormat(DataFormatString = "{0:dd/MMMM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime PublishOn { get; set; }
+
         [Required]
         [MaxLength(4, ErrorMessage = "The field {0} only can contain {1} characters")]
         public string Flight { get; set; }
@@ -20,16 +24,7 @@
         public int Infant { get; set; }
 
         public int Total { get; set; }
-
-        [Display(Name = "Date ")]
-        [DisplayFormat(DataFormatString = "{0:dd/MMMM/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime PublishOn { get; set; }
-
-        [Display(Name = "Image")]
-        public string ImageUrl { get; set; }
-
-        public User User { get; set; }//relacion de usuarios con los datos reportados
-
+                
         [MaxLength(80, ErrorMessage = "The field {0} only can contain {1} characters length.")]
         public string Remark { get; set; }
 
@@ -39,7 +34,12 @@
 
         public string Year { get; set; }
 
-        
+        [Display(Name = "Image")]
+        public string ImageUrl { get; set; }
+
+        public User User { get; set; }//relacion de usuarios con los datos reportados
+
+
 
 
 

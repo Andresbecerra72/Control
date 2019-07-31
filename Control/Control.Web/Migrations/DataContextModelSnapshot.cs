@@ -59,19 +59,34 @@ namespace Control.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("PublishOnKIU");
+                    b.Property<int>("Adult");
 
-                    b.Property<int>("TotalAdult");
+                    b.Property<int>("Child");
 
-                    b.Property<int>("TotalChild");
+                    b.Property<string>("Day");
 
-                    b.Property<int>("TotalInfant");
+                    b.Property<string>("Flight");
 
-                    b.Property<int>("TotalPax");
+                    b.Property<string>("ImageUrl");
 
-                    b.Property<string>("Vuelo");
+                    b.Property<int>("Infant");
+
+                    b.Property<string>("Month");
+
+                    b.Property<string>("PublishOn");
+
+                    b.Property<string>("Remark")
+                        .HasMaxLength(80);
+
+                    b.Property<int>("Total");
+
+                    b.Property<string>("UserId");
+
+                    b.Property<string>("Year");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("KiuPassangers");
                 });
@@ -164,8 +179,6 @@ namespace Control.Web.Migrations
                     b.Property<int>("Child");
 
                     b.Property<string>("Day");
-
-                    b.Property<string>("Discriminator");
 
                     b.Property<string>("Flight")
                         .IsRequired()
@@ -376,6 +389,13 @@ namespace Control.Web.Migrations
                     b.HasOne("Control.Web.Data.Entities.Country")
                         .WithMany("Cities")
                         .HasForeignKey("CountryId");
+                });
+
+            modelBuilder.Entity("Control.Web.Data.Entities.KiuPassanger", b =>
+                {
+                    b.HasOne("Control.Web.Data.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Control.Web.Data.Entities.Passanger", b =>

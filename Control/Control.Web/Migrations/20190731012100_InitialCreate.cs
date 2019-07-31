@@ -36,24 +36,6 @@ namespace Control.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "KiuPassangers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    PublishOnKIU = table.Column<string>(nullable: true),
-                    TotalAdult = table.Column<int>(nullable: false),
-                    TotalChild = table.Column<int>(nullable: false),
-                    TotalInfant = table.Column<int>(nullable: false),
-                    TotalPax = table.Column<int>(nullable: false),
-                    Vuelo = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_KiuPassangers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "KiuReports",
                 columns: table => new
                 {
@@ -261,24 +243,53 @@ namespace Control.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "KiuPassangers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    PublishOn = table.Column<string>(nullable: true),
+                    Flight = table.Column<string>(nullable: true),
+                    Adult = table.Column<int>(nullable: false),
+                    Child = table.Column<int>(nullable: false),
+                    Infant = table.Column<int>(nullable: false),
+                    Total = table.Column<int>(nullable: false),
+                    Remark = table.Column<string>(maxLength: 80, nullable: true),
+                    Day = table.Column<string>(nullable: true),
+                    Month = table.Column<string>(nullable: true),
+                    Year = table.Column<string>(nullable: true),
+                    ImageUrl = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_KiuPassangers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_KiuPassangers_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Passangers",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    PublishOn = table.Column<DateTime>(nullable: false),
                     Flight = table.Column<string>(maxLength: 4, nullable: false),
                     Adult = table.Column<int>(nullable: false),
                     Child = table.Column<int>(nullable: false),
                     Infant = table.Column<int>(nullable: false),
                     Total = table.Column<int>(nullable: false),
-                    PublishOn = table.Column<DateTime>(nullable: false),
-                    ImageUrl = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: true),
                     Remark = table.Column<string>(maxLength: 80, nullable: true),
                     Day = table.Column<string>(nullable: true),
                     Month = table.Column<string>(nullable: true),
                     Year = table.Column<string>(nullable: true),
-                   
+                    ImageUrl = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -339,6 +350,11 @@ namespace Control.Web.Migrations
                 name: "IX_Cities_CountryId",
                 table: "Cities",
                 column: "CountryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_KiuPassangers_UserId",
+                table: "KiuPassangers",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Passangers_UserId",

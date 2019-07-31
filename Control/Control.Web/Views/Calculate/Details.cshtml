@@ -9,16 +9,78 @@
 
 <h2>DATE Analysis</h2>
 <hr />
+<section>
+    <div id="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Analisys Report</h3>
+            </div>
+            <div class="panel-body" id="">
+                <table class="table table-hover table-responsive table-striped" id="Products">
+                    <thead>
+                        <tr>
+                            <th>
+                                Flight:
+                            </th>
+                            <th>
+                                Adult:
+                            </th>
+                            <th>
+                                Child:
+                            </th>
+                            <th>
+                                Infant:
+                            </th>
+                            <th>
+                                Total:
+                            </th>
+                            <th>
+                                User:
+                            </th>
 
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (KiuPassanger item in Model.Calculate)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Flight)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Adult)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Child)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Infant)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Total)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.User.LastName)
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
 
 <section>
     <div id="contenedor">
-        <div id="lateral">
+        <div id="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">KIU Report</h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" id="lateral">
                     <table class="table table-hover table-responsive table-striped" id="ProductsTable">
                         <thead>
                             <tr>
@@ -37,34 +99,31 @@
                                 <th>
                                     Total:
                                 </th>
-                                <th>
-                                    Date:
-                                </th>
+                            
+
 
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (KiuPassanger item in Model.Customers)
+                            @foreach (KiuPassanger item in Model.KiuReporte)
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Vuelo)
+                                        @Html.DisplayFor(modelItem => item.Flight)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.TotalAdult)
+                                        @Html.DisplayFor(modelItem => item.Adult)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.TotalChild)
+                                        @Html.DisplayFor(modelItem => item.Child)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.TotalInfant)
+                                        @Html.DisplayFor(modelItem => item.Infant)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.TotalPax)
+                                        @Html.DisplayFor(modelItem => item.Total)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.PublishOnKIU)
-                                    </td>
+                                    
 
                                 </tr>
                             }
@@ -73,12 +132,12 @@
                 </div>
             </div>
         </div>
-        <div id="principal">
+        <div id="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">TCP Report</h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" id="principal">
                     <table class="table table-hover table-responsive table-striped" id="ProductTable">
                         <thead>
                             <tr>
@@ -97,14 +156,12 @@
                                 <th>
                                     Total:
                                 </th>
-                                <th>
-                                    Date:
-                                </th>
+                               
 
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (Passanger item in Model.Employees)
+                            @foreach (Passanger item in Model.TcpReporte)
                             {
                                 <tr>
                                     <td>
@@ -122,9 +179,7 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Total)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.PublishOn)
-                                    </td>
+                                    
 
                                 </tr>
                             }
@@ -136,73 +191,6 @@
     </div>
 
 </section>
-@*<section>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">TCP Report</h3>
-                    </div>
-                    <div class="panel-body">
-                        <table class="table table-hover table-responsive table-striped" id="ProductTable">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        Flight:
-                                    </th>
-                                    <th>
-                                        Adult:
-                                    </th>
-                                    <th>
-                                        Child:
-                                    </th>
-                                    <th>
-                                        Infant:
-                                    </th>
-                                    <th>
-                                        Total:
-                                    </th>
-                                    <th>
-                                        Date:
-                                    </th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (Passanger item in Model.Employees)
-                                {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Flight)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Adult)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Child)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Infant)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Total)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.PublishOn)
-                                        </td>
-
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-    </section>*@
 
 @section Scripts {
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -210,6 +198,7 @@
         $(document).ready(function () {
             $('#ProductsTable').DataTable();
             $('#ProductTable').DataTable();
+             $('#Products').DataTable();
         });
     </script>
 }

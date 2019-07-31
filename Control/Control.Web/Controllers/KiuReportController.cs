@@ -2,6 +2,7 @@
 {
     using Control.Web.Data.Entities;
     using Control.Web.Data.Repositories;
+    using Control.Web.Helpers;
     using Control.Web.Models;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -22,13 +23,17 @@
         private int totalInfant = 0;
         private int totalPax = 0;
         private DateTime dateKiu;
+        private string day;
+        private string month;
+        private string year;
 
         private readonly IKiuReportRepository kiuReportRepository;
+        private readonly IUserHelper userHelper;
 
-        public KiuReportController(IKiuReportRepository kiuReportRepository)
+        public KiuReportController(IKiuReportRepository kiuReportRepository, IUserHelper userHelper)
         {
             this.kiuReportRepository = kiuReportRepository;
-
+            this.userHelper = userHelper;
         }
 
         //metodos
@@ -104,7 +109,10 @@
                                     }
 
                                     dateKiu = DateTime.Parse(worksheet.Cells[row, 13].Value.ToString(), null);
-                                    publishOnKiu = dateKiu.ToString("dd/MMMM/yyyy");// cambia el formato de la fecha, quedda como string
+                                    publishOnKiu = dateKiu.ToString("dd/MMMM/yyyy");// cambia el formato de la fecha, queda como string
+                                    day = dateKiu.ToString("dd");
+                                    month = dateKiu.ToString("MMMM");
+                                    year = dateKiu.ToString("yyyy");
                                     vuelo = worksheet.Cells[row, 2].Text.ToString().Trim();
 
 
@@ -216,17 +224,22 @@
         //metodo para almacenar la lista en la BD KiuPassanger
         public async Task GrabarAsync()
         {
-
+            var user = await this.userHelper.GetUserByEmailAsync("administrador.kiu@satena.com");
             totalPax = totalAdult + totalChild + totalInfant;
 
             await this.kiuReportRepository.CreateAsync(new KiuPassanger
             {
-                Vuelo = vuelo,
-                PublishOnKIU = publishOnKiu,
-                TotalAdult = totalAdult,
-                TotalChild = totalChild,
-                TotalInfant = totalInfant,
-                TotalPax = totalPax
+                Flight = vuelo,
+                PublishOn = publishOnKiu,
+                Adult = totalAdult,
+                Child = totalChild,
+                Infant = totalInfant,
+                Total = totalPax,
+                Day = day,
+                Month = month,
+                Year = year,
+                User = user
+        
 
 
             });
