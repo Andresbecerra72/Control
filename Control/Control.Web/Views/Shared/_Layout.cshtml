@@ -13,6 +13,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
         <link rel="stylesheet" href="~/css/all.css" />
         <link rel="stylesheet" href="~/css/site.css" />
         <link href="~/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/css/StyleSheet.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
@@ -21,6 +22,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/css/all.css" />
         <link href="~/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/css/StyleSheet.css" />
 
     </environment>
 
@@ -42,7 +44,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Directorio">Directory</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
 
 
@@ -54,13 +56,13 @@ xmlns="http://www.w3.org/TR/REC-html40">
                         @if (this.User.IsInRole("Admin"))
                         {
                             <li><a asp-area="" asp-controller="KiuReport" asp-action="Index">KIU Report</a></li>
-                            <li><a asp-area="" asp-controller="Calculate" asp-action="Index">Calculate</a></li>
+                            <li><a asp-area="" asp-controller="Calculate" asp-action="Index">GET Analisys</a></li>
                             <li><a asp-area="" asp-controller="Account" asp-action="Index">Users</a></li>
                         }
                         @if (this.User.IsInRole("Super"))
                         {
                             <li><a asp-area="" asp-controller="KiuReport" asp-action="Index">KIU Report</a></li>
-                            <li><a asp-area="" asp-controller="Calculate" asp-action="Index">Calculate</a></li>
+                            <li><a asp-area="" asp-controller="Calculate" asp-action="Index">GET Analisys</a></li>
                             <li><a asp-area="" asp-controller="Countries" asp-action="Index">Countries</a></li>
                             <li><a asp-area="" asp-controller="Account" asp-action="Index">Users</a></li>
                         }

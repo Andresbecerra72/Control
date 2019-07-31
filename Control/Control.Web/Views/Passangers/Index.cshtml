@@ -6,112 +6,113 @@
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
 <br />
+<section>
+    <div>
+        <a asp-action="Create" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Create New</a>
 
-<div>
-    <a asp-action="Create" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Create New</a>
+        @if (this.User.IsInRole("Admin"))
+        {
+            <a asp-area="" asp-controller="KiuReport" asp-action="Create" class="btn btn-success"><i class="glyphicon glyphicon-arrow-down"></i> KIU File Loader</a>
+            @*<a class="btn btn-success" href="http://apps.satena.com.co/ControlPlaneacion"><i class="glyphicon glyphicon-arrow-down"></i> KIU Compare</a>*@
+        }
+        @if (this.User.IsInRole("Super"))
+        {
+            <a asp-area="" asp-controller="KiuReport" asp-action="Create" class="btn btn-success"><i class="glyphicon glyphicon-arrow-down"></i> KIU File Loader</a>
+            @*<a class="btn btn-success" href="http://apps.satena.com.co/ControlPlaneacion"><i class="glyphicon glyphicon-arrow-down"></i> KIU Compare</a>*@
+        }
+    </div>
 
-    @if (this.User.IsInRole("Admin"))
-    {
-        <a asp-area="" asp-controller="KiuReport" asp-action="Create" class="btn btn-success"><i class="glyphicon glyphicon-arrow-down"></i> KIU Compare</a>
-        @*<a class="btn btn-success" href="http://apps.satena.com.co/ControlPlaneacion"><i class="glyphicon glyphicon-arrow-down"></i> KIU Compare</a>*@
-    }
-    @if (this.User.IsInRole("Super"))
-    {
-        <a asp-area="" asp-controller="KiuReport" asp-action="Create" class="btn btn-success"><i class="glyphicon glyphicon-arrow-down"></i> KIU Compare</a>
-        @*<a class="btn btn-success" href="http://apps.satena.com.co/ControlPlaneacion"><i class="glyphicon glyphicon-arrow-down"></i> KIU Compare</a>*@
-    }
-</div>
-
+</section>
 <br />
+<section>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Reporte TCP Conteo Pasajeros</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-hover table-responsive table-striped" id="ProductsTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PublishOn)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Flight)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Adult)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Child)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Infant)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Total)
+                                </th>
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Reporte TCP Conteo Pasajeros</h3>
-            </div>
-            <div class="panel-body">
-                <table class="table table-hover table-responsive table-striped" id="ProductsTable">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PublishOn)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Flight)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Adult)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Child)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Infant)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Total)
-                            </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ImageUrl)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.User)
+                                </th>
 
-                            <th>
-                                @Html.DisplayNameFor(model => model.ImageUrl)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.User)
-                            </th>
+                                <th>
 
-                            <th>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PublishOn)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Flight)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Adult)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Child)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Infant)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Total)
+                                    </td>
 
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PublishOn)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Flight)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Adult)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Child)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Infant)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Total)
-                            </td>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(item.ImageUrl))
+                                        {
+                                            <img src="@Url.Content(item.ImageUrl)" alt="Image" style="width:75px;height:75px;max-width: 100%; height: auto;" />
+                                        }
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.User.FullName)
+                                    </td>
 
-                            <td>
-                                @if (!string.IsNullOrEmpty(item.ImageUrl))
-                                {
-                                    <img src="@Url.Content(item.ImageUrl)" alt="Image" style="width:75px;height:75px;max-width: 100%; height: auto;" />
-                                }
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.User.FullName)
-                            </td>
-
-                            <td>
-                                <a asp-action="Edit" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i> </a>
-                                <a asp-action="Details" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-list"> </i> </a>
-                                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i> </a>
-                            </td>
-                        </tr>
-                        }
-                    </tbody>
-                </table>
+                                    <td>
+                                        <a asp-action="Edit" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i> </a>
+                                        <a asp-action="Details" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-list"> </i> </a>
+                                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i> </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
+</section>
 @section Scripts {
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script>

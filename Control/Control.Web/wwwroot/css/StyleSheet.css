@@ -20,6 +20,12 @@
     border: #000000 1px solid; /*ponemos un dorde para que se vea bonito*/
 }
 
+#bottom {
+    background-color: #fcf4c3;
+    padding-left: 250px;
+    border: #000000 1px solid; /*ponemos un dorde para que se vea bonito*/
+  }
+
 table {
     
     display: block;

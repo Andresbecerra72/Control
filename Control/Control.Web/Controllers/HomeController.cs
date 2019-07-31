@@ -24,14 +24,14 @@ namespace Control.Web.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Satena es Colombia.";
+            ViewData["Message"] = "Satena es Colombia";
 
             return View();
         }
 
         public IActionResult Directorio()
         {
-            ViewData["Message"] = "Directorio Satena 2019";
+            ViewData["Message"] = "Satena 2019 Telephone Directory";
 
             return View();
         }

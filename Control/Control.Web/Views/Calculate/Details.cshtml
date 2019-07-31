@@ -7,17 +7,22 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
 <link rel="stylesheet" href="~/css/StyleSheet.css" />
 
+
 <h2>DATE Analysis</h2>
+
 <hr />
 <section>
     <div id="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Analisys Report</h3>
+                <h4 style="color:navy; text-align:center;">Analisys Report <span style="color:DodgerBlue;"> @Model.Fecha</span></h4>
             </div>
-            <div class="panel-body" id="">
+            <div class="panel-body" style="padding-left:180px; padding-right:180px">
+                <p style="color:DodgerBlue; text-align:end;">**MisMatched (0) & Matched (111)</p>
                 <table class="table table-hover table-responsive table-striped" id="Products">
+
                     <thead>
+
                         <tr>
                             <th>
                                 Flight:
@@ -34,9 +39,7 @@
                             <th>
                                 Total:
                             </th>
-                            <th>
-                                User:
-                            </th>
+                            
 
 
                         </tr>
@@ -60,9 +63,7 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Total)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.User.LastName)
-                                </td>
+                               
 
                             </tr>
                         }
@@ -72,7 +73,7 @@
         </div>
     </div>
 </section>
-
+<hr />
 <section>
     <div id="contenedor">
         <div id="col-md-12">
@@ -99,7 +100,7 @@
                                 <th>
                                     Total:
                                 </th>
-                            
+
 
 
                             </tr>
@@ -123,7 +124,7 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Total)
                                     </td>
-                                    
+
 
                                 </tr>
                             }
@@ -156,7 +157,7 @@
                                 <th>
                                     Total:
                                 </th>
-                               
+
 
                             </tr>
                         </thead>
@@ -179,7 +180,7 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Total)
                                     </td>
-                                    
+
 
                                 </tr>
                             }
@@ -191,6 +192,67 @@
     </div>
 
 </section>
+<hr />
+<section>
+                    
+                <div style="padding-left:250px; padding-right:250px;">
+                    
+                        <h4 style="text-align:center; background-color:azure">KIU - TCP Report Differences</h4>
+                    
+                    <table id="Product" style=" background-color:azure; border: #000000 1px solid;">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Flight:
+                                </th>
+                                <th>
+                                    Adult:
+                                </th>
+                                <th>
+                                    Child:
+                                </th>
+                                <th>
+                                    Infant:
+                                </th>
+                                <th>
+                                    Total:
+                                </th>
+                                <th>
+                                    User:
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (KiuPassanger item in Model.GroupBy)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Flight)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Adult)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Child)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Infant)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Total)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.User.LastName)
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+           
+
+</section>
 
 @section Scripts {
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -198,7 +260,9 @@
         $(document).ready(function () {
             $('#ProductsTable').DataTable();
             $('#ProductTable').DataTable();
-             $('#Products').DataTable();
+            $('#Products').DataTable();
+            $('#Product').DataTable();
         });
     </script>
+
 }
