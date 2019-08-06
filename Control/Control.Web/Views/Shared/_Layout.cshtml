@@ -53,19 +53,13 @@ xmlns="http://www.w3.org/TR/REC-html40">
                     {
                         <li><a asp-area="" asp-controller="Passangers" asp-action="Index">TCP Report</a></li>
 
-                        @if (this.User.IsInRole("Admin"))
+                        @if (this.User.IsInRole("Admin") || this.User.IsInRole("Super"))
                         {
                             <li><a asp-area="" asp-controller="KiuReport" asp-action="Index">KIU Report</a></li>
                             <li><a asp-area="" asp-controller="Calculate" asp-action="Index">GET Analisys</a></li>
                             <li><a asp-area="" asp-controller="Account" asp-action="Index">Users</a></li>
                         }
-                        @if (this.User.IsInRole("Super"))
-                        {
-                            <li><a asp-area="" asp-controller="KiuReport" asp-action="Index">KIU Report</a></li>
-                            <li><a asp-area="" asp-controller="Calculate" asp-action="Index">GET Analisys</a></li>
-                            <li><a asp-area="" asp-controller="Countries" asp-action="Index">Countries</a></li>
-                            <li><a asp-area="" asp-controller="Account" asp-action="Index">Users</a></li>
-                        }
+                      
                     }
 
 

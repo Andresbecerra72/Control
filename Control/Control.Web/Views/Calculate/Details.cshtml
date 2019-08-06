@@ -18,7 +18,7 @@
                 <h4 style="color:navy; text-align:center;">Analisys Report <span style="color:DodgerBlue;"> @Model.Fecha</span></h4>
             </div>
             <div class="panel-body" style="padding-left:180px; padding-right:180px">
-                <p style="color:DodgerBlue; text-align:end;">**MisMatched (0) & Matched (111)</p>
+                <p style="color:DodgerBlue; text-align:end;">**MisMatched (99) & Matched (0)</p>
                 <table class="table table-hover table-responsive table-striped" id="Products">
 
                     <thead>
@@ -217,9 +217,7 @@
                                 <th>
                                     Total:
                                 </th>
-                                <th>
-                                    User:
-                                </th>
+                               
                             </tr>
                         </thead>
                         <tbody>
@@ -241,9 +239,7 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Total)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.User.LastName)
-                                    </td>
+                                    
 
                                 </tr>
                             }

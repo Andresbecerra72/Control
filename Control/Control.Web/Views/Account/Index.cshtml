@@ -6,7 +6,14 @@
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
 <br />
-
+<div>
+    @if (this.User.IsInRole("Super"))
+    {
+        <a asp-area="" asp-controller="Countries" asp-action="Index" class="btn btn-success"><i class="glyphicon glyphicon-arrow-down"></i> Countries</a>
+       
+    }
+</div>
+<br />
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">

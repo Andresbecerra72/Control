@@ -4,12 +4,14 @@
     using Control.Web.Data.Repositories;
     using Control.Web.Helpers;
     using Control.Web.Models;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using System.Collections.Generic;
     using System.Data.SqlClient;
     using System.Dynamic;
 
+    [Authorize(Roles = "Super, Admin")]
     public class CalculateController : Controller
     {
         private string fecha;
@@ -108,7 +110,7 @@
         private List<Passanger> GetEmployees(string date)
         {
             List<Passanger> employees = new List<Passanger>();
-            string query = $"SELECT Flight, Adult, Child, Infant, Total FROM Passangers WHERE PublishOn ='{date}' ORDER BY Flight";
+            string query = $"SELECT Flight, Adult, Child, Infant, Total FROM Passangers WHERE DATEDIFF(DAY, PublishOn, '{date}')=0 ORDER BY Flight";
             string constr = this.configuration.GetConnectionString("DefaultConnection");
             //string constr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
@@ -146,7 +148,7 @@
 
             List<KiuPassanger> customers = new List<KiuPassanger>();
 
-            string queri = $"Select case when A.Adult = B.Adult then '111' else '0' end as Adult, case when A.Child = B.Child then '111' else '0' end as Child, case when A.Infant = B.Infant then '111' else '0' end as Infant, case when A.Total = B.Total then '111' else '0' end as Total, case when A.Flight = B.Flight then A.Flight else 'x' end as Flight, case when A.PublishOn = B.PublishOn then A.PublishOn else 'x' end as Flight from KiuPassangers A Join Passangers B on(A.PublishOn = '{date}'AND B.PublishOn = '{date}' AND A.Flight = B.Flight);";
+            string queri = $"Select case when A.Adult = B.Adult then '0' else '99' end as Adult, case when A.Child = B.Child then '0' else '99' end as Child, case when A.Infant = B.Infant then '0' else '99' end as Infant, case when A.Total = B.Total then '0' else '99' end as Total, case when A.Flight = B.Flight then A.Flight else 'x' end as Flight, case when A.PublishOn = B.PublishOn then A.PublishOn else 'x' end as Flight from KiuPassangers A Join Passangers B on(A.PublishOn = '{date}' AND DATEDIFF(DAY, B.PublishOn, '{date}')=0 AND A.Flight = B.Flight);";
             string constr = this.configuration.GetConnectionString("DefaultConnection");
 
             using (SqlConnection con = new SqlConnection(constr))
@@ -191,7 +193,7 @@
 
             List<KiuPassanger> customers = new List<KiuPassanger>();
 
-            string query = $"SELECT DISTINCT * FROM (SELECT * FROM (SELECT PublishOn, Flight, Adult, Infant, Child, Total, UserId FROM Passangers WHERE PublishOn ='{date}'  UNION ALL SELECT PublishOn, Flight, Adult, Infant, Child, Total, UserId FROM KiuPassangers WHERE PublishOn ='{date}') Tbls GROUP BY PublishOn, Flight, Adult, Infant, Child, Total, UserId HAVING COUNT(*) < 2) Diff ";
+            string query = $"SELECT DISTINCT * FROM (SELECT * FROM (SELECT Flight, Adult, Infant, Child, Total FROM Passangers WHERE DATEDIFF(DAY, PublishOn, '{date}')=0  UNION ALL SELECT Flight, Adult, Infant, Child, Total FROM KiuPassangers WHERE PublishOn ='{date}') Tbls GROUP BY Flight, Adult, Infant, Child, Total HAVING COUNT(*) < 2) Diff ";
             string constr = this.configuration.GetConnectionString("DefaultConnection");
 
             using (SqlConnection con = new SqlConnection(constr))
@@ -206,7 +208,7 @@
 
                         while (sdr.Read())
                         {
-                            var user = this.userHelper.GetUserByIdAsync(sdr["UserId"].ToString());
+                            //var user = this.userHelper.GetUserByIdAsync(sdr["UserId"].ToString());
 
                             customers.Add(new KiuPassanger
                             {
@@ -217,7 +219,7 @@
                                 Child = int.Parse(sdr["Child"].ToString()),
                                 Infant = int.Parse(sdr["Infant"].ToString()),
                                 Total = int.Parse(sdr["Total"].ToString()),
-                                User = user.Result
+                                //User = user.Result
 
 
                             });
