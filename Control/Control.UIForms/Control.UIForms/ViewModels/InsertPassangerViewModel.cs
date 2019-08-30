@@ -67,6 +67,8 @@
         public ICommand SaveCommand => new RelayCommand(this.Save);
 
        
+
+       
         //contructor
         public InsertPassangerViewModel()
         {
@@ -165,6 +167,8 @@
 
             };
 
+
+
             //se ejecuta el POST para crear el registro en BD
             var url = Application.Current.Resources["UrlAPI"].ToString();
             var response = await this.apiService.PostAsync(
@@ -184,7 +188,12 @@
             var newPassanger = (Passanger)response.Result;
             MainViewModel.GetInstance().Passangers.AddProductToList(newPassanger);
 
-            
+            using (var datos = new DataAcces())
+            {
+                datos.InsertPassangerSqlite(passanger);
+                //DatosListView.ItemsSource = datos.GetManyPassangerSqlite();
+            }
+
 
             this.IsRunning = false;
             this.IsEnabled = true;

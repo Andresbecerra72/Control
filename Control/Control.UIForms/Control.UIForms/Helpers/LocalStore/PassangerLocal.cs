@@ -5,7 +5,7 @@
     using SQLite;
    
 
-    public class Passanger
+    public class PassangerLocal
     {
         [PrimaryKey,AutoIncrement]
         public int Id { get; set; }

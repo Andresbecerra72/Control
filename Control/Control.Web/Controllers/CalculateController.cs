@@ -7,6 +7,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
+    using System;
     using System.Collections.Generic;
     using System.Data.SqlClient;
     using System.Dynamic;
@@ -15,6 +16,7 @@
     public class CalculateController : Controller
     {
         private string fecha;
+       
         private readonly IKiuReportRepository kiuReportRepository;
         private readonly IConfiguration configuration;
         private readonly IUserHelper userHelper;
@@ -55,7 +57,9 @@
                 return RedirectToAction(nameof(Index));//si no hay fechas cargadas devuelve la pagina index
             }
             
-            fecha = view.PublishOn.ToString();// almacena la fecha seleccionada
+            fecha = view.PublishOn;// almacena la fecha seleccionada
+            
+
 
             dynamic model = new ExpandoObject();
            

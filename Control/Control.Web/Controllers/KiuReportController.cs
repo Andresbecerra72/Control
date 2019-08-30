@@ -109,7 +109,7 @@
                                     }
 
                                     dateKiu = DateTime.Parse(worksheet.Cells[row, 13].Value.ToString(), null);
-                                    publishOnKiu = dateKiu.ToString("dd/MMMM/yyyy");// cambia el formato de la fecha, queda como string
+                                    publishOnKiu = dateKiu.ToString("yyyy-MM-dd");// cambia el formato de la fecha, queda como string
                                     day = dateKiu.ToString("dd");
                                     month = dateKiu.ToString("MMMM");
                                     year = dateKiu.ToString("yyyy");
