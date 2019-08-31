@@ -2,18 +2,18 @@
 {
     using System;
     using Control.Common.Models;
-    using SQLite;
-   
+    using SQLite.Net.Attributes;
+
 
     public class PassangerLocal
     {
-        [PrimaryKey,AutoIncrement]
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-       
+
         public DateTime PublishOn { get; set; }
 
-        
+
         public string Flight { get; set; }
 
         public int Adult { get; set; }
@@ -24,7 +24,7 @@
 
         public int Total { get; set; }
 
-      
+
         public string Remark { get; set; }
 
         public string Day { get; set; }
@@ -33,15 +33,24 @@
 
         public string Year { get; set; }
 
-       
+
         public string ImageUrl { get; set; }
 
-        public User User { get; set; }//relacion de usuarios con los datos reportados
+        public string User { get; set; }//relacion de usuarios con los datos reportados
 
-
-        public override string ToString()
+        public string PublishOnFormat
         {
-            return string.Format("{0} {1} {2} {3} {4} {5}", PublishOn, Flight, Adult, Child, Infant, Total);
+            get
+            {
+                return string.Format("{0:dd/MM/yyyy}",PublishOn);
+            }
+
+        }
+
+
+        public override string ToString()//Usado para el listview
+        {
+            return string.Format("{0} {1} {2} {3} {4} {5} ", PublishOnFormat, Flight, Adult, Child, Infant, Total);
         }
     }
 }

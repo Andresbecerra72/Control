@@ -1,17 +1,20 @@
-﻿namespace Control.UIForms.iOS.Implementations
+﻿using System;
+using Control.UIForms.Interfaces;
+using SQLite.Net.Interop;
+using Xamarin.Forms;
+
+[assembly: Dependency(typeof(Control.UIForms.iOS.Implementations.Config))]//esta linea sirve para compatibilidad entre las plataformas
+
+
+namespace Control.UIForms.iOS.Implementations
 {
-
-    using System;
-    using Control.UIForms.Interfaces;
-    using SQLite.Net.Interop;
-
-    
 
     class Config : IConfig //clase que permite llegar al directorio local con sqlite
     {
         private string directorioDB;
         private ISQLitePlatform plataforma;
-        public string DirectorioDB
+
+        public string DirectorioDB //este codigo muestra como se optiene el directorio
         {
 
             get
@@ -27,7 +30,7 @@
 
         }
 
-        public ISQLitePlatform Plataforma
+        public ISQLitePlatform Plataforma //este codigo optiene la plataforma en iOS
         {
             get
             {

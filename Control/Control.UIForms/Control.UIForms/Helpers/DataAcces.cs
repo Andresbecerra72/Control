@@ -1,16 +1,16 @@
 ﻿namespace Control.UIForms.Helpers
 {
-    using System;
-    using Xamarin.Forms;
-    using SQLite.Net;
-    using Control.UIForms.Interfaces;
-    using System.IO;
-    using Control.UIForms.Helpers.LocalStore;
-    using System.Linq;
-    using System.Collections.Generic;
     using Control.Common.Models;
+    using Control.UIForms.Helpers.LocalStore;
+    using Control.UIForms.Interfaces;
+    using SQLite.Net;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using Xamarin.Forms;
 
-    class DataAcces : IDisposable
+    class DataAcces : IDisposable //permite liberar el recurso Dispose
     {
         private SQLiteConnection connection;//crea la coneccion para la base de datos local Sqlite
 
@@ -19,37 +19,38 @@
         {
             //codigo para crear la base de datos local
             var config = DependencyService.Get<IConfig>();//llama la configuracion de la plataform segun el dispositivo 
-            connection = new SQLiteConnection(config.Plataforma, Path.Combine(config.DirectorioDB, "Passanger.db"));
-            connection.CreateTable<Passanger>();
+            connection = new SQLiteConnection(config.Plataforma, Path.Combine(config.DirectorioDB, "Passangers.db")); //llama los metodos Directorio y plataforma desde los sistemas de los equipos por Config
+            connection.CreateTable<PassangerLocal>(); //crea la tabla en la base de datos "Passangers.db"
 
-           // db = new SQLiteConnection(DependencyService.Get<IFileHelper>().GetLocalFilePath("database.db"));
-           // db.CreateTable<Item>();
+            // db = new SQLiteConnection(DependencyService.Get<IFileHelper>().GetLocalFilePath("database.db"));
+            // db.CreateTable<Item>();
         }
 
 
-        public void InsertPassangerSqlite(Passanger passanger)
+        //metodos del CRUD
+        public void InsertPassangerSqlite(PassangerLocal passanger)
         {
             connection.Insert(passanger);
         }
 
-        public void UpdatePassangerSqlite(Passanger passanger)
+        public void UpdatePassangerSqlite(PassangerLocal passanger)
         {
             connection.Update(passanger);
         }
 
-        public void DeletePassangerSqlite(Passanger passanger)
+        public void DeletePassangerSqlite(PassangerLocal passanger)
         {
             connection.Delete(passanger);
         }
 
-        public Passanger GetPassangerSqlite(int id)
+        public PassangerLocal GetPassangerSqlite(int id) //devuelve un registro
         {
-            return connection.Table<Passanger>().FirstOrDefault(p => p.Id == id);
+            return connection.Table<PassangerLocal>().FirstOrDefault(c => c.Id == id);
         }
 
-        public List<Passanger> GetManyPassangerSqlite()
+        public List<PassangerLocal> GetManyPassangerSqlite() //devuelve varios registros
         {
-            return connection.Table<Passanger>().OrderBy(p => p.PublishOn).ToList();
+            return connection.Table<PassangerLocal>().OrderBy(p => p.PublishOn).ToList();
         }
 
 

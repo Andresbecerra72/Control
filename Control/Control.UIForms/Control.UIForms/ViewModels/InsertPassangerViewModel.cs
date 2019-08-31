@@ -190,7 +190,7 @@
 
             using (var datos = new DataAcces())
             {
-                datos.InsertPassangerSqlite(passanger);
+               // datos.InsertPassangerSqlite(passanger);
                 //DatosListView.ItemsSource = datos.GetManyPassangerSqlite();
             }
 

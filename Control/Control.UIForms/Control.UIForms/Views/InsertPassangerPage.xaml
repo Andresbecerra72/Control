@@ -47,6 +47,7 @@
                     	Placeholder="{i18n:Translate FlightEntry}"
                     	Text="{Binding Flight}">
                     </Entry>
+                    
                     <Label 
                         Grid.Column="0"
                     	Grid.Row="1"
@@ -154,7 +155,7 @@
                         BackgroundColor="Gainsboro"
                         BorderRadius="23"
                         HeightRequest="46"
-                	    Text="Lista"
+                	    Text="Dispositivo"
                 	    TextColor="White">
 
                 </Button>

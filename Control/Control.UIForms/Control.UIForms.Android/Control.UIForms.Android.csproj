@@ -67,9 +67,6 @@
     <PackageReference Include="SQLite.Net-PCL">
       <Version>3.1.1</Version>
     </PackageReference>
-    <PackageReference Include="SQLite.Net.Core-PCL">
-      <Version>3.1.1</Version>
-    </PackageReference>
     <PackageReference Include="Xam.Plugin.Media">
       <Version>4.0.1.5</Version>
     </PackageReference>
