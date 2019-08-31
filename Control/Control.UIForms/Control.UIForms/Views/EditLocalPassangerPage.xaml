@@ -4,125 +4,133 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:i18n="clr-namespace:Control.UIForms.Helpers"
-             x:Class="Control.UIForms.Views.EditPassangerPage"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+              xmlns:i18n="clr-namespace:Control.UIForms.Helpers"
+             x:Class="Control.UIForms.Views.EditLocalPassangerPage"
+              BindingContext="{Binding Main, Source={StaticResource Locator}}"
          	Title="{i18n:Translate EditTitle}">
     <ContentPage.Content>
-        <ScrollView
-        	BindingContext="{Binding EditPassanger}">
-            <StackLayout
+        
+            <ScrollView
+        	BindingContext="{Binding InsertPassanger}">
+                <StackLayout
             	Padding="10">
-                <Image
+                    <Image
                 	HeightRequest="150"
                 	Source="{Binding Passanger.ImageFullPath}">
-                </Image>
-                <Label
+                    </Image>
+                    <Label
                 	FontSize="Micro"
                 	HorizontalOptions="Center"
                 	Text="{i18n:Translate ImageTap}">
-                </Label>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label
+                    </Label>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label
                     	Grid.Column="0"
                     	Grid.Row="0"
                     	Text="{i18n:Translate Flight}"
                     	VerticalOptions="Center">
-                    </Label>
-                    <Entry
-                        Grid.Column="1"
+                        </Label>
+                        <Entry
+                        x:Name="Flight"
+                    	Grid.Column="1"
                     	Grid.Row="0"
                     	Placeholder="{i18n:Translate FlightEntry}"
                     	Text="{Binding Passanger.Flight}">
-                    </Entry>
-                    <Label
+                        </Entry>
+                        <Label
                     	Grid.Column="0"
                     	Grid.Row="1"
                     	Text="{i18n:Translate Adults}"
                     	VerticalOptions="Center">
-                    </Label>
-                    <Entry
+                        </Label>
+                        <Entry
+                        x:Name="Adult"
                     	Grid.Column="1"
                     	Grid.Row="1"
                     	Keyboard="Numeric"
                     	Placeholder="{i18n:Translate AdultsEntry}"
                     	Text="{Binding Passanger.Adult}">
-                    </Entry>
-                    <Label
+                        </Entry>
+                        <Label
                     	Grid.Column="0"
                     	Grid.Row="2"
                     	Text="{i18n:Translate Children}"
                     	VerticalOptions="Center">
-                    </Label>
-                    <Entry
+                        </Label>
+                        <Entry
+                        x:Name="Child"
                     	Grid.Column="1"
                     	Grid.Row="2"
                     	Keyboard="Numeric"
                     	Placeholder="{i18n:Translate ChildrenEntry}"
                     	Text="{Binding Passanger.Child}">
-                    </Entry>
-                    <Label
+                        </Entry>
+                        <Label
                     	Grid.Column="0"
                     	Grid.Row="3"
                     	Text="{i18n:Translate Infants}"
                     	VerticalOptions="Center">
-                    </Label>
-                    <Entry
+                        </Label>
+                        <Entry
+                        x:Name="Infant"
                     	Grid.Column="1"
                     	Grid.Row="3"
                     	Keyboard="Numeric"
                     	Placeholder="{i18n:Translate InfantsEntry}"
                     	Text="{Binding Passanger.Infant}">
-                    </Entry>
-                    <Label
+                        </Entry>
+                        <Label
                     	Grid.Column="0"
                     	Grid.Row="4"
                     	Text="{i18n:Translate TotalPassangers}"
                     	VerticalOptions="Center">
-                    </Label>
-                    <Entry
+                        </Label>
+                        <Entry
+                        x:Name="Total"
                     	Grid.Column="1"
                     	Grid.Row="4"
                     	Keyboard="Numeric"
                     	Placeholder="{i18n:Translate TotalEntry}"
                     	Text="{Binding Passanger.Total}">
-                    </Entry>
-                    <Label
+                        </Entry>
+                        <Label
                     	Grid.Column="0"
                     	Grid.Row="5"
                     	Text="{i18n:Translate Date}"
                     	VerticalOptions="Center">
-                    </Label>
-                    <DatePicker
+                        </Label>
+                        <DatePicker
+                         x:Name="PublishOn"
                         Grid.Column="1"
                     	Grid.Row="5"
                         Date="{Binding Passanger.PublishOn}" />
-                    
-                    <Label
+
+                        <Label
                     	Grid.Column="0"
                     	Grid.Row="6"
                     	Text="{i18n:Translate Remark}"
                     	VerticalOptions="Center">
-                    </Label>
-                    <Entry
+                        </Label>
+                        <Entry
+                        x:Name="Remark"
                     	Grid.Column="1"
                     	Grid.Row="6"
                     	Keyboard="Default"
                     	Placeholder="{i18n:Translate RemarkEntry}"
                     	Text="{Binding Passanger.Remark}">
-                    </Entry>
-                </Grid>
-                <ActivityIndicator
+                        </Entry>
+                    </Grid>
+                    <ActivityIndicator
                 	IsRunning="{Binding IsRunning}"
                 	VerticalOptions="CenterAndExpand">
-                </ActivityIndicator>
-                <StackLayout
+                    </ActivityIndicator>
+                    <StackLayout
                 	Orientation="Horizontal">
-                    <Button
+                        <Button
                     	BackgroundColor="Navy"
                     	BorderRadius="23"
                     	Command="{Binding SaveCommand}"
@@ -131,8 +139,8 @@
                     	IsEnabled="{Binding IsEnabled}"
                     	Text="{i18n:Translate Save}"
                     	TextColor="White">
-                    </Button>
-                    <Button
+                        </Button>
+                        <Button
                     	BackgroundColor="Red"
                     	BorderRadius="23"
                     	Command="{Binding DeleteCommand}"
@@ -141,9 +149,10 @@
                     	IsEnabled="{Binding IsEnabled}"
                     	Text="{i18n:Translate Delete}"
                     	TextColor="White">
-                    </Button>
+                        </Button>
+                    </StackLayout>
                 </StackLayout>
-            </StackLayout>
-        </ScrollView>
+            </ScrollView>
+        
     </ContentPage.Content>
 </ContentPage>

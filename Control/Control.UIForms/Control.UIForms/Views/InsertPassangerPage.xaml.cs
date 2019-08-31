@@ -18,9 +18,13 @@
         {
             InitializeComponent();
 
-            DatosListView.RowHeight = 70;
+            
+
+            DatosListView.ItemTemplate = new DataTemplate(typeof(LocalListView)); //selecciona el formato personalizado del listview
+            DatosListView.RowHeight = 50;
 
             BtnSalvar.Clicked += BtnSalvar_Clicked;//codigo para el boton
+            DatosListView.ItemSelected += DatosListView_ItemSelected; //codigo para la seleccion de datos del listview
 
             using (var datos = new DataAcces()) //abre la conexion con la base de datos
             {
@@ -30,18 +34,27 @@
 
         }
 
+        //codigo cuando se selecciona un objeto desde el listview
+        private async void DatosListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            await Navigation.PushAsync(new EditLocalPassangerPage((PassangerLocal)e.SelectedItem));
+        }
+
+
         //codigo cuando se pulsa el boton
         private async void BtnSalvar_Clicked(object sender, System.EventArgs e)
         {
             if (string.IsNullOrEmpty(Flight.Text))
             {
                 await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.FlightEnter, Languages.Accept);//"Error", "You must enter a Flight Number.", "Accept"
+                Flight.Focus();
                 return;
             }
 
             if (string.IsNullOrEmpty(Adult.Text))
             {
                 await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.AdultEnter, Languages.Accept);//"Error", "You must enter an Adults Total.", "Accept"
+                Adult.Focus();
                 return;
             }
 
@@ -50,6 +63,7 @@
             if (string.IsNullOrEmpty(Child.Text))
             {
                 await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.ChildEnter, Languages.Accept);//"Error", "You must enter a Children Total.", "Accept"
+                Child.Focus();
                 return;
             }
 
@@ -58,6 +72,7 @@
             if (string.IsNullOrEmpty(Infant.Text))
             {
                 await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.InfantEnter, Languages.Accept);//"Error", "You must enter an Infants Total.", "Accept"
+                Infant.Focus();
                 return;
             }
 
@@ -66,6 +81,7 @@
             if (string.IsNullOrEmpty(Total.Text))
             {
                 await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.TotalEnter, Languages.Accept);//"Error", "You must enter a Total Passangers.", "Accept"
+                Total.Focus();
                 return;
             }
 

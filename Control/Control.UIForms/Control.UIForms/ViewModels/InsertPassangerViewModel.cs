@@ -131,11 +131,11 @@
                                   
             var total = int.Parse(this.Total);
 
-            if (ImageFlag == 0)
-            {
-                await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.ImageEnter, Languages.Accept);//"Error", "You must enter an Image.", "Accept"
-                return;
-            }
+            //if (ImageFlag == 0)
+            //{
+            //    await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.ImageEnter, Languages.Accept);//"Error", "You must enter an Image.", "Accept"
+            //    return;
+            //}
 
 
             this.IsRunning = true;

@@ -50,7 +50,7 @@
 
         public override string ToString()//Usado para el listview
         {
-            return string.Format("{0} {1} {2} {3} {4} {5} ", PublishOnFormat, Flight, Adult, Child, Infant, Total);
+            return string.Format("{0} {1} {2} ", PublishOnFormat, Flight, Total);
         }
     }
 }
