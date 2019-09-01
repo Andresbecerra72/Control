@@ -1,15 +1,14 @@
 ﻿namespace Control.UIForms.ViewModels
 {
-    using System;
-    using System.Windows.Input;
     using Common.Models;
     using Common.Services;
     using Control.Common.Helpers;
     using Control.UIForms.Helpers;
-    using Control.UIForms.Views;
     using GalaSoft.MvvmLight.Command;
     using Plugin.Media;
     using Plugin.Media.Abstractions;
+    using System;
+    using System.Windows.Input;
     using Xamarin.Forms;
 
     public class InsertPassangerViewModel : BaseViewModel
@@ -63,12 +62,12 @@
 
         //acciones por comandos 
         public ICommand ChangeImageCommand => new RelayCommand(this.ChangeImage);
-                
+
         public ICommand SaveCommand => new RelayCommand(this.Save);
 
-       
 
-       
+
+
         //contructor
         public InsertPassangerViewModel()
         {
@@ -92,7 +91,7 @@
         //metodo para salvar el registro de pasajeros
         private async void Save()
         {
-           
+
             if (string.IsNullOrEmpty(this.Flight))
             {
                 await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.FlightEnter, Languages.Accept);//"Error", "You must enter a Flight Number.", "Accept"
@@ -128,9 +127,9 @@
                 await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.TotalEnter, Languages.Accept);//"Error", "You must enter a Total Passangers.", "Accept"
                 return;
             }
-                                  
-            var total = int.Parse(this.Total);
 
+            var total = int.Parse(this.Total);
+            //TODO: HABILITAR
             //if (ImageFlag == 0)
             //{
             //    await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.ImageEnter, Languages.Accept);//"Error", "You must enter an Image.", "Accept"
@@ -146,10 +145,10 @@
             if (this.file != null)
             {
                 imageArray = FilesHelper.ReadFully(this.file.GetStream());
-                
+
             }
 
-              //codigo que construye el modelo para el api
+            //codigo que construye el modelo para el api
             var passanger = new Passanger
             {
                 Flight = this.Flight,
@@ -188,24 +187,24 @@
             var newPassanger = (Passanger)response.Result;
             MainViewModel.GetInstance().Passangers.AddProductToList(newPassanger);
 
-            using (var datos = new DataAcces())
-            {
-               // datos.InsertPassangerSqlite(passanger);
-                //DatosListView.ItemsSource = datos.GetManyPassangerSqlite();
-            }
+            //using (var datos = new DataAcces())
+            //{
+            //    datos.InsertPassangerSqlite(passanger);
+            //    DatosListView.ItemsSource = datos.GetManyPassangerSqlite();
+            //}
 
 
             this.IsRunning = false;
             this.IsEnabled = true;
-                      
+
             await App.Navigator.PopAsync();
             //MainViewModel.GetInstance().Passangers = new PassangersViewModel();//todo: cambio
             //await App.Navigator.PushAsync(new PassangersPage());//todo: cambio
-           
+
         }
 
 
-        
+
         //metodo para cambiar la imagen 
         private async void ChangeImage()
         {

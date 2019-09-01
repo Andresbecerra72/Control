@@ -23,6 +23,9 @@
                 case "SetupPage":
                     await App.Navigator.PushAsync(new SetupPage());
                     break;
+                case "LocalPendingDataPage":
+                    await App.Navigator.PushAsync(new LocalPendingDataPage());
+                    break;
                 case "ProfilePage": //codigo que muestra la pagina del usuario "profilepage"
                     mainViewModel.Profile = new ProfileViewModel();
                     await App.Navigator.PushAsync(new ProfilePage());

@@ -92,7 +92,7 @@
                     new Menu
                     {
                         Icon = "ic_arrow",
-                        PageName = "SetupPage",
+                        PageName = "LocalPendingDataPage",
                         Title = "Pending Data"
                     },
 

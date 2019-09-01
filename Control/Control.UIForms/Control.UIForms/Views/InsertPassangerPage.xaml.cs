@@ -25,13 +25,17 @@
 
             BtnSalvar.Clicked += BtnSalvar_Clicked;//codigo para el boton
             DatosListView.ItemSelected += DatosListView_ItemSelected; //codigo para la seleccion de datos del listview
+                       
+        }
 
+        //codigo para actualizar el listview 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
             using (var datos = new DataAcces()) //abre la conexion con la base de datos
             {
                 DatosListView.ItemsSource = datos.GetManyPassangerSqlite();//codigo para cargar los datos en el listview "DatosListView"
             }
-
-
         }
 
         //codigo cuando se selecciona un objeto desde el listview
