@@ -89,6 +89,22 @@
         //metodo para cargar la lista de paises y ciudades
         private async void LoadCountries()
         {
+           
+
+            //**********CHECK CONNECTION************
+            var connection = await this.apiService.CheckConnection();
+
+            if (!connection.IsSuccess)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                   "Error",
+                   connection.Message,
+                   "Accept");
+               // await App.Navigator.PopAsync();
+                return;
+            }
+            //*****************************
+
             this.IsRunning = true;
             this.IsEnabled = false;
 
@@ -119,6 +135,20 @@
 
         private async void Register()
         {
+            //**********CHECK CONNECTION************
+            var connection = await this.apiService.CheckConnection();
+
+            if (!connection.IsSuccess)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                   "Error",
+                   connection.Message,
+                   "Accept");
+               // await App.Navigator.PopAsync();
+                return;
+            }
+            //*****************************
+
             if (string.IsNullOrEmpty(this.FirstName))
             {
                 await Application.Current.MainPage.DisplayAlert(

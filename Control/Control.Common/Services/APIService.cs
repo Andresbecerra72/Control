@@ -8,11 +8,47 @@
     using System.Threading.Tasks;
     using System.Net.Http.Headers;
     using System.Text;
+    using Plugin.Connectivity;
 
     //esta clase conecta el backend API con el Frontend
     public class ApiService   
     {
-                                   
+
+        //*******************
+        public async Task<Response> CheckConnection()
+        {
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = "Please turn on your internet settings.",
+                };
+            }
+
+            var isReachable = await CrossConnectivity.Current.IsRemoteReachable(
+                "google.com");
+            if (!isReachable)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = "Check you internet connection.",
+                };
+            }
+
+            return new Response
+            {
+                IsSuccess = true,
+                Message = "Ok",
+            };
+        }
+        //************************
+
+
+
+
+
         //metodo asyn (asincrono) es comunicacion con el api, se consume sin seguridad
         public async Task<Response> GetListAsync<T>(string urlBase, string servicePrefix, string controller)
         {                                           //urlBase es la direccion del API htps://controlweb.azurewebsites.net

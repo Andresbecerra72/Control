@@ -87,6 +87,20 @@
 
         private async void LoadCountries()//metodo que carga los paises
         {
+            //**********CHECK CONNECTION************
+            var connection = await this.apiService.CheckConnection();
+
+            if (!connection.IsSuccess)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                   "Error",
+                   connection.Message,
+                   "Accept");
+                // await App.Navigator.PopAsync();
+                return;
+            }
+            //*****************************
+
             this.IsRunning = true;
             this.IsEnabled = false;
 
@@ -130,6 +144,20 @@
         //metodo del boton SAVE para guardar los cambio en el perfil del usuario
         private async void Save()
         {
+            //**********CHECK CONNECTION************
+            var connection = await this.apiService.CheckConnection();
+
+            if (!connection.IsSuccess)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                   "Error",
+                   connection.Message,
+                   "Accept");
+                 await App.Navigator.PopAsync();
+                return;
+            }
+            //*****************************
+
             //hace las validaciones
             if (string.IsNullOrEmpty(this.User.FirstName))
             {

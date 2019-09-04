@@ -4,6 +4,7 @@
     using Android.Content.PM;
     using Android.OS;
     using Android.Runtime;
+    using Plugin.Connectivity;
     using Plugin.CurrentActivity;
     using Plugin.Permissions;
 
@@ -18,6 +19,7 @@
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 

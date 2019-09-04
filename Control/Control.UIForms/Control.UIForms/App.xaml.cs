@@ -5,6 +5,7 @@
     using Control.UIForms.ViewModels;
     using Control.UIForms.Views;
     using Newtonsoft.Json;
+    using Plugin.Connectivity;
     using System;
     using Xamarin.Forms;
     public partial class App : Application
@@ -17,6 +18,8 @@
         public App()
         {
             InitializeComponent();
+
+           
 
             if (Settings.IsRemember)//condicion para verificar si el usuario esta recordado "logueado"
             {

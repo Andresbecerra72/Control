@@ -52,6 +52,21 @@
         {
             this.IsRefreshing = true;
 
+            //**********CHECK CONNECTION************
+            var connection = await this.apiService.CheckConnection();
+
+            if (!connection.IsSuccess)
+            {
+                this.IsRefreshing = false;
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    connection.Message,
+                    "Accept");
+                await App.Navigator.PopAsync();
+                return;
+            }
+            //*****************************
+
 
             var url = Application.Current.Resources["UrlAPI"].ToString();//este es el Urlbase que es la pagina donde esta el API, el dato de la url esta en el diccionario de recursos
             var response = await this.apiService.GetListAsync<Passanger>(

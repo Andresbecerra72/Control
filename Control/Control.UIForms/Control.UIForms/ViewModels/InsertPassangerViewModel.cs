@@ -92,6 +92,19 @@
         //metodo para salvar el registro de pasajeros
         private async void Save()
         {
+            //**********CHECK CONNECTION************
+            var connection = await this.apiService.CheckConnection();
+
+            if (!connection.IsSuccess)
+            {
+                 await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    connection.Message,
+                    "Accept");
+               
+                return;
+            }
+            //*****************************
 
             if (string.IsNullOrEmpty(this.Flight))
             {

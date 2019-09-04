@@ -42,6 +42,20 @@
 
         private async void Save()
         {
+            //**********CHECK CONNECTION************
+            var connection = await this.apiService.CheckConnection();
+
+            if (!connection.IsSuccess)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                   "Error",
+                   connection.Message,
+                   "Accept");
+                await App.Navigator.PopAsync();
+                return;
+            }
+            //*****************************
+
             if (string.IsNullOrEmpty(this.Passanger.Flight))
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "You must enter a Flight number.", "Accept");
@@ -109,6 +123,20 @@
 
         private async void Delete()
         {
+            //**********CHECK CONNECTION************
+            var connection = await this.apiService.CheckConnection();
+
+            if (!connection.IsSuccess)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                   "Error",
+                   connection.Message,
+                   "Accept");
+                await App.Navigator.PopAsync();
+                return;
+            }
+            //*****************************
+
             var confirm = await Application.Current.MainPage.DisplayAlert("Confirm", "Are you sure to delete the product?", "Yes", "No");
             if (!confirm)
             {

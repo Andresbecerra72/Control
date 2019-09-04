@@ -42,6 +42,19 @@
 
         private async void ChangePassword()
         {
+            //**********CHECK CONNECTION************
+            var connection = await this.apiService.CheckConnection();
+
+            if (!connection.IsSuccess)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                   "Error",
+                   connection.Message,
+                   "Accept");
+                 await App.Navigator.PopAsync();
+                return;
+            }
+            //*****************************
             if (string.IsNullOrEmpty(this.CurrentPassword))
             {
                 await Application.Current.MainPage.DisplayAlert(

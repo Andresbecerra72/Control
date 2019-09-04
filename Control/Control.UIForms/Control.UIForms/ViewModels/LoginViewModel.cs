@@ -66,6 +66,20 @@
         //metodo del boton Login
         private async void Login()
         {
+            //**********CHECK CONNECTION************
+            var connection = await this.apiService.CheckConnection();
+
+            if (!connection.IsSuccess)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                   "Error",
+                   connection.Message,
+                   "Accept");
+                // await App.Navigator.PopAsync();
+                return;
+            }
+            //*****************************
+
             //realiza las validaciones
             if (string.IsNullOrEmpty(this.Email))  //condicion cuando el no ingresa usuario
             {

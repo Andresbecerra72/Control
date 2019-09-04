@@ -5,6 +5,7 @@
     using Control.UIForms.Helpers;
     using Control.UIForms.Helpers.LocalStore;
     using Control.UIForms.ViewModels;
+    using Plugin.Connectivity;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
@@ -45,8 +46,24 @@
 
 
 
-        private void BtnDelete_Clicked(object sender, EventArgs e)
+        private async void BtnDelete_Clicked(object sender, EventArgs e)
         {
+
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                await DisplayAlert("Alert", "The report was not sent", "Close");
+                return;             
+            }
+
+            var isReachable = await CrossConnectivity.Current.IsRemoteReachable(
+                "google.com");
+            if (!isReachable)
+            {
+                await DisplayAlert("Alert", "The report was not sent", "Close");
+                return;           
+            }
+
+           
             //var rta = await DisplayAlert("Confirm", "Delete Item?", "Delete", "Cancel");
 
             //if (!rta)
