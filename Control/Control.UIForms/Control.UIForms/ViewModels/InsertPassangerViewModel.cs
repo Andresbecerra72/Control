@@ -18,6 +18,7 @@
         private readonly ApiService apiService;
         private ImageSource imageSource;
         private MediaFile file; //Para la captura de fotos
+        public byte[] imageArray { get; set; } //variable para almacenar stream de la imagen
 
         public ImageSource ImageSource
         {
@@ -129,19 +130,19 @@
             }
 
             var total = int.Parse(this.Total);
-            //TODO: HABILITAR
-            //if (ImageFlag == 0)
-            //{
-            //    await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.ImageEnter, Languages.Accept);//"Error", "You must enter an Image.", "Accept"
-            //    return;
-            //}
+     
+            if (ImageFlag == 0)
+            {
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.ImageEnter, Languages.Accept);//"Error", "You must enter an Image.", "Accept"
+                return;
+            }
 
 
             this.IsRunning = true;
             this.IsEnabled = false;
 
             //codigo para armar el image array de la foto tomada por el movil
-            byte[] imageArray = null;
+            this.imageArray = null;
             if (this.file != null)
             {
                 imageArray = FilesHelper.ReadFully(this.file.GetStream());
@@ -187,11 +188,7 @@
             var newPassanger = (Passanger)response.Result;
             MainViewModel.GetInstance().Passangers.AddProductToList(newPassanger);
 
-            //using (var datos = new DataAcces())
-            //{
-            //    datos.InsertPassangerSqlite(passanger);
-            //    DatosListView.ItemsSource = datos.GetManyPassangerSqlite();
-            //}
+           
 
 
             this.IsRunning = false;
@@ -251,6 +248,14 @@
                     var stream = file.GetStream();
                     return stream;
                 });
+
+                //codigo para armar el image array de la foto tomada por el movil y este es enviado para almacenamiento Local SQLITE
+                this.imageArray = null;
+                if (this.file != null)
+                {
+                    imageArray = FilesHelper.ReadFully(this.file.GetStream());
+
+                }
             }
         }
 

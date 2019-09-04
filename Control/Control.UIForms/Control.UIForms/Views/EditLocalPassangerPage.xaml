@@ -15,14 +15,11 @@
                 <StackLayout
             	Padding="10">
                     <Image
-                	HeightRequest="150"
-                	Source="{Binding Passanger.ImageFullPath}">
-                    </Image>
-                    <Label
-                	FontSize="Micro"
-                	HorizontalOptions="Center"
-                	Text="{i18n:Translate ImageTap}">
-                    </Label>
+                       x:Name="ImageStore"  
+                	HeightRequest="200">
+                    
+                </Image>
+                   
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>

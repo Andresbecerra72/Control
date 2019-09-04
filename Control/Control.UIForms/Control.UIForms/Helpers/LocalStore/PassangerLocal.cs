@@ -9,11 +9,9 @@
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-
-
+        
         public DateTime PublishOn { get; set; }
-
-
+        
         public string Flight { get; set; }
 
         public int Adult { get; set; }
@@ -23,8 +21,7 @@
         public int Infant { get; set; }
 
         public int Total { get; set; }
-
-
+        
         public string Remark { get; set; }
 
         public string Day { get; set; }
@@ -32,11 +29,8 @@
         public string Month { get; set; }
 
         public string Year { get; set; }
-
-
-        public string ImageUrl { get; set; }
-
-        public string User { get; set; }//relacion de usuarios con los datos reportados
+        
+        public byte[] ImageArray { get; set; }//atributo para almacenar la imagen capturada desde el movil
 
         public string PublishOnFormat
         {
