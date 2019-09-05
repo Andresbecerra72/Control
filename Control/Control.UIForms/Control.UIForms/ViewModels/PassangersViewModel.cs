@@ -7,6 +7,7 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using Xamarin.Forms;
+    using Control.UIForms.Helpers;
 
     public class PassangersViewModel : BaseViewModel
     {
@@ -59,9 +60,9 @@
             {
                 this.IsRefreshing = false;
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
+                    Languages.Error,
                     connection.Message,
-                    "Accept");
+                    Languages.Accept);
                 await App.Navigator.PopAsync();
                 return;
             }
@@ -82,9 +83,9 @@
             if (!response.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert( //mensaje de error cuando no envia la comunicacion
-                    "Error",
+                   Languages.Error,
                     response.Message,
-                    "Accept");
+                    Languages.Accept);
                 return;
             }
 

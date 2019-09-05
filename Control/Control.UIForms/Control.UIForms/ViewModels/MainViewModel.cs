@@ -7,6 +7,7 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Input;
+    using Control.UIForms.Helpers;
 
 
     public class MainViewModel
@@ -71,14 +72,14 @@
                     {
                         Icon = "ic_info",
                         PageName = "AboutPage",
-                        Title = "About"
+                        Title = Languages.AboutTitle
                     },
 
                     new Menu
                     {
                         Icon = "ic_person",
                         PageName = "ProfilePage",
-                        Title = "Modify User"
+                        Title = Languages.ModifyUserTitle
                     },
 
 
@@ -86,21 +87,21 @@
                     {
                         Icon = "ic_settings",
                         PageName = "SetupPage",
-                        Title = "Setup"
+                        Title = Languages.SetupTitle
                     },
 
                     new Menu
                     {
                         Icon = "ic_arrow",
                         PageName = "LocalPendingDataPage",
-                        Title = "Pending Data"
+                        Title = Languages.LocalPageTitle
                     },
 
                     new Menu
                     {
                         Icon = "ic_exit",
                         PageName = "LoginPage",
-                        Title = "Close session"
+                        Title = Languages.CloseSession
                     }
                  };
 

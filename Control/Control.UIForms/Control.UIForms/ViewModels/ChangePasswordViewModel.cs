@@ -3,6 +3,7 @@
     using Common.Models;
     using Common.Services;
     using Control.Common.Helpers;
+    using Control.UIForms.Helpers;
     using GalaSoft.MvvmLight.Command;
     using System.Windows.Input;
     using Xamarin.Forms;
@@ -48,9 +49,9 @@
             if (!connection.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                   "Error",
+                   Languages.Error,
                    connection.Message,
-                   "Accept");
+                  Languages.Accept);
                  await App.Navigator.PopAsync();
                 return;
             }
@@ -58,54 +59,54 @@
             if (string.IsNullOrEmpty(this.CurrentPassword))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter the current password.",
-                    "Accept");
+                    Languages.Error,
+                    Languages.PasswordCurrent,
+                    Languages.Accept);
                 return;
             }
 
             if (!MainViewModel.GetInstance().UserPassword.Equals(this.CurrentPassword))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "The current password is incorrect.",
-                    "Accept");
+                    Languages.Error,
+                    Languages.PasswordIncorrect,
+                    Languages.Accept);
                 return;
             }
 
             if (string.IsNullOrEmpty(this.NewPassword))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter the new password.",
-                    "Accept");
+                    Languages.Error,
+                   Languages.PasswordNew,
+                    Languages.Accept);
                 return;
             }
 
             if (this.NewPassword.Length < 6)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "The password must have at least 6 characters length.",
-                    "Accept");
+                    Languages.Error,
+                    Languages.PasswordChart,
+                    Languages.Accept);
                 return;
             }
 
             if (string.IsNullOrEmpty(this.PasswordConfirm))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter the password confirm.",
-                    "Accept");
+                    Languages.Error,
+                    Languages.PasswordConfirm,
+                    Languages.Accept);
                 return;
             }
 
             if (!this.NewPassword.Equals(this.PasswordConfirm))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "The password and confirm does not match.",
-                    "Accept");
+                    Languages.Error,
+                    Languages.PasswordMatch,
+                    Languages.Accept);
                 return;
             }
 
@@ -134,9 +135,9 @@
             if (!response.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
+                    Languages.Error,
                     response.Message,
-                    "Accept");
+                    Languages.Accept);
                 return;
             }
 
@@ -146,7 +147,7 @@
             await Application.Current.MainPage.DisplayAlert(
                 "Ok",
                 response.Message,
-                "Accept");
+                Languages.Accept);
 
             await App.Navigator.PopAsync();
         }

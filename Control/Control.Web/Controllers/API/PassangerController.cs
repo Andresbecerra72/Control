@@ -17,7 +17,7 @@
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] //autenticacion para validar el acceso al api
     public class PassangerController : Controller
     {
-        //el siguiete codigo resuelvve la inyeccion del repositorio en para el API
+        //el siguiete codigo resuelve la inyeccion del repositorio en para el API
         private readonly IPassangerRepository passangerRepository;
 
         private readonly IUserHelper userHelper;

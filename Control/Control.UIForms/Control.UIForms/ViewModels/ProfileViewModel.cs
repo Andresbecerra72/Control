@@ -3,6 +3,7 @@
     using Common.Models;
     using Common.Services;
     using Control.Common.Helpers;
+    using Control.UIForms.Helpers;
     using Control.UIForms.Views;
     using GalaSoft.MvvmLight.Command;
     using Newtonsoft.Json;
@@ -116,9 +117,9 @@
             if (!response.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
+                    Languages.Error,
                     response.Message,
-                    "Accept");
+                   Languages.Accept);
                 return;
             }
 
@@ -150,9 +151,9 @@
             if (!connection.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                   "Error",
+                   Languages.Error,
                    connection.Message,
-                   "Accept");
+                   Languages.Accept);
                  await App.Navigator.PopAsync();
                 return;
             }
@@ -162,54 +163,54 @@
             if (string.IsNullOrEmpty(this.User.FirstName))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter the first name.",
-                    "Accept");
+                    Languages.Error,
+                    Languages.FirstNameEnter,
+                    Languages.Accept);
                 return;
             }
 
             if (string.IsNullOrEmpty(this.User.LastName))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter the last name.",
-                    "Accept");
+                    Languages.Error,
+                    Languages.LastNameEnter,
+                    Languages.Accept);
                 return;
             }
 
             if (this.Country == null)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must select a country.",
-                    "Accept");
+                    Languages.Error,
+                    Languages.CountryEnter,
+                    Languages.Accept);
                 return;
             }
 
             if (this.City == null)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must select a city.",
-                    "Accept");
+                   Languages.Error,
+                    Languages.CityEnter,
+                    Languages.Accept);
                 return;
             }
 
             if (string.IsNullOrEmpty(this.User.Address))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter an address.",
-                    "Accept");
+                    Languages.Error,
+                    Languages.AddressEnter,
+                    Languages.Accept);
                 return;
             }
 
             if (string.IsNullOrEmpty(this.User.PhoneNumber))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter a phone number.",
-                    "Accept");
+                   Languages.Error,
+                    Languages.PhoneEnter,
+                    Languages.Accept);
                 return;
             }
 
@@ -231,9 +232,9 @@
             if (!response.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
+                    Languages.Error,
                     response.Message,
-                    "Accept");
+                   Languages.Accept);
                 return;
             }
 
@@ -242,8 +243,8 @@
 
             await Application.Current.MainPage.DisplayAlert(
                 "Ok",
-                "User updated!",
-                "Accept");
+                Languages.UserUpdated,
+                Languages.Accept);
             await App.Navigator.PopAsync();
         }
 

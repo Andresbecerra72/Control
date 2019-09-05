@@ -14,7 +14,14 @@
         }
         //mensajes emergentes
         public static string Accept => Resource.Accept;
+        public static string Confirm => Resource.Confirm;
+        public static string Yes => Resource.Yes;
+        public static string No => Resource.No;
         public static string Error => Resource.Error;
+        public static string Cancel => Resource.Cancel;
+        public static string Close => Resource.Close;
+        public static string Alert => Resource.Alert;
+        public static string ImageTake => Resource.ImageTake;
         public static string PasswordError => Resource.PasswordError;
         public static string EmailPasswordError => Resource.EmailPasswordError;
         public static string AdultEnter => Resource.AdultEnter;
@@ -24,6 +31,28 @@
         public static string InfantEnter => Resource.InfantEnter;
         public static string TotalEnter => Resource.TotalEnter;
         public static string ImageEnter => Resource.ImageEnter;
+        public static string PublishOnEnter => Resource.PublisOnEnter;
+        public static string DeleteReport => Resource.DeleteReport;
+        public static string PasswordCurrent => Resource.PasswordCurrent;
+        public static string PasswordIncorrect => Resource.PasswordIncorrect;
+        public static string PasswordNew => Resource.PasswordNew;
+        public static string PasswordChart => Resource.PasswordChart;
+        public static string PasswordConfirm => Resource.PasswordConfirm;
+        public static string PasswordMatch => Resource.PasswordMatch;
+        public static string UserUpdated => Resource.UserUpdated;
+        public static string FirstNameEnter => Resource.FirstNameEnter;
+        public static string LastNameEnter => Resource.LastNameEnter;
+        public static string AddressEnter => Resource.AddressEnter;
+        public static string CityEnter => Resource.CityEnter;
+        public static string CountryEnter => Resource.CountryEnter;
+        public static string PhoneEnter => Resource.PhoneEnter;
+        public static string EmailEnter => Resource.EmailEnter;
+        public static string EmailValidEnter => Resource.EmailValidEnter;
+        public static string ReportNoSent => Resource.ReportNoSent;
+
+
+
+
 
         //XAML lables, titulos y placeholders 
         public static string LoginTitle => Resource.LoginTitle;
@@ -37,6 +66,9 @@
         public static string ModifyUserTitle => Resource.ModifyUserTitle;
         public static string MenuTitle => Resource.MenuTitle;
         public static string ChangePasswordTitle => Resource.ChangePasswordTitle;
+        public static string LocalPageTitle => Resource.LocalPageTitle;
+        public static string CloseSession => Resource.CloseSession;
+
 
         //Entradas
         public static string FlightEntry => Resource.FlightEntry;
@@ -72,6 +104,8 @@
         public static string BtnRecoverPassword => Resource.BtnRecoverPassword;
         public static string BtnRegisterNewUser => Resource.BtnRegisterNewUser;
         public static string BtnUpdatePassword => Resource.BtnUpdatePassword;
+        public static string BtnSaveServer => Resource.BtnSaveServer;
+        public static string BtnDevice => Resource.BtnDevice;
 
     }
 

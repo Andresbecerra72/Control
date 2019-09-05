@@ -4,6 +4,7 @@
     using Common.Services;
     using Control.Common.Helpers;
     using Control.UIForms.Helpers;
+    using Control.UIForms.Views;
     using GalaSoft.MvvmLight.Command;
     using Plugin.Media;
     using Plugin.Media.Abstractions;
@@ -98,10 +99,11 @@
             if (!connection.IsSuccess)
             {
                  await Application.Current.MainPage.DisplayAlert(
-                    "Error",
+                    Languages.Error,
                     connection.Message,
-                    "Accept");
-               
+                    Languages.Accept);
+
+                await Application.Current.MainPage.DisplayAlert(Languages.Alert, Languages.ReportNoSent, Languages.Close);//"The report was NOT sent"
                 return;
             }
             //*****************************
@@ -143,6 +145,8 @@
             }
 
             var total = int.Parse(this.Total);
+
+           
      
             if (ImageFlag == 0)
             {
@@ -194,7 +198,7 @@
 
             if (!response.IsSuccess)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
 
@@ -216,14 +220,14 @@
 
 
         //metodo para cambiar la imagen 
-        private async void ChangeImage()
+        public async void ChangeImage()
         {
             ImageFlag = 1;
             await CrossMedia.Current.Initialize();
 
             //se muesta un mensaje con las opciones para la captura de la imagen
             var source = await Application.Current.MainPage.DisplayActionSheet(
-                "Where do you take the picture?",
+                Languages.ImageTake,
                 "Cancel",
                 null,
                 "From Gallery",

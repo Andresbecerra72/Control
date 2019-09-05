@@ -4,7 +4,6 @@
     using System.IO;
     using Control.UIForms.Helpers;
     using Control.UIForms.Helpers.LocalStore;
-    using Control.UIForms.ViewModels;
     using Plugin.Connectivity;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
@@ -13,9 +12,9 @@
     public partial class EditLocalPassangerPage : ContentPage
     {
         private PassangerLocal passangerLocal;
-        
+        public int imageFlag = 0;
 
-              
+
 
         public EditLocalPassangerPage(PassangerLocal passangerLocal)
         {
@@ -23,7 +22,7 @@
 
             this.passangerLocal = passangerLocal;
 
-           
+
 
             Flight.Text = passangerLocal.Flight;
             Adult.Text = passangerLocal.Adult.ToString();
@@ -33,37 +32,34 @@
             PublishOn.Date = passangerLocal.PublishOn;
             Remark.Text = passangerLocal.Remark;
             ImageStore.Source = ImageSource.FromStream(() => new MemoryStream(passangerLocal.ImageArray));// convierte el Array en imagen
-           // ImageStore.Source = MainViewModel.GetInstance().InsertPassanger.ImageSource;
-           
-           
+
+            // ImageStore.Source = MainViewModel.GetInstance().InsertPassanger.ImageSource;
+
+            imageFlag = 1;
             BtnDelete.Clicked += BtnDelete_Clicked;//codigo para el boton
-            
+
 
         }
 
-
-       
-
-
-
+                     
+        //codigo del boton delete
         private async void BtnDelete_Clicked(object sender, EventArgs e)
         {
 
             if (!CrossConnectivity.Current.IsConnected)
             {
-                await DisplayAlert("Alert", "The report was not sent", "Close");
-                return;             
+                await DisplayAlert(Languages.Alert, Languages.ReportNoSent, Languages.Close);//"The report was NOT sent"
+                return;
             }
 
-            var isReachable = await CrossConnectivity.Current.IsRemoteReachable(
-                "google.com");
+            var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
             if (!isReachable)
             {
-                await DisplayAlert("Alert", "The report was not sent", "Close");
-                return;           
+                await DisplayAlert(Languages.Alert, Languages.ReportNoSent, Languages.Close);//"The report was NOT sent"
+                return;
             }
 
-           
+
             //var rta = await DisplayAlert("Confirm", "Delete Item?", "Delete", "Cancel");
 
             //if (!rta)

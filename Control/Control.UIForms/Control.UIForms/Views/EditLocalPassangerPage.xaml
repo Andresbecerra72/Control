@@ -134,7 +134,7 @@
                     	HeightRequest="46"
                     	HorizontalOptions="FillAndExpand"
                     	IsEnabled="{Binding IsEnabled}"
-                    	Text="Save On Server"
+                    	Text="{i18n:Translate BtnSaveServer}"
                     	TextColor="White">
                         </Button>
                        

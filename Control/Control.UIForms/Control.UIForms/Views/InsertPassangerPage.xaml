@@ -155,7 +155,7 @@
                         BackgroundColor="Gainsboro"
                         BorderRadius="23"
                         HeightRequest="46"
-                	    Text="Dispositivo"
+                	    Text="{i18n:Translate BtnDevice}"
                 	    TextColor="White">
 
                 </Button>

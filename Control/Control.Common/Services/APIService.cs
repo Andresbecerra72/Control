@@ -22,7 +22,7 @@
                 return new Response
                 {
                     IsSuccess = false,
-                    Message = "Please turn on your internet settings.",
+                    Message ="Please turn on your Internet settings.",
                 };
             }
 
@@ -33,7 +33,7 @@
                 return new Response
                 {
                     IsSuccess = false,
-                    Message = "Check you internet connection.",
+                    Message = "Check you Internet connection.",
                 };
             }
 

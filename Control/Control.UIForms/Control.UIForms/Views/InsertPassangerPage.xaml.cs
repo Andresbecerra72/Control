@@ -1,10 +1,9 @@
 ﻿namespace Control.UIForms.Views
 {
-    using System;
-    using Control.Common.Models;
     using Control.UIForms.Helpers;
     using Control.UIForms.Helpers.LocalStore;
     using Control.UIForms.ViewModels;
+    using System;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
@@ -105,7 +104,7 @@
 
 
 
-           
+
 
 
             PassangerLocal passangerLocal = new PassangerLocal
@@ -121,7 +120,7 @@
                 Day = PublishOn.Date.ToString("dd"),
                 Month = PublishOn.Date.ToString("MMMM"),
                 Year = PublishOn.Date.ToString("yyyy"),
-               
+
 
 
 

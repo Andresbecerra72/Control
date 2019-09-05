@@ -276,4 +276,91 @@
   <data name="RemarkEntry" xml:space="preserve">
     <value>Introduzca Observaciones</value>
   </data>
+  <data name="PublisOnEnter" xml:space="preserve">
+    <value>Debe introducir una fecha.</value>
+  </data>
+  <data name="DeleteReport" xml:space="preserve">
+    <value>¿Estás seguro de eliminar el Reporte?</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>¡Confirma!</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Pues sí</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="ImageTake" xml:space="preserve">
+    <value>¿De donde captura la foto?</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="PasswordCurrent" xml:space="preserve">
+    <value>Debe especificar el password actual.</value>
+  </data>
+  <data name="PasswordIncorrect" xml:space="preserve">
+    <value>La contraseña actual es incorrecta</value>
+  </data>
+  <data name="PasswordNew" xml:space="preserve">
+    <value>Debe ingresar la nueva contraseña.</value>
+  </data>
+  <data name="PasswordChart" xml:space="preserve">
+    <value>La contraseña debe tener al menos 6 caracteres.</value>
+  </data>
+  <data name="PasswordConfirm" xml:space="preserve">
+    <value>Debe confirmar la contraseña</value>
+  </data>
+  <data name="PasswordMatch" xml:space="preserve">
+    <value>La nueva contraseña y la confirmación de contraseña no son iguales.</value>
+  </data>
+  <data name="LocalPageTitle" xml:space="preserve">
+    <value>Memoria del Dispositivo</value>
+  </data>
+  <data name="CloseSession" xml:space="preserve">
+    <value>Cerrar Sesión</value>
+  </data>
+  <data name="UserUpdated" xml:space="preserve">
+    <value>Usuario actualizado</value>
+  </data>
+  <data name="PhoneEnter" xml:space="preserve">
+    <value>Debe introducir un número de teléfono.</value>
+  </data>
+  <data name="AddressEnter" xml:space="preserve">
+    <value>Debes poner una dirección</value>
+  </data>
+  <data name="CountryEnter" xml:space="preserve">
+    <value>Debe seleccionar un país.</value>
+  </data>
+  <data name="LastNameEnter" xml:space="preserve">
+    <value>Debe introducir el apellido</value>
+  </data>
+  <data name="FirstNameEnter" xml:space="preserve">
+    <value>Debe introducir el Nombre</value>
+  </data>
+  <data name="CityEnter" xml:space="preserve">
+    <value>Debes seleccionar una ciudad.</value>
+  </data>
+  <data name="EmailEnter" xml:space="preserve">
+    <value>Debes ingresar un correo electrónico.</value>
+  </data>
+  <data name="EmailValidEnter" xml:space="preserve">
+    <value>Hay que introducir una dirección de correo válida.</value>
+  </data>
+  <data name="Alert" xml:space="preserve">
+    <value>¡Alerta!</value>
+  </data>
+  <data name="ReportNoSent" xml:space="preserve">
+    <value>Informe NO se ha enviado.</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Cierre</value>
+  </data>
+  <data name="BtnSaveServer" xml:space="preserve">
+    <value>Guardar en el Servidor</value>
+  </data>
+  <data name="BtnDevice" xml:space="preserve">
+    <value>Almacenar en el dispositivo</value>
+  </data>
 </root>

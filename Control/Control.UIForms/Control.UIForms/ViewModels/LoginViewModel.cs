@@ -1,13 +1,12 @@
 ﻿namespace Control.UIForms.ViewModels
 {
-    using System;
-    using System.Windows.Input;
     using Common.Services;
     using Control.Common.Helpers;
     using Control.Common.Models;
     using Control.UIForms.Helpers;
     using GalaSoft.MvvmLight.Command;
     using Newtonsoft.Json;
+    using System.Windows.Input;
     using Views;
     using Xamarin.Forms;
 
@@ -60,7 +59,7 @@
             this.apiService = new ApiService();
             this.IsEnabled = true;
             this.IsRemember = true;
-            
+
         }
 
         //metodo del boton Login
@@ -72,9 +71,9 @@
             if (!connection.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
-                   "Error",
+                   Languages.Error,
                    connection.Message,
-                   "Accept");
+                   Languages.Accept);
                 // await App.Navigator.PopAsync();
                 return;
             }
