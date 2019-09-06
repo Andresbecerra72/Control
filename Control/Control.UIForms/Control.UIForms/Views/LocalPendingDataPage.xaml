@@ -4,14 +4,15 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:i18n="clr-namespace:Control.UIForms.Helpers"
              x:Class="Control.UIForms.Views.LocalPendingDataPage"
-              Title="Local Store Pending Report">
+               Title="{i18n:Translate LocalStorePageTitle}">
     <ContentPage.Content>
         <ScrollView>
 
             <StackLayout
                  Padding="10">
-               
+                             
 
                 <ListView x:Name="DatosListView"></ListView>
 

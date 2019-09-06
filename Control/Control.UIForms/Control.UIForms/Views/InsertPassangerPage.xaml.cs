@@ -1,9 +1,9 @@
 ﻿namespace Control.UIForms.Views
 {
+    using System;
     using Control.UIForms.Helpers;
     using Control.UIForms.Helpers.LocalStore;
     using Control.UIForms.ViewModels;
-    using System;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 
@@ -127,6 +127,7 @@
 
             };
 
+            //codigo para guardar datos en Sqlite
             using (var datos = new DataAcces()) //abre la conexion con la base de datos
             {
                 datos.InsertPassangerSqlite(passangerLocal);
@@ -141,8 +142,11 @@
             Remark.Text = string.Empty;
             PublishOn.Date = DateTime.Now;
             Image.Source = "no_image";
-            //await DisplayAlert("Message", "Data Insert", "Done");
+            await DisplayAlert(Languages.Message, Languages.ReportStored, Languages.Close);
 
+            await App.Navigator.PopAsync();
+
+           
 
         }
     }

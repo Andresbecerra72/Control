@@ -6,12 +6,11 @@
              mc:Ignorable="d"
               xmlns:i18n="clr-namespace:Control.UIForms.Helpers"
              x:Class="Control.UIForms.Views.EditLocalPassangerPage"
-              BindingContext="{Binding Main, Source={StaticResource Locator}}"
+              
          	Title="{i18n:Translate EditTitle}">
     <ContentPage.Content>
         
-            <ScrollView
-        	BindingContext="{Binding InsertPassanger}">
+            <ScrollView>
                 <StackLayout
             	Padding="10">
                     <Image
@@ -35,8 +34,7 @@
                         x:Name="Flight"
                     	Grid.Column="1"
                     	Grid.Row="0"
-                    	Placeholder="{i18n:Translate FlightEntry}"
-                    	Text="{Binding Passanger.Flight}">
+                    	Placeholder="{i18n:Translate FlightEntry}">
                         </Entry>
                         <Label
                     	Grid.Column="0"
@@ -49,8 +47,7 @@
                     	Grid.Column="1"
                     	Grid.Row="1"
                     	Keyboard="Numeric"
-                    	Placeholder="{i18n:Translate AdultsEntry}"
-                    	Text="{Binding Passanger.Adult}">
+                    	Placeholder="{i18n:Translate AdultsEntry}">
                         </Entry>
                         <Label
                     	Grid.Column="0"
@@ -63,8 +60,7 @@
                     	Grid.Column="1"
                     	Grid.Row="2"
                     	Keyboard="Numeric"
-                    	Placeholder="{i18n:Translate ChildrenEntry}"
-                    	Text="{Binding Passanger.Child}">
+                    	Placeholder="{i18n:Translate ChildrenEntry}">
                         </Entry>
                         <Label
                     	Grid.Column="0"
@@ -72,28 +68,26 @@
                     	Text="{i18n:Translate Infants}"
                     	VerticalOptions="Center">
                         </Label>
-                        <Entry
+                    <Entry
                         x:Name="Infant"
                     	Grid.Column="1"
                     	Grid.Row="3"
                     	Keyboard="Numeric"
-                    	Placeholder="{i18n:Translate InfantsEntry}"
-                    	Text="{Binding Passanger.Infant}">
-                        </Entry>
+                    	Placeholder="{i18n:Translate InfantsEntry}">
+                    </Entry>
                         <Label
                     	Grid.Column="0"
                     	Grid.Row="4"
                     	Text="{i18n:Translate TotalPassangers}"
                     	VerticalOptions="Center">
                         </Label>
-                        <Entry
+                    <Entry
                         x:Name="Total"
                     	Grid.Column="1"
                     	Grid.Row="4"
                     	Keyboard="Numeric"
-                    	Placeholder="{i18n:Translate TotalEntry}"
-                    	Text="{Binding Passanger.Total}">
-                        </Entry>
+                    	Placeholder="{i18n:Translate TotalEntry}">
+                    </Entry>
                         <Label
                     	Grid.Column="0"
                     	Grid.Row="5"
@@ -104,7 +98,7 @@
                          x:Name="PublishOn"
                         Grid.Column="1"
                     	Grid.Row="5"
-                        Date="{Binding Passanger.PublishOn}" />
+                        />
 
                         <Label
                     	Grid.Column="0"
@@ -117,12 +111,12 @@
                     	Grid.Column="1"
                     	Grid.Row="6"
                     	Keyboard="Default"
-                    	Placeholder="{i18n:Translate RemarkEntry}"
-                    	Text="{Binding Passanger.Remark}">
+                    	Placeholder="{i18n:Translate RemarkEntry}">
                         </Entry>
                     </Grid>
                     <ActivityIndicator
-                	IsRunning="{Binding IsRunning}"
+                	x:Name="Indicator"
+                    Color="Red"
                 	VerticalOptions="CenterAndExpand">
                     </ActivityIndicator>
                    
@@ -130,7 +124,6 @@
                         x:Name="BtnDelete"
                     	BackgroundColor="Teal"
                     	BorderRadius="23"
-                    	Command="{Binding SaveCommand}"
                     	HeightRequest="46"
                     	HorizontalOptions="FillAndExpand"
                     	IsEnabled="{Binding IsEnabled}"

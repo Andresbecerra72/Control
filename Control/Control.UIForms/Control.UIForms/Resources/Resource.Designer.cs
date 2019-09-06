@@ -475,6 +475,15 @@ namespace Control.UIForms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check Internet Connection.
+        /// </summary>
+        public static string InternetConn {
+            get {
+                return ResourceManager.GetString("InternetConn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You must enter the last name..
         /// </summary>
         public static string LastNameEnter {
@@ -489,6 +498,15 @@ namespace Control.UIForms.Resources {
         public static string LocalPageTitle {
             get {
                 return ResourceManager.GetString("LocalPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Local Store Pending Report.
+        /// </summary>
+        public static string LocalStorePageTitle {
+            get {
+                return ResourceManager.GetString("LocalStorePageTitle", resourceCulture);
             }
         }
         
@@ -516,6 +534,15 @@ namespace Control.UIForms.Resources {
         public static string MenuTitle {
             get {
                 return ResourceManager.GetString("MenuTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message.
+        /// </summary>
+        public static string Message {
+            get {
+                return ResourceManager.GetString("Message", resourceCulture);
             }
         }
         
@@ -705,6 +732,15 @@ namespace Control.UIForms.Resources {
         public static string ReportNoSent {
             get {
                 return ResourceManager.GetString("ReportNoSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report was Stored.
+        /// </summary>
+        public static string ReportStored {
+            get {
+                return ResourceManager.GetString("ReportStored", resourceCulture);
             }
         }
         

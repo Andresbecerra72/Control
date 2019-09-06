@@ -41,13 +41,7 @@
             //this.GoAddPageAsync();
         }
 
-        private async void GoAddPageAsync()//todo: cambio
-        {
-           
-            MainViewModel.GetInstance().InsertPassanger = new InsertPassangerViewModel();//todo: cambio
-            await App.Navigator.PushAsync(new InsertPassangerPage());//todo: cambio
-        }
-
+       
         //carga el listado de pasajeros que estan en la BD
         private async void LoadProducts()
         {

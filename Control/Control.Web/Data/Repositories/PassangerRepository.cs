@@ -33,7 +33,7 @@
             await this.context.SaveChangesAsync();
         }
 
-        //TODO: NEW CHANGE
+       
         //este metodo trae la lista con el usuario registrado
         public IQueryable GetAllWithUsersAuthenticated(string user)
         {

@@ -14,6 +14,7 @@
         }
         //mensajes emergentes
         public static string Accept => Resource.Accept;
+        public static string Message => Resource.Message;
         public static string Confirm => Resource.Confirm;
         public static string Yes => Resource.Yes;
         public static string No => Resource.No;
@@ -49,6 +50,8 @@
         public static string EmailEnter => Resource.EmailEnter;
         public static string EmailValidEnter => Resource.EmailValidEnter;
         public static string ReportNoSent => Resource.ReportNoSent;
+        public static string ReportStored => Resource.ReportStored;
+        public static string InternetConn => Resource.InternetConn;
 
 
 
@@ -68,6 +71,8 @@
         public static string ChangePasswordTitle => Resource.ChangePasswordTitle;
         public static string LocalPageTitle => Resource.LocalPageTitle;
         public static string CloseSession => Resource.CloseSession;
+        public static string LocalStorePageTitle => Resource.LocalStorePageTitle;
+
 
 
         //Entradas

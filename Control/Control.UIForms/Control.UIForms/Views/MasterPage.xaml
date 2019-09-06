@@ -12,7 +12,7 @@
     <MasterDetailPage.Detail>
         <NavigationPage x:Name="Navigator">
             <x:Arguments>
-                <pages:PassangersPage/> <!--//todo: cambio-->
+                <pages:PassangersPage/> 
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

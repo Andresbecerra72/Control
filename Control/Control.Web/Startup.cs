@@ -77,7 +77,7 @@
             //inyeccion del MailHelper
             services.AddScoped<IMailHelper, MailHelper>();//AddScoped se usa y mantiene hasta cerrar el proyecto
 
-            //TODO:***********************************OJO TOKEN****************************
+            //***********************************OJO TOKEN****************************
             //uso de TOKEN de seguridad para el acceso al API
             services.AddAuthentication()
                 .AddCookie()
@@ -117,7 +117,7 @@
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            //TODO: mientra se realizan pruebas..para productivo se debe quitar los comentarios
+            //mientra se realizan pruebas..para productivo se debe quitar los comentarios
             //if (env.IsDevelopment())
             //{
             //    app.UseDeveloperExceptionPage();
@@ -128,8 +128,8 @@
 
             //}
 
-            app.UseDeveloperExceptionPage();//TODO: MUESTRA ERRORES EN PRODUCTIVO
-            app.UseDatabaseErrorPage();//TODO: MUESTRA ERRORES EN PRODUCTIVO
+            app.UseDeveloperExceptionPage();// MUESTRA ERRORES EN PRODUCTIVO
+            app.UseDatabaseErrorPage();// MUESTRA ERRORES EN PRODUCTIVO
             app.UseStatusCodePagesWithReExecute("/error/{0}");//Codigo de pagina no existe Error 404
             app.UseStaticFiles();
             app.UseAuthentication(); //permite las autorizaciones

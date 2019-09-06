@@ -363,4 +363,16 @@
   <data name="BtnDevice" xml:space="preserve">
     <value>Store on Device</value>
   </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="ReportStored" xml:space="preserve">
+    <value>Report was Stored</value>
+  </data>
+  <data name="InternetConn" xml:space="preserve">
+    <value>Check Internet Connection</value>
+  </data>
+  <data name="LocalStorePageTitle" xml:space="preserve">
+    <value>Local Store Pending Report</value>
+  </data>
 </root>

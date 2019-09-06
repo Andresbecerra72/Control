@@ -11,7 +11,7 @@
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    //TODO: ACTIVAR PARA PRODUCTIVO
+   
     [Authorize] // ACTIVAR SOLICITAR LOGUEO
     public class PassangersController : Controller
     {
@@ -69,7 +69,7 @@
 
         // POST: Passangers/Create
         [HttpPost]
-        //TODO:******************************OJO TOKEN*********************************
+       
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(PassangerViewModel view)
         {
@@ -167,7 +167,7 @@
 
         // POST: Passangers/Edit/5
         [HttpPost]
-        //TODO: *******************************OJO TOKEN********************
+       
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(PassangerViewModel view)
         {
@@ -239,7 +239,7 @@
 
         // POST: Passangers/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]//TODO:*************************OJO TOKEN************************
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var passanger = await this.passangerRepository.GetByIdAsync(id);//pasa el dato

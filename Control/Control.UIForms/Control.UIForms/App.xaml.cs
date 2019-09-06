@@ -15,11 +15,23 @@
 
 
 
-        public App()
+        public  App()
         {
             InitializeComponent();
 
            
+
+            //********************CHECK CONNECTION************************
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+               
+                MainViewModel.GetInstance().Login = new LoginViewModel();//se instancia primero el viewmodel antes que la pagina
+                MainPage = new NavigationPage(new LoginPage());//navigationPage muestr el titulo de la pagina
+                return;
+            }
+
+            
+            //*************************
 
             if (Settings.IsRemember)//condicion para verificar si el usuario esta recordado "logueado"
             {

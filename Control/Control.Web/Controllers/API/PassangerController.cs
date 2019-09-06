@@ -13,7 +13,7 @@
 
 
     [Route("api/[Controller]")] //este es el enrutamiento
-    //TODO:*********************************************************OJO TOKEN*********************************
+    
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] //autenticacion para validar el acceso al api
     public class PassangerController : Controller
     {

@@ -363,4 +363,16 @@
   <data name="BtnDevice" xml:space="preserve">
     <value>Almacenar en el dispositivo</value>
   </data>
+  <data name="Message" xml:space="preserve">
+    <value>Mensaje</value>
+  </data>
+  <data name="ReportStored" xml:space="preserve">
+    <value>El informe fue almacenado en el Dispositivo</value>
+  </data>
+  <data name="InternetConn" xml:space="preserve">
+    <value>Comprobar la conexión a Internet</value>
+  </data>
+  <data name="LocalStorePageTitle" xml:space="preserve">
+    <value>Informe en Dispositivo</value>
+  </data>
 </root>
