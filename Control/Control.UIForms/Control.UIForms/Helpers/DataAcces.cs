@@ -1,26 +1,31 @@
 ﻿namespace Control.UIForms.Helpers
 {
-    using Control.Common.Models;
     using Control.UIForms.Helpers.LocalStore;
     using Control.UIForms.Interfaces;
-    using SQLite.Net;
+    using SQLite;
     using System;
     using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
     using Xamarin.Forms;
 
     class DataAcces : IDisposable //permite liberar el recurso Dispose
     {
+
         private SQLiteConnection connection;//crea la coneccion para la base de datos local Sqlite
+
+        // private SQLiteConnection database;
 
         //constructor
         public DataAcces()
         {
+
+            connection = DependencyService.Get<IConfig>().DbConnection();
+            connection.CreateTable<PassangerLocal>();
+
+            //*************************ORIGINAL CON SQlite.Net-PCL***********************************
             //codigo para crear la base de datos local
-            var config = DependencyService.Get<IConfig>();//llama la configuracion de la plataform segun el dispositivo 
-            connection = new SQLiteConnection(config.Plataforma, Path.Combine(config.DirectorioDB, "Passangers.db")); //llama los metodos Directorio y plataforma desde los sistemas de los equipos por Config
-            connection.CreateTable<PassangerLocal>(); //crea la tabla en la base de datos "Passangers.db"
+            //var config = DependencyService.Get<IConfig>();//llama la configuracion de la plataform segun el dispositivo 
+            //connection = new SQLiteConnection(config.Plataforma, Path.Combine(config.DirectorioDB, "Passangers.db")); //llama los metodos Directorio y plataforma desde los sistemas de los equipos por Config
+            //connection.CreateTable<PassangerLocal>(); //crea la tabla en la base de datos "Passangers.db"
 
             // db = new SQLiteConnection(DependencyService.Get<IFileHelper>().GetLocalFilePath("database.db"));
             // db.CreateTable<Item>();
