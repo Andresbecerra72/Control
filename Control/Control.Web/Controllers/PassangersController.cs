@@ -125,7 +125,7 @@
                 User = view.User,
                 Remark = view.Remark,
                 Day = view.PublishOn.ToString("dd"),
-                Month = view.PublishOn.ToString("MMMM"),
+                Month = view.PublishOn.ToString("MM"),
                 Year = view.PublishOn.ToString("yyyy")
             };
         }

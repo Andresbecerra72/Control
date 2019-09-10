@@ -10,7 +10,7 @@
         public int Id { get; set; }
 
         [Display(Name = "Date ")]
-        [DisplayFormat(DataFormatString = "{0:dd/MMMM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime PublishOn { get; set; }
 
         [Required]
