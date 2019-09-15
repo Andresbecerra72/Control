@@ -46,7 +46,7 @@
             return result;
         }
 
-        //consulta para el API lista de pasajeros por fecha actual en la AppMovil
+        //consulta para el API lista de pasajeros por fecha actual en la AppMovil y el usuario valido
         public IQueryable GetPassangerByDate(string day, string month, string year)
         {
             return this.context.Passangers

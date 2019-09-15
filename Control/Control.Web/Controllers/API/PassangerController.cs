@@ -37,6 +37,7 @@
             string day = DateTime.Now.ToString("dd");
             string month = DateTime.Now.ToString("MMMM");
             string year = DateTime.Now.ToString("yyyy");
+            
 
             return this.Ok(this.passangerRepository.GetPassangerByDate(day, month, year));
         }

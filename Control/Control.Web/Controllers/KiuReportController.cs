@@ -111,7 +111,7 @@
                                     dateKiu = DateTime.Parse(worksheet.Cells[row, 13].Value.ToString(), null);
                                     publishOnKiu = dateKiu.ToString("yyyy-MM-dd");// cambia el formato de la fecha, queda como string
                                     day = dateKiu.ToString("dd");
-                                    month = dateKiu.ToString("MM");
+                                    month = dateKiu.ToString("MMMM");
                                     year = dateKiu.ToString("yyyy");
                                     vuelo = worksheet.Cells[row, 2].Text.ToString().Trim();
 

@@ -17,6 +17,8 @@
         private readonly ApiService apiService;
         public bool IsRemember { get; set; }
 
+      
+
         public bool IsRunning
         {
             get => this.isRunning;
@@ -130,6 +132,8 @@
 
             var user = (User)response2.Result;
 
+           
+
             var mainViewModel = MainViewModel.GetInstance();
             mainViewModel.User = user;//este es el usuario que se loguea y es consultado desde el api
             mainViewModel.Token = token;
@@ -147,7 +151,7 @@
 
             await Application.Current.MainPage.Navigation.PushAsync(new PassangersPage()); //esto cambia las paginas
             //await Application.Current.MainPage.Navigation.PushAsync(new InsertPassangerPage());//todo: cambio
-            Application.Current.MainPage = new MasterPage();//inicia con la master pagedespues de login valido
+            Application.Current.MainPage = new MasterPage();//inicia con la master page despues de login valido
         }
     }
 

@@ -2,8 +2,10 @@
 {
     using Common.Models;
     using Common.Services;
+    using Control.Common.Helpers;
     using Control.UIForms.Helpers;
     using GalaSoft.MvvmLight.Command;
+    using Newtonsoft.Json;
     using System.Windows.Input;
     using Xamarin.Forms;
 
@@ -12,6 +14,9 @@
         private bool isRunning;
         private bool isEnabled;
         private readonly ApiService apiService;
+
+        public MainViewModel MainViewModel;
+
 
 
         public Passanger Passanger { get; set; }
@@ -39,13 +44,25 @@
         {
             this.Passanger = passanger;
             this.apiService = new ApiService();
-            this.IsEnabled = true;
+
+
+            //**********valida el usuario logueado*******
+            var user = JsonConvert.DeserializeObject<User>(Settings.User);
+
+            if (Passanger.User.FullName != user.FullName)
+            {
+                this.IsEnabled = false;
+                return;
+            }
+           this.IsEnabled = true;
         }
 
         //PUT PASSANGER FROM API
 
         private async void Save()
         {
+           
+                       
             //**********CHECK CONNECTION************
             var connection = await this.apiService.CheckConnection();
 
@@ -127,6 +144,7 @@
 
         private async void Delete()
         {
+           
             //**********CHECK CONNECTION************
             var connection = await this.apiService.CheckConnection();
 

@@ -50,7 +50,15 @@
                                     	Text="{Binding Total, StringFormat='Total Pax: {0}'}"
                                     	TextColor="Navy">
                                     </Label>
+                                    
                                 </StackLayout>
+                                <Label
+                                    Grid.Column="1"
+                                    FontAttributes="Italic"
+                                    FontSize="Default"
+                                    Text="{Binding User.FullName}"
+                                    TextColor="DarkGray">
+                                </Label>
                                 <Image
                                 	Grid.Column="2"
                                 	Source="ic_more">

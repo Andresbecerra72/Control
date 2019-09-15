@@ -66,7 +66,7 @@
     	                Text="{i18n:Translate Login}"
     	                TextColor="White">
                     </Button>
-                    <Button
+                    <!--<Button
     	                BackgroundColor="Purple"
     	                BorderRadius="23"
     	                Command="{Binding RegisterCommand}"
@@ -74,8 +74,8 @@
     	                HorizontalOptions="FillAndExpand"
     	                IsEnabled="{Binding IsEnabled}"
     	                Text="{i18n:Translate RegisterNewUser}"
-    	                TextColor="White">    <!--este es el vinculo del objeto LoginCommand para controlar la accion del Boton en el loginViewModel -->
-                    </Button>       
+    	                TextColor="White">    --><!--este es el vinculo del objeto LoginCommand para controlar la accion del Boton en el loginViewModel --><!--
+                    </Button>-->       
                 </StackLayout>
 
 

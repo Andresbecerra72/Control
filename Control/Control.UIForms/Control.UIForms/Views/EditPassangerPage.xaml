@@ -15,7 +15,8 @@
             	Padding="10">
                 <Image
                 	HeightRequest="200"
-                	Source="{Binding Passanger.ImageFullPath}">
+                	Source="{Binding Passanger.ImageFullPath}"
+                    IsEnabled="{Binding IsEnabled}">
                     
                 </Image>
                 
@@ -34,7 +35,8 @@
                         Grid.Column="1"
                     	Grid.Row="0"
                     	Placeholder="{i18n:Translate FlightEntry}"
-                    	Text="{Binding Passanger.Flight}">
+                    	Text="{Binding Passanger.Flight}"
+                        IsEnabled="{Binding IsEnabled}">
                     </Entry>
                     <Label
                     	Grid.Column="0"
@@ -47,7 +49,8 @@
                     	Grid.Row="1"
                     	Keyboard="Numeric"
                     	Placeholder="{i18n:Translate AdultsEntry}"
-                    	Text="{Binding Passanger.Adult}">
+                    	Text="{Binding Passanger.Adult}"
+                        IsEnabled="{Binding IsEnabled}">
                     </Entry>
                     <Label
                     	Grid.Column="0"
@@ -60,7 +63,8 @@
                     	Grid.Row="2"
                     	Keyboard="Numeric"
                     	Placeholder="{i18n:Translate ChildrenEntry}"
-                    	Text="{Binding Passanger.Child}">
+                    	Text="{Binding Passanger.Child}"
+                        IsEnabled="{Binding IsEnabled}">
                     </Entry>
                     <Label
                     	Grid.Column="0"
@@ -73,7 +77,8 @@
                     	Grid.Row="3"
                     	Keyboard="Numeric"
                     	Placeholder="{i18n:Translate InfantsEntry}"
-                    	Text="{Binding Passanger.Infant}">
+                    	Text="{Binding Passanger.Infant}"
+                        IsEnabled="{Binding IsEnabled}">
                     </Entry>
                     <Label
                     	Grid.Column="0"
@@ -86,7 +91,8 @@
                     	Grid.Row="4"
                     	Keyboard="Numeric"
                     	Placeholder="{i18n:Translate TotalEntry}"
-                    	Text="{Binding Passanger.Total}">
+                    	Text="{Binding Passanger.Total}"
+                        IsEnabled="{Binding IsEnabled}">
                     </Entry>
                     <Label
                     	Grid.Column="0"
@@ -97,7 +103,8 @@
                     <DatePicker
                         Grid.Column="1"
                     	Grid.Row="5"
-                        Date="{Binding Passanger.PublishOn}" />
+                        Date="{Binding Passanger.PublishOn}"
+                        IsEnabled="{Binding IsEnabled}"/>
                     
                     <Label
                     	Grid.Column="0"
@@ -110,7 +117,8 @@
                     	Grid.Row="6"
                     	Keyboard="Default"
                     	Placeholder="{i18n:Translate RemarkEntry}"
-                    	Text="{Binding Passanger.Remark}">
+                    	Text="{Binding Passanger.Remark}"
+                        IsEnabled="{Binding IsEnabled}">
                     </Entry>
                 </Grid>
                 <ActivityIndicator
