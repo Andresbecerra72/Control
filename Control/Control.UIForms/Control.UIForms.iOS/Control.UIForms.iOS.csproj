@@ -164,9 +164,6 @@
     <BundleResource Include="Resources\tcp.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\tcplogo.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\logo.png" />
   </ItemGroup>
   <ItemGroup>
@@ -201,5 +198,8 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\tcplogo.png" />
   </ItemGroup>
 </Project>
