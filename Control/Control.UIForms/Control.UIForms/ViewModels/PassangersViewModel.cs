@@ -15,7 +15,7 @@
         private List<Passanger> myPassangers; //es una lista del objeto Passanger
         private ObservableCollection<PassangerItemViewModel> passangers;
         private bool isRefreshing;
-        private User user;
+        //private User user;
 
 
         //esta es la lista de productos que se van mostrar en la listview

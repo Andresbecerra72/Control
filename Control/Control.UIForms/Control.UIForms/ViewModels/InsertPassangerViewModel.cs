@@ -8,6 +8,8 @@
     using GalaSoft.MvvmLight.Command;
     using Plugin.Media;
     using Plugin.Media.Abstractions;
+    using Plugin.Permissions;
+    using Plugin.Permissions.Abstractions;
     using System;
     using System.Windows.Input;
     using Xamarin.Forms;
@@ -224,6 +226,35 @@
         {
             ImageFlag = 1;
             await CrossMedia.Current.Initialize();
+
+    
+                try
+                {
+                    var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                    if (status != PermissionStatus.Granted)
+                    {
+                        if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Camera))
+                        {
+                        await Application.Current.MainPage.DisplayAlert("Need Camera", "", "OK");
+                        }
+
+                        var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera);
+                        //Best practice to always check that the key exists
+                        if (results.ContainsKey(Permission.Camera))
+                            status = results[Permission.Camera];
+                    }
+
+                    else if (status != PermissionStatus.Unknown)
+                    {
+                    await Application.Current.MainPage.DisplayAlert("Camera Denied", "Can not continue, try again.", "OK");
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    return;
+                }
+            
 
             //se muesta un mensaje con las opciones para la captura de la imagen
             var source = await Application.Current.MainPage.DisplayActionSheet(
