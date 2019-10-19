@@ -227,33 +227,7 @@
             ImageFlag = 1;
             await CrossMedia.Current.Initialize();
 
-    
-                try
-                {
-                    var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
-                    if (status != PermissionStatus.Granted)
-                    {
-                        if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Camera))
-                        {
-                        await Application.Current.MainPage.DisplayAlert("Need Camera", "", "OK");
-                        }
-
-                        var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera);
-                        //Best practice to always check that the key exists
-                        if (results.ContainsKey(Permission.Camera))
-                            status = results[Permission.Camera];
-                    }
-
-                    else if (status != PermissionStatus.Unknown)
-                    {
-                    await Application.Current.MainPage.DisplayAlert("Camera Denied", "Can not continue, try again.", "OK");
-                    }
-                }
-                catch (Exception ex)
-                {
-
-                    return;
-                }
+                  
             
 
             //se muesta un mensaje con las opciones para la captura de la imagen
@@ -264,7 +238,10 @@
                 "From Gallery",
                 "From Camera");
 
-            if (source == "Cancel")
+          
+
+
+                if (source == "Cancel")
             {
                 this.file = null;
                 return;
@@ -272,20 +249,109 @@
 
             if (source == "From Camera")
             {
-                //toma la foto desde la camara del dispositivo
-                this.file = await CrossMedia.Current.TakePhotoAsync(
-                    new StoreCameraMediaOptions
+                //*******************codigo para gestionar el permiso******************* CAMARA
+                try
+                {
+                    var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
+                    if (status != PermissionStatus.Granted)
                     {
-                        Directory = "Pictures",
-                        Name = "test.jpg",
-                        PhotoSize = PhotoSize.Small,
+                        if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Camera))
+                        {
+                            await Application.Current.MainPage.DisplayAlert("Need Camera", "", "OK");
+                        }
+
+                        var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera);
+                        //Best practice to always check that the key exists
+                        if (results.ContainsKey(Permission.Camera))
+                            status = results[Permission.Camera];
                     }
-                );
+
+                    else if (status != PermissionStatus.Unknown)
+                    {
+
+                        //await Application.Current.MainPage.DisplayAlert("Camera Denied", "Can not continue, try again.", "OK");
+                        //toma la foto desde la camara del dispositivo
+                        this.file = await CrossMedia.Current.TakePhotoAsync(
+                            new StoreCameraMediaOptions
+                            {
+                                Directory = "Pictures",
+                                Name = "test.jpg",
+                                PhotoSize = PhotoSize.Small,
+                            }
+                        );
+
+                    }
+                    else {
+                        //toma la foto desde la camara del dispositivo
+                        this.file = await CrossMedia.Current.TakePhotoAsync(
+                            new StoreCameraMediaOptions
+                            {
+                                Directory = "Pictures",
+                                Name = "test.jpg",
+                                PhotoSize = PhotoSize.Small,
+                            }
+                        );
+
+
+                    }
+
+
+
+                }
+                catch (Exception ex)
+                {
+
+                    await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Accept");
+                    return;
+
+                }
+                //*****************************
+
+
+
+                
             }
             else
             {
-                //toma la imagen desde la galeria
-                this.file = await CrossMedia.Current.PickPhotoAsync();
+                //*******************codigo para gestionar el permiso*******************GALERIA DE FOTOS
+                try
+                {
+                    var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Photos);
+                    if (status != PermissionStatus.Granted)
+                    {
+                        if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Photos))
+                        {
+                            await Application.Current.MainPage.DisplayAlert("Need Gallery", "", "OK");
+                        }
+
+                        var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Photos);
+                        //Best practice to always check that the key exists
+                        if (results.ContainsKey(Permission.Photos))
+                            status = results[Permission.Photos];
+                    }
+
+                    else if (status != PermissionStatus.Unknown)
+                    {
+                        //await Application.Current.MainPage.DisplayAlert("Gallery Denied", "Can not continue, try again.", "OK");
+                        //toma la imagen desde la galeria
+                        this.file = await CrossMedia.Current.PickPhotoAsync();
+                       
+                    }
+                    else
+                    { 
+                       //toma la imagen desde la galeria
+                        this.file = await CrossMedia.Current.PickPhotoAsync();
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Accept");
+                    return;
+
+                }
+                //*****************************
+
             }
 
             if (this.file != null)
@@ -310,3 +376,5 @@
     }
 
 }
+
+
