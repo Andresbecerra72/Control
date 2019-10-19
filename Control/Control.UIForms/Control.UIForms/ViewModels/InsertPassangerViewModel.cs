@@ -257,7 +257,7 @@
                     {
                         if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Camera))
                         {
-                            await Application.Current.MainPage.DisplayAlert("Please", "The Image is required", "OK");
+                            await Application.Current.MainPage.DisplayAlert(Languages.Alert, "The Image is required", Languages.Close);
                         }
 
                         var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera);
@@ -321,7 +321,7 @@
                     {
                         if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Photos))
                         {
-                            await Application.Current.MainPage.DisplayAlert("Aviso", "La imagen es mandatoria", "OK");
+                            await Application.Current.MainPage.DisplayAlert(Languages.Alert, "La imagen es mandatoria", Languages.Close);
                         }
 
                         var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Photos);
