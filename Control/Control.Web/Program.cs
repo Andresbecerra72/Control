@@ -21,7 +21,7 @@
             using (var scope = scopeFactory.CreateScope())
             {
                 var seeder = scope.ServiceProvider.GetService<SeedDB>();
-                seeder.SeedAsync().Wait();
+               // seeder.SeedAsync().Wait(); // TODO: no cambia la base de datos Usado para cargar los datos iniciales y crear la Base de Datos
             }
         }
 

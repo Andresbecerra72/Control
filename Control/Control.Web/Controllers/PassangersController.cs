@@ -11,7 +11,9 @@
     using System;
     using System.IO;
     using System.Threading.Tasks;
-   
+    using System.Diagnostics;
+
+
     [Authorize] // ACTIVAR SOLICITAR LOGUEO
     public class PassangersController : Controller
     {
@@ -134,6 +136,7 @@
         //[Authorize(Roles = "Super, Admin")]//acesso con login a usuarios con rol de administrador
         public async Task<IActionResult> Edit(int? id)
         {
+           
             if (id == null)
             {
                 return new NotFoundViewResult("ProductNotFound");//Redireccionamiento Pagina NOT FOUND
@@ -147,6 +150,8 @@
             var view = this.ToPassangerViewModel(passanger);
             return View(view);
         }
+
+
         //se contruye la vista se toma el modelo con los atributos del entity
         private PassangerViewModel ToPassangerViewModel(Passanger passanger)
         {
@@ -165,12 +170,15 @@
             };
         }
 
+
+
         // POST: Passangers/Edit/5
         [HttpPost]
        
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(PassangerViewModel view)
         {
+           
             if (ModelState.IsValid)
             {
                 try

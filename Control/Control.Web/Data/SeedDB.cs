@@ -38,7 +38,50 @@
             }
 
 
-            await this.CheckUser("customer.test@satena.com", "Customer", "Test", "Customer");
+            await this.CheckUser("sandra.roncancio@satena.com", "Sandra", "Roncancio", "Customer");
+            await this.CheckUser("charlene.esguerra@satena.com", "Charlene", "Esguerra", "Customer");
+            await this.CheckUser("enye.salazar@satena.com", "Enye", "Salazar", "Customer");
+            await this.CheckUser("maria.riascos@satena.com", "Coni", "Riascos", "Customer");
+            await this.CheckUser("lina.ramirez@satena.com", "Linita :)", "Ramirez", "Customer");
+            await this.CheckUser("liliana.nieto@satena.com", "Liliana", "Nieto", "Customer");
+            await this.CheckUser("diana.garcia@satena.com", "Diana", "Garcia", "Customer");
+            await this.CheckUser("martha.amaya@satena.com", "Martha", "Amaya", "Customer");
+            await this.CheckUser("eloisa.cardenas@satena.com", "Eloisa", "Cardenas", "Customer");
+            await this.CheckUser("luz.ramirez@satena.com", "Luz", "Ramirez", "Customer");
+            await this.CheckUser("maria.galeano@satena.com", "Maria", "Galeano", "Customer");
+            await this.CheckUser("ruth.forero@satena.com", "Ruth", "Forero", "Customer");
+            await this.CheckUser("laura.castaneda@satena.com", "Laurita", "Castañeda", "Customer");
+            await this.CheckUser("elida.paz@satena.com", "Elida", "Paz", "Customer");
+            await this.CheckUser("marcela.castrillon@satena.com", "Marcela", "Castrillon", "Customer");
+            await this.CheckUser("quena.bedoya@satena.com", "Quena", "Bedoya", "Customer");
+            await this.CheckUser("maria.garcia@satena.com", "Maria", "Garcia", "Customer");
+            await this.CheckUser("margareth.tejada@satena.com", "Margareth", "Tejada", "Customer");
+            await this.CheckUser("ana.gallego@satena.com", "Ana", "Gallego", "Customer");
+            await this.CheckUser("norma.grijalba@satena.com", "Norma", "Grijalba", "Customer");
+            await this.CheckUser("maria.luisa@satena.com", "Maria", "Luisa", "Customer");
+            await this.CheckUser("yuli.camero@satena.com", "Yuli", "Camero", "Customer");
+            await this.CheckUser("kelly.padilla@satena.com", "Kelly", "Padilla", "Customer");
+            await this.CheckUser("july.barbosa@satena.com", "July", "Barbosa", "Customer");
+            await this.CheckUser("francisco.aguas@satena.com", "Francisco", "Aguas", "Customer");
+            await this.CheckUser("lina.garcia@satena.com", "Lina", "Garcia", "Customer");
+            await this.CheckUser("andrea.leguizamon@satena.com", "Andrea", "Leguizamon", "Customer");
+            await this.CheckUser("amanda.angel@satena.com", "Amanda", "Angel", "Customer");
+            await this.CheckUser("bryid.castro@satena.com", "Lore", "Castro", "Customer");
+            await this.CheckUser("diana.carvajal@satena.com", "Diana", "Carvajal", "Customer");
+            await this.CheckUser("janne.mosquera@satena.com", "Janne", "Mosquera", "Customer");
+            await this.CheckUser("ana.perafan@satena.com", "Ana", "Perafan", "Customer");
+            await this.CheckUser("antonio.calderon@satena.com", "Antonio", "Calderon", "Customer");
+            await this.CheckUser("grace.pretelt@satena.com", "Grace", "Pretelt", "Customer");
+            await this.CheckUser("gloria.saavedra@satena.com", "Gloria", "Saavedra", "Customer");
+            await this.CheckUser("karen.elizabeth@satena.com", "Karen", "Elizabeth", "Customer");
+            await this.CheckUser("maryori.gallego@satena.com", "Maryori", "Gallego", "Customer");
+            await this.CheckUser("juan.yepes@satena.com", "Juan", "Yepes", "Customer");
+            await this.CheckUser("claudia.tavera@satena.com", "Claudia", "Tavera", "Customer");
+            await this.CheckUser("sandra.ortiz@satena.com", "Sandra", "Ortiz", "Customer");
+            await this.CheckUser("maria.rodriguez@satena.com", "Maria", "Rodriguez", "Customer");
+            await this.CheckUser("natalia.osorio@satena.com", "Natalia", "Osorio", "Customer");
+            await this.CheckUser("laura.angelica@satena.com", "Laura", "Garcia", "Customer");            
+            await this.CheckUser("test.test@satena.com", "Customer", "Test", "Customer");
             await this.CheckUser("administrador.kiu@satena.com", "Administrador", "KIU", "Admin");
             var user = await this.CheckUser("andres.becerra@satena.com", "Andres", "Becerra", "Super");
 
@@ -85,8 +128,8 @@
                 Email = userName,
                 UserName = userName,
                 Document = "888888",
-                Address = "Carrera 87 17-35",
-                PhoneNumber = "3202456321",
+                Address = "Actualizar",
+                PhoneNumber = "00000000",
                 CityId = this.context.Countries.FirstOrDefault().Cities.FirstOrDefault().Id,
                 City = this.context.Countries.FirstOrDefault().Cities.FirstOrDefault()
             };

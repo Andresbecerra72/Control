@@ -52,7 +52,7 @@
                 {
                     return null;
                 }
-
+                // url para guardar las imagenes
                 return $"http://186.154.237.242:8080{this.ImageUrl.Substring(1)}";
             }
         }
