@@ -15,7 +15,7 @@
 }
 
 #principal {
-    /*margin-left: 190px; /*Este margen hace que no se encime el contenido en tu menúlateral, es     importante que pongas un pocos pixeles más que el ancho  de tu columna lateral*/
+    /*margin-left: 190px; /*Este margen hace que no se encime el contenido en tu menúlateral, es importante que pongas un pocos pixeles más que el ancho  de tu columna lateral*/
     background-color: #CCCCCC;
     border: #000000 1px solid; /*ponemos un dorde para que se vea bonito*/
 }
@@ -27,8 +27,8 @@
   }
 
 table {
-    
     display: block;
-    overflow-x: auto;
+    overflow-x: auto;   
 }
+
 
