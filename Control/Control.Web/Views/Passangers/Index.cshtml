@@ -7,19 +7,34 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
 <br />
 <section>
-    <div>
-        <a asp-action="Create" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Create New</a>
+    <div class="row mt-3">
+      
+        <div class="col">
+            <a asp-action="Create" class="btn btn-primary"><i class="fa fa-plus-square"></i> Create New</a>
+            @if (this.User.IsInRole("Admin"))
+            {
+                <a asp-area="" asp-controller="KiuReport" asp-action="Create" class="btn btn-success"><i class="fa fa-arrow-circle-down"></i> KIU File Loader</a>
+                @*<a class="btn btn-success" href="http://apps.satena.com.co/ControlPlaneacion"><i class="glyphicon glyphicon-arrow-down"></i> KIU Compare</a>*@
+            }
+            @if (this.User.IsInRole("Super"))
+            {
+                <a asp-area="" asp-controller="KiuReport" asp-action="Create" class="btn btn-success"><i class="fa fa-arrow-circle-down"></i> KIU File Loader</a>
+                @*<a class="btn btn-success" href="http://apps.satena.com.co/ControlPlaneacion"><i class="glyphicon glyphicon-arrow-down"></i> KIU Compare</a>*@
+            }
+        </div>
+        <div class="col-3">
 
-        @if (this.User.IsInRole("Admin"))
-        {
-            <a asp-area="" asp-controller="KiuReport" asp-action="Create" class="btn btn-success"><i class="glyphicon glyphicon-arrow-down"></i> KIU File Loader</a>
-            @*<a class="btn btn-success" href="http://apps.satena.com.co/ControlPlaneacion"><i class="glyphicon glyphicon-arrow-down"></i> KIU Compare</a>*@
-        }
-        @if (this.User.IsInRole("Super"))
-        {
-            <a asp-area="" asp-controller="KiuReport" asp-action="Create" class="btn btn-success"><i class="glyphicon glyphicon-arrow-down"></i> KIU File Loader</a>
-            @*<a class="btn btn-success" href="http://apps.satena.com.co/ControlPlaneacion"><i class="glyphicon glyphicon-arrow-down"></i> KIU Compare</a>*@
-        }
+            @if (this.User.IsInRole("Admin"))
+            {
+                <a asp-area="" asp-controller="KiuReport" asp-action="Create" class="btn btn-default"><i class="fa fa-file-excel"></i> Download Data</a>
+              
+            }
+            @if (this.User.IsInRole("Super"))
+            {
+              <a asp-area="" asp-controller="KiuReport" asp-action="Create" class="btn btn-default"><i class="fa fa-file-excel"></i> Download Data</a>
+               
+            }
+        </div>
     </div>
 
 </section>
@@ -31,7 +46,7 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">TCP Passenger Count Report</h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body mx-auto">
                     <table class="table table-hover table-responsive table-striped" id="ProductsTable">
                         <thead>
                             <tr>
@@ -62,7 +77,7 @@
                                 </th>
 
                                 <th>
-
+                                    Actions
                                 </th>
                             </tr>
                         </thead>
@@ -70,7 +85,7 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td>
+                                    <td class="text-nowrap">
                                         @Html.DisplayFor(modelItem => item.PublishOn)
                                     </td>
                                     <td>
@@ -95,14 +110,14 @@
                                             <img src="@Url.Content(item.ImageUrl)" alt="Image" style="width:75px;height:75px;max-width: 100%; height: auto;" />
                                         }
                                     </td>
-                                    <td>
+                                    <td class="text-nowrap">
                                         @Html.DisplayFor(modelItem => item.User.FullName)
                                     </td>
 
-                                    <td>
-                                        <a asp-action="Edit" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i> </a>
-                                        <a asp-action="Details" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-list"> </i> </a>
-                                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i> </a>
+                                    <td class="text-nowrap">
+                                        <a asp-action="Edit" class="btn btn-sm btn-outline-info border-0" asp-route-id="@item.Id"><i class="fa fa-edit"></i> </a>
+                                        <a asp-action="Details" class="btn btn-sm btn-outline-success border-0" asp-route-id="@item.Id"><i class="fa fa-list-alt"> </i> </a>
+                                        <a asp-action="Delete" class="btn btn-sm btn-outline-danger border-0" asp-route-id="@item.Id"><i class="fa fa-trash-alt"></i> </a>
                                     </td>
                                 </tr>
                             }
