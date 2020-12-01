@@ -2,6 +2,7 @@
 {
     using Entities;
     using Microsoft.EntityFrameworkCore;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -58,6 +59,14 @@
                 
         }
 
+        public async Task<List<Passanger>> GetAllDataAsync()
+        {
+            return await this.context.Passangers
+             .Include(p => p.User)
+             .Select(reg => reg).ToListAsync();
+
+
+        }
 
 
     }

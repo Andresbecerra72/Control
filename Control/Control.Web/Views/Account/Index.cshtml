@@ -49,9 +49,11 @@
                                 @Html.DisplayNameFor(model => model.IsAdmin)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.EmailConfirmed)
+                               Email Confirmed
                             </th>
-                            <th></th>
+                            <th>
+                                Actions
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -85,15 +87,15 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.EmailConfirmed)
                             </td>
-                            <td>
-                                <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog">Delete</button>
+                            <td class="text-nowrap">
+                                <button data-id="@item.Id" class="btn btn-danger deleteItem btn-sm" data-toggle="modal" data-target="#deleteDialog">Delete</button>
                                 @if (item.IsAdmin)
                                 {
-                                    <a asp-action="AdminOff" asp-route-id="@item.Id" class="btn btn-warning">Admin Off</a>
+                                    <a asp-action="AdminOff" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Admin Off</a>
                                 }
                                 else
                                 {
-                                    <a asp-action="AdminOn" asp-route-id="@item.Id" class="btn btn-primary">Admin On</a>
+                                    <a asp-action="AdminOn" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Admin On</a>
                                 }
                             </td>
                         </tr>

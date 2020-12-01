@@ -39,8 +39,7 @@
 
         public User User { get; set; }//relacion de usuarios con los datos reportados
 
-
-
+      
 
 
         //Atributo para el control de la imagen en el API por medio del path en el json

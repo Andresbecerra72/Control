@@ -2,8 +2,8 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h2>KIU FILE LOADER</h2>
+    <br />
+<h4>KIU FILE LOADER</h4>
 <p>Load Excel (xlsx) file extension</p>
 <section>
     <div align="center">
@@ -11,8 +11,8 @@
 
             <input asp-for="ExcelFile" type="file" class="form-control" accept=".xlsx" required>
             <br />
-            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> SAVE</button>
-            <a asp-action="Index" class="btn btn-success"><i class="fa fa-chevron-circle-down"></i> Back to List</a>
+            <button type="submit" class="btn btn-primary mr-2"><i class="fa fa-save"></i> SAVE</button>
+            <a asp-action="Index" class="btn btn-success mr-2"><i class="fa fa-chevron-circle-left"></i> Back to List</a>
             <a asp-action="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete All Data</a>
 
 

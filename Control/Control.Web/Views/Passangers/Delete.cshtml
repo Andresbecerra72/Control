@@ -3,12 +3,12 @@
 @{
     ViewData["Title"] = "Delete";
 }
+    <br />
+<h4>Eliminar Vuelo</h4>
 
-<h2>Eliminar Vuelo</h2>
-
-<h3>¿Esta seguro que desea eliminar este reporte?</h3>
-<div>
-    <h4>Reporte del Vuelo:</h4>
+<h6>¿Esta seguro que desea eliminar este reporte?</h6>
+<div class="mt-3">
+    <h6>Reporte del Vuelo:</h6>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -66,12 +66,18 @@
 
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" id="Id" />
-        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDialog">Delete</button>
-        <a asp-action="Index" class="btn btn-success"><i class="fa fa-chevron-left"></i> Back to List</a>
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDialog">
+            <i class="fa fa-trash-alt"></i>
+                Delete
+        </button>
+        <a asp-action="Index" class="btn btn-success">
+        <i class="fa fa-chevron-left"></i>
+            Back to List
+        </a>
     </form>
 </div>
 
-@*//****esta div esta escondida y es parte del Modal Window***//*@
+@*//****Este div esta escondida y es parte del Modal Window***//*@
 <div class="modal fade" id="confirmDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">

@@ -1,4 +1,64 @@
-﻿#contenedor {
+﻿/*******************
+CSS Reset
+*******************/
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    font-family: sans-serif;
+}
+
+
+ul, ol {
+    list-style: none;
+}
+
+a:visited, a:link, a:focus, a:hover, a:active {
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    /*padding-top: 50px;*/
+    padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+
+
+#contenedor {
     text-align: center;
     margin: auto;
     column-count: 2;
@@ -34,6 +94,7 @@ table {
 
 
 /* --------nuevo Diseño----------*/
+
 .bg-gainsboro {
     background-color: gainsboro;
 }
@@ -42,7 +103,13 @@ table {
      border-radius: 0px; 
 }
 
+.nav-link {
+    font-size: 14px !important;
+}
 
+.nav-link:hover {
+   color: white !important;
+}
 
 .panel {
     margin-bottom: 20px;
@@ -151,3 +218,61 @@ table.dataTable {
     height: 30px;
 }
 
+
+
+
+
+/*---------------------------------------------------------------------*/
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+/******************** MEDIA BREAKING POINTS *************************/
+
+
+/*=============================================
+TABLET HORIZONTAL (LG revisamos en 1024px)
+=============================================*/
+
+@media (max-width:1199px) and (min-width:992px) {
+}
+
+
+/*---------------------------------------------------------------------*/
+
+
+/*=============================================
+TABLET VERTICAL (MD revisamos en 768px)
+=============================================*/
+
+@media (max-width:991px) and (min-width:768px) {
+}
+
+
+/*---------------------------------------------------------------------*/
+
+
+/*=============================================
+MÓVIL HORIZONTAL (SM revisamos en 576px)
+=============================================*/
+
+@media (max-width:767px) and (min-width:576px) {
+}
+
+
+/*---------------------------------------------------------------------*/
+
+
+/*=============================================
+MOVIL VERTICAL (revisamos en 320px)
+=============================================*/
+
+@media screen and (max-width:575px) {
+}
+
+
+/******************** MEDIA MEDIA BREAKING POINTS  END *************************/
