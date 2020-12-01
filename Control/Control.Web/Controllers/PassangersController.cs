@@ -284,157 +284,122 @@
 
 
 
-        // ---------------------------------------------------------
-
-        static DataTable ConvertToDatatable(List<Passanger> list)
-        {
-            DataTable dt = new DataTable();
-
-            dt.Columns.Add("Date");
-            dt.Columns.Add("Fligth");
-            dt.Columns.Add("Adult");
-            dt.Columns.Add("Child");
-            dt.Columns.Add("Infant");
-            dt.Columns.Add("Total");
-            dt.Columns.Add("Image Path");
-            foreach (var item in list)
-            {
-                var row = dt.NewRow();
-
-                row["Date"] = item.PublishOn;
-                row["Fligth"] = item.Flight;
-                row["Adult"] = item.Adult;                 // Convert.ToString(item.Price);
-                row["Child"] = item.Child;
-                row["Infant"] = item.Infant;
-                row["Total"] = item.Total;
-                row["Image Path"] = item.ImageUrl;
-
-                dt.Rows.Add(row);
-            }
-
-            return dt;
-        }
+        // -------------Codigo para descargar y eliminar la base de datos Passanger en Excel--------------------------------------------
 
 
-    
-
-
-
-        // Dowload data in Excel
+        // Download data in Excel
         public IActionResult DownloadExcel(string button)
         {
 
-            using (var package = new ExcelPackage())
+          if(button == "Download") {
+
+                using (var package = new ExcelPackage())
+                {
+
+
+                    //Add a new worksheet to the empty workbook
+                    var worksheet = package.Workbook.Worksheets.Add("Data Base");
+
+
+                    // Obtiene la informacion de la BD Passangers
+                    var passagersArray = this.passangerRepository.GetAllDataAsync().Result; // llega como una lista              
+
+
+                    // Cabecera de la Tabla
+                    worksheet.Cells[1, 1].Value = "Date";
+                    worksheet.Cells[1, 2].Value = "Fligth";
+                    worksheet.Cells[1, 3].Value = "Adult";
+                    worksheet.Cells[1, 4].Value = "Child";
+                    worksheet.Cells[1, 5].Value = "Infant";
+                    worksheet.Cells[1, 6].Value = "Total";
+                    worksheet.Cells[1, 7].Value = "Remark";
+                    worksheet.Cells[1, 8].Value = "Image Path";
+                    worksheet.Cells[1, 9].Value = "User";
+
+
+
+                    //Add some items...
+                    for (int i = 0; i < passagersArray.Count(); i++)
+                    {
+
+                        worksheet.Cells[string.Format("A{0}", i + 2)].Value = passagersArray[i].PublishOn;
+                        worksheet.Cells[string.Format("B{0}", i + 2)].Value = Int32.Parse(passagersArray[i].Flight);
+                        worksheet.Cells[string.Format("C{0}", i + 2)].Value = passagersArray[i].Adult;
+                        worksheet.Cells[string.Format("D{0}", i + 2)].Value = passagersArray[i].Child;
+                        worksheet.Cells[string.Format("E{0}", i + 2)].Value = passagersArray[i].Infant;
+                        worksheet.Cells[string.Format("F{0}", i + 2)].Value = passagersArray[i].Total;
+                        worksheet.Cells[string.Format("G{0}", i + 2)].Value = passagersArray[i].Remark;
+                        worksheet.Cells[string.Format("H{0}", i + 2)].Value = passagersArray[i].ImageFullPath;
+                        worksheet.Cells[string.Format("I{0}", i + 2)].Value = passagersArray[i].User.FullName;
+                    }
+                                                                          
+                    //Ok now format the values;
+                    using (var range = worksheet.Cells[1, 1, 1, 9])
+                    {
+                        range.Style.Font.Bold = true;
+                        range.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        range.Style.Fill.BackgroundColor.SetColor(Color.DarkBlue);
+                        range.Style.Font.Color.SetColor(Color.White);
+                    }
+
+                    worksheet.Cells[string.Format("A2:A{0}", passagersArray.Count() + 1)].Style.Numberformat.Format = "dd/MM/yyyy";   //Format as Date
+
+                    worksheet.Cells.AutoFitColumns(0);  //Autofit columns for all cells
+
+                    // Lets set the header text 
+                    worksheet.HeaderFooter.OddHeader.CenteredText = "&24&U&\"Arial,Regular Bold\" TCP Reports";
+                    // Add the page number to the footer plus the total number of pages
+                    worksheet.HeaderFooter.OddFooter.RightAlignedText =
+                        string.Format("Page {0} of {1}", ExcelHeaderFooter.PageNumber, ExcelHeaderFooter.NumberOfPages);
+                    // Add the sheet name to the footer
+                    worksheet.HeaderFooter.OddFooter.CenteredText = ExcelHeaderFooter.SheetName;
+                    // Add the file path to the footer
+                    // worksheet.HeaderFooter.OddFooter.LeftAlignedText = ExcelHeaderFooter.FilePath + ExcelHeaderFooter.FileName;
+
+                    //worksheet.PrinterSettings.RepeatRows = worksheet.Cells["1:2"];
+                    //worksheet.PrinterSettings.RepeatColumns = worksheet.Cells["A:G"];
+
+                    // Change the sheet view to show it in page layout mode
+                    // worksheet.View.PageLayoutView = true;
+
+                    // Set some document properties
+                    package.Workbook.Properties.Title = "TCP Reports";
+                    package.Workbook.Properties.Author = "APP Control Pasajeros";
+                    package.Workbook.Properties.Comments = "Data Base From SQL Server";
+
+                    // Set some extended property values
+                    package.Workbook.Properties.Company = "SATENA SA";
+
+
+                    // genera el Archivo 
+                    using (var stream = new MemoryStream())
+                    {
+                        string strDateFormat = string.Empty;
+                        strDateFormat = string.Format("{0:yyyy-MM-dd}", DateTime.Now);
+                        package.SaveAs(stream);
+                        var content = stream.ToArray();
+
+                        return File(
+                            content,
+                            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                            string.Format("TCP Reports {0}.xlsx", strDateFormat));
+                    }
+
+
+
+
+                }
+
+
+            }
+            else
             {
 
-               
-                //Add a new worksheet to the empty workbook
-                var worksheet = package.Workbook.Worksheets.Add("Data Base");
+                this.passangerRepository.DeleteAllReportAsync();
 
-                var dataTable = new DataTable();
+                return this.RedirectToAction(nameof(Index));
 
-                var passagersArray = this.passangerRepository.GetAllDataAsync().Result;
-
-
-
-
-                // ------------- Codigo para Imprimir ------------------
-                // System.Diagnostics.Debug.WriteLine("Aqui");
-                // System.Diagnostics.Trace.WriteLine("Aqui"); 
-                // System.Diagnostics.Debug.WriteLine("\n" + item.Flight);
-
-               var datatable = ConvertToDatatable(passagersArray);
-
-                worksheet.Cells[1, 1].Value = "Date";
-                worksheet.Cells[1, 2].Value = "Fligth";
-                worksheet.Cells[1, 3].Value = "Adult";
-                worksheet.Cells[1, 4].Value = "Child";
-                worksheet.Cells[1, 5].Value = "Infant";
-                worksheet.Cells[1, 6].Value = "Total";
-                worksheet.Cells[1, 7].Value = "Remark";
-                worksheet.Cells[1, 8].Value = "Image Path";
-                worksheet.Cells[1, 9].Value = "User";
-
-
-
-                //Add some items...
-
-                for (int i = 0; i < passagersArray.Count(); i++)
-                {
-                    
-                    worksheet.Cells[string.Format("A{0}", i + 2)].Value = passagersArray[i].PublishOn;
-                    worksheet.Cells[string.Format("B{0}", i + 2)].Value = Int32.Parse(passagersArray[i].Flight);
-                    worksheet.Cells[string.Format("C{0}", i + 2)].Value = passagersArray[i].Adult;
-                    worksheet.Cells[string.Format("D{0}", i + 2)].Value = passagersArray[i].Child;
-                    worksheet.Cells[string.Format("E{0}", i + 2)].Value = passagersArray[i].Infant;
-                    worksheet.Cells[string.Format("F{0}", i + 2)].Value = passagersArray[i].Total;
-                    worksheet.Cells[string.Format("G{0}", i + 2)].Value = passagersArray[i].Remark;
-                    worksheet.Cells[string.Format("H{0}", i + 2)].Value = passagersArray[i].ImageFullPath;
-                    worksheet.Cells[string.Format("I{0}", i + 2)].Value = passagersArray[i].User.FullName;
-                }
-
-               
-
-
-
-
-                //Ok now format the values;
-                using (var range = worksheet.Cells[1, 1, 1, 9])
-                {
-                    range.Style.Font.Bold = true;
-                    range.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                    range.Style.Fill.BackgroundColor.SetColor(Color.DarkBlue);
-                    range.Style.Font.Color.SetColor(Color.White);
-                }
-
-                worksheet.Cells[string.Format("A2:A{0}", passagersArray.Count() + 1)].Style.Numberformat.Format = "dd/MM/yyyy";   //Format as Date
-
-                worksheet.Cells.AutoFitColumns(0);  //Autofit columns for all cells
-
-                // Lets set the header text 
-                worksheet.HeaderFooter.OddHeader.CenteredText = "&24&U&\"Arial,Regular Bold\" TCP Reports";
-                // Add the page number to the footer plus the total number of pages
-                worksheet.HeaderFooter.OddFooter.RightAlignedText =
-                    string.Format("Page {0} of {1}", ExcelHeaderFooter.PageNumber, ExcelHeaderFooter.NumberOfPages);
-                // Add the sheet name to the footer
-                worksheet.HeaderFooter.OddFooter.CenteredText = ExcelHeaderFooter.SheetName;
-                // Add the file path to the footer
-                // worksheet.HeaderFooter.OddFooter.LeftAlignedText = ExcelHeaderFooter.FilePath + ExcelHeaderFooter.FileName;
-
-                //worksheet.PrinterSettings.RepeatRows = worksheet.Cells["1:2"];
-                //worksheet.PrinterSettings.RepeatColumns = worksheet.Cells["A:G"];
-
-                // Change the sheet view to show it in page layout mode
-                // worksheet.View.PageLayoutView = true;
-
-                // Set some document properties
-                package.Workbook.Properties.Title = "TCP Reports";
-                package.Workbook.Properties.Author = "APP Control Pasajeros";
-                package.Workbook.Properties.Comments = "Data Base From SQL Server";
-
-                // Set some extended property values
-                package.Workbook.Properties.Company = "SATENA SA";
-
-               
-
-                using (var stream = new MemoryStream())
-                {
-                    string strDateFormat = string.Empty;
-                    strDateFormat = string.Format("{0:yyyy-MM-dd}", DateTime.Now);
-                    package.SaveAs(stream);
-                    var content = stream.ToArray();
-
-                    return File(
-                        content,
-                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                        string.Format("TCP Reports {0}.xlsx", strDateFormat));
-                }
-
-               
-               
-               
             }
-        
 
 
 

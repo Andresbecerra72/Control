@@ -59,6 +59,8 @@
                 
         }
 
+
+        // metodo para llamar todos los datos de la tabla Passanger
         public async Task<List<Passanger>> GetAllDataAsync()
         {
             return await this.context.Passangers
@@ -66,6 +68,13 @@
              .Select(reg => reg).ToListAsync();
 
 
+        }
+
+        //elimina los registros del entity Passanger
+        public async Task DeleteAllReportAsync()
+        {
+            this.context.Passangers.RemoveRange(context.Passangers);
+            await this.context.SaveChangesAsync();
         }
 
 

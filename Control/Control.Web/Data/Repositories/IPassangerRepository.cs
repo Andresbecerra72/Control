@@ -17,7 +17,9 @@
 
         Task<List<Passanger>> GetAllDataAsync();
 
-       
+        Task DeleteAllReportAsync();
+
+
 
     }
 

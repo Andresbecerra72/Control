@@ -10,42 +10,33 @@
 <section>
     <div class="row mt-3">
 
-        <div class="col">
-            <a asp-action="Create" class="btn btn-primary"><i class="fa fa-plus-square"></i> Create New</a>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-8">
+            <a asp-action="Create" class="btn btn-primary mb-3 mr-3"><i class="fa fa-plus-square"></i> Create New</a>
 
-            @if (this.User.IsInRole("Admin"))
+            @if (this.User.IsInRole("Admin") || this.User.IsInRole("Super") )
             {
-                <a asp-area="" asp-controller="KiuReport" asp-action="Create" class="btn btn-success"><i class="fa fa-arrow-circle-up"></i> KIU File Loader</a>
+                <a asp-area="" asp-controller="KiuReport" asp-action="Create" class="btn btn-success mb-3"><i class="fa fa-arrow-circle-up"></i> KIU File Loader</a>
                 @*<a class="btn btn-success" href="http://apps.satena.com.co/ControlPlaneacion"><i class="glyphicon glyphicon-arrow-up"></i> KIU Compare</a>*@
             }
-            @if (this.User.IsInRole("Super"))
-            {
-                <a asp-area="" asp-controller="KiuReport" asp-action="Create" class="btn btn-success"><i class="fa fa-arrow-circle-up"></i> KIU File Loader</a>
-                @*<a class="btn btn-success" href="http://apps.satena.com.co/ControlPlaneacion"><i class="glyphicon glyphicon-arrow-up"></i> KIU Compare</a>*@
-            }
+           
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4">
 
-            @if (this.User.IsInRole("Admin"))
+            @if (this.User.IsInRole("Admin") || this.User.IsInRole("Super") && Model.Count() > 0)
             {
+
             <form asp-action="DownloadExcel" method="post">
-                <button type="submit" class="btn btn-default">
+                <button type="submit" name="button" class="btn btn-default mb-3 mr-3" value="Download">
                     <i class="fa fa-file-excel"></i> Download Data
                 </button>
-              
+                <button type="submit" name="button" class="btn btn-danger mb-3" value="Delete">
+                    <i class="fa fa-trash-alt"></i> Delete All Data
+                </button>
             </form>
 
-
             }
-            @if (this.User.IsInRole("Super"))
-            {
-        <form asp-action="DownloadExcel" method="post">
-            <button type="submit" class="btn btn-default">
-                <i class="fa fa-file-excel"></i> Download Data
-            </button>
-          
-        </form>
-                }
+        
+                
 </div>
     </div>
   
@@ -74,12 +65,12 @@
 
 
                     @*<div class="alert alert-info text-center" role="alert">
-            <strong>Load Data</strong>
-            <br>
-            <i class="fas fa-spinner fa-spin fa-2x"></i>
-            <br>
-            <span class="mt-2">Please Wait</span>
-        </div>*@
+                        <strong>Load Data</strong>
+                        <br>
+                        <i class="fas fa-spinner fa-spin fa-2x"></i>
+                        <br>
+                        <span class="mt-2">Please Wait</span>
+                    </div>*@
 
                     @if (Model.Count() > 0)
                     {
