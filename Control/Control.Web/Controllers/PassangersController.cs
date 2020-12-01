@@ -43,7 +43,7 @@
             {
                
                 return View(this.passangerRepository.GetAllWithUsers());//llama del repositorio generico el metodo getAll y lo ordena por fecha
-            }                                                                           //por que es especifico del repositorio passanger
+            }                                                           //porque es especifico del repositorio passanger
 
             return View(this.passangerRepository.GetAllWithUsersAuthenticated(this.User.Identity.Name.ToString()));
         }

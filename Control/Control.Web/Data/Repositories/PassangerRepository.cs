@@ -2,6 +2,7 @@
 {
     using Entities;
     using Microsoft.EntityFrameworkCore;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -19,7 +20,17 @@
         //este metodo organiza la lista que se consulta por el orden de usuarios
         public IQueryable GetAllWithUsers()
         {
-            return this.context.Passangers.Include(p => p.User).Where(b => b.Flight != null).OrderBy(c => c.PublishOn);//hace la relacion de los registros pasajeros con el usuario
+            DateTime DateToday = DateTime.Now; // Fecha Actual           
+                                                                                       
+            TimeSpan timeSpan = new TimeSpan(30, 12, 1, 1);// TimeSpan object with 30 days, 12 hours, 1 minutes and 1 second. 
+
+            DateTime substarctResult = DateToday - timeSpan; // fecha con 30 días menos (Operacion de Resta)  
+
+            return this.context.Passangers
+                .Include(p => p.User) //hace la relacion de los registros pasajeros con el usuario
+                .Where(b => b.Flight != null) 
+                .Where(s => s.PublishOn > substarctResult && s.PublishOn < DateToday) // selecciona el rango de fechas 
+                .OrderBy(c => c.PublishOn);
         }
 
         public async Task DeleteItemAsync(int id)
