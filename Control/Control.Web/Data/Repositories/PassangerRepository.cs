@@ -71,7 +71,7 @@
         }
 
 
-        // metodo para llamar todos los datos de la tabla Passanger
+        // metodo para llamar todos los datos de la tabla Passanger: Usado para descargar el Archivo de Excel
         public async Task<List<Passanger>> GetAllDataAsync()
         {
             return await this.context.Passangers
@@ -81,7 +81,7 @@
 
         }
 
-        //elimina los registros del entity Passanger
+        // Elimina los registros del entity Passanger
         public async Task DeleteAllReportAsync()
         {
             this.context.Passangers.RemoveRange(context.Passangers);
