@@ -41,16 +41,23 @@
 
             if (this.User.IsInRole("Admin") || this.User.IsInRole("Super"))
             {
-               
-                return View(this.passangerRepository.GetAllWithUsers());//llama del repositorio generico el metodo getAll y lo ordena por fecha
-            }                                                           //porque es especifico del repositorio passanger
+
+                
+
+                IEnumerable<Passanger> PassangersEmpty = Enumerable.Empty<Passanger>();
+                var PassangersData = this.passangerRepository.GetAllWithUsers(); //llama del repositorio generico el metodo getAll y lo ordena por fecha                     
+
+                return View(PassangersData);   
+
+            }
 
             return View(this.passangerRepository.GetAllWithUsersAuthenticated(this.User.Identity.Name.ToString()));
         }
 
+        // -----------------------------------------
+      
 
-
-
+        // --------------------------------------------------------
 
         // GET: Passangers/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -394,13 +401,10 @@
             }
             else
             {
-
                 this.passangerRepository.DeleteAllReportAsync();
-
                 return this.RedirectToAction(nameof(Index));
-
             }
-
+            
 
 
                // return this.RedirectToAction(nameof(Index));

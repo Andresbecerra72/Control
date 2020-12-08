@@ -59,14 +59,19 @@
         <dd>
             @if (!string.IsNullOrEmpty(Model.ImageUrl))
             {
-                <img src="@Url.Content(Model.ImageUrl)" alt="Image" style="width:300px;height:450px;max-width: 100%; height: auto;" />
+                <img src="@Url.Content(Model.ImageUrl)" onerror="this.onerror=null; this.src='/images/no-img.jpg'" alt="Image" style="width:300px;height:450px;max-width: 100%; height: auto;" />
+            }
+            else
+            {
+                <br />
+                <img src="~/images/no-img.jpg" alt="Image" style="width:200px;height:200px;max-width: 100%; height: auto;" />
             }
         </dd>
     </dl>
 
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" id="Id" />
-        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDialog">
+        <button type="button" class="btn btn-danger mr-2" data-toggle="modal" data-target="#confirmDialog">
             <i class="fa fa-trash-alt"></i>
                 Delete
         </button>

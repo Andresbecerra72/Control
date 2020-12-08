@@ -134,7 +134,10 @@
                                         <td>
                                             @if (!string.IsNullOrEmpty(item.ImageUrl))
                                             {
-                                                <img src="@Url.Content(item.ImageUrl)" alt="Image" style="width:75px;height:75px;max-width: 100%; height: auto;" />
+                                                <img src="@Url.Content(item.ImageUrl)" onerror="this.onerror=null; this.src='/images/no-img.jpg'" alt="Image" style="width:75px;height:75px;max-width: 100%; height: auto;" />
+                                            } else
+                                            {
+                                             <img src="~/images/no-img.jpg" alt="Image" style="width:75px;height:75px;max-width: 100%; height: auto;" />
                                             }
                                         </td>
                                         <td class="text-nowrap">
@@ -161,7 +164,9 @@
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script>
     	$(document).ready(function () {
-        	$('#ProductsTable').DataTable();
+        	$('#ProductsTable').DataTable({
+                ordering: false               
+                });
         });           
 
     </script>

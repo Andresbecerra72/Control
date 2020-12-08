@@ -58,14 +58,14 @@
                 {
                     <div class="form-group">
                         <label asp-for="PublishOn" class="control-label"></label>
-                        <div class="input-group date" data-provide="datepicker">
-                            <input asp-for="PublishOn" class="form-control" id="date" />
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
+                        <div class="input-group date">                           
+                                <input asp-for="PublishOn" type="date" class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                            <span asp-validation-for="PublishOn" class="text-danger"></span>
                         </div>
-                        <span asp-validation-for="PublishOn" class="text-danger"></span>
-                    </div>
                 }
 
 
@@ -82,15 +82,19 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
+                    <button type="submit" class="btn btn-primary mr-2"><i class="fa fa-save"></i> Save</button>
                     <a asp-action="Index" class="btn btn-success"><i class="fa fa-chevron-left"></i> Back to List</a>
                 </div>
             </form>
     </div>
-    <div class="col-lg-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-3">
+    <div class="col-lg-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-3 text-center">
         @if (!string.IsNullOrEmpty(Model.ImageUrl))
         {
-        <img src="@Url.Content(Model.ImageUrl)" alt="Image" style="width:600px;height:850px;max-width: 100%; height: auto;" />
+            <img src="@Url.Content(Model.ImageUrl)" onerror="this.onerror=null; this.src='/images/no-img.jpg'" alt="Image" style="width:600px;height:850px;max-width: 100%; height: auto;" />
+        }
+        else
+        {
+            <img src="~/images/no-img.jpg" alt="Image" style="width:200px;height:200px;max-width: 100%; height: auto;" />
         }
     </div>
 </div>
@@ -99,26 +103,14 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script type="text/javascript">
 
-        var dataDB = "@Model.PublishOn"; // toma el dato de la Fecha desde la Base de datos
-        var getDate = dataDB.split(" ");       
+       // var dataDB = "@Model.PublishOn"; // toma el dato de la Fecha desde la Base de datos
+      //  var getDate = dataDB.split(" ");  
+      //  var fecha = new Date(getDate[0]);
        
-        //console.log(getDate[0]);
+     //  console.log(getDate[0]);
+     //  console.log(fecha);
        
-
-        $.fn.datepicker.defaults.format = "dd/MM/yyyy",
-        $('#date').datepicker({
-            startDate: '-3d'
-                });
-
-        $('#date').datepicker().attr('type', 'text').click(function (e) {
-            e.preventDefault();
-        }).datepicker({
-            onSelect: function (dateText) {
-                var d = new Date(dateText),
-                    dv = (d.getDay().toString().pad(2) + '/' + d.getMonth() + 1).toString().pad(2) + '/' + d.getFullYear().toString().pad(4);
-                $(this).val(dv).trigger('change');
-            }
-        }).val(getDate[0]); // .val() coloca el valor por defecto que viene de la Base de Datos
+      
 
         </script>
 }
