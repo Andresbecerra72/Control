@@ -1,22 +1,22 @@
 ﻿namespace Control.Web.Controllers
 {
 
+    using System;
+    using System.IO;
+    using System.Threading.Tasks;
+    using System.Drawing;
+    using System.Linq;
+    using System.Collections.Generic;
     using Data;
     using Data.Entities;
     using Helpers;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
-    using Models;
-    using System;
-    using System.IO;
-    using System.Threading.Tasks;   
+    using Models;    
     using OfficeOpenXml;
-    using OfficeOpenXml.Style;
-    using System.Drawing;
-    using System.Linq;
-    using System.Data; 
-    using System.Collections.Generic;
+    using OfficeOpenXml.Style;   
+    
    
 
     [Authorize] // ACTIVAR SOLICITAR LOGUEO

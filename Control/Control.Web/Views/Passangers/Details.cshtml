@@ -74,9 +74,25 @@
     <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning mr-2">
         <i class="fa fa-edit"></i>
         Edit
-    </a> 
-    <a asp-action="Index"class="btn btn-success">
-    <i class="fa fa-chevron-left"></i> 
-        Back to List
     </a>
+
+
+    @{
+        Microsoft.Extensions.Primitives.StringValues queryVal;
+
+        if (Context.Request.Query.TryGetValue("page", out queryVal) &&
+            queryVal.FirstOrDefault() == "search")
+        {
+        <a class="btn btn-success" asp-area="" asp-controller="Search" asp-action="Index">Back to Search</a>
+
+        }
+        else
+        {
+            <a asp-action="Index" class="btn btn-success">
+                <i class="fa fa-chevron-left"></i>
+                Back to List
+            </a>
+        }
+    }
+
 </div>

@@ -87,14 +87,13 @@ body {
   }
 
 table {
-    display: block;
+    display: inline;
     overflow-x: auto;   
 }
 
 
 
 /* --------nuevo Diseño----------*/
-
 .bg-gainsboro {
     background-color: gainsboro;
 }
@@ -230,6 +229,13 @@ table.dataTable {
     .carousel-caption {
         display: none;
     }
+    table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+   
 }
 /******************** MEDIA BREAKING POINTS *************************/
 
@@ -239,6 +245,12 @@ TABLET HORIZONTAL (LG revisamos en 1024px)
 =============================================*/
 
 @media (max-width:1199px) and (min-width:992px) {
+    table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
 }
 
 
@@ -250,6 +262,12 @@ TABLET VERTICAL (MD revisamos en 768px)
 =============================================*/
 
 @media (max-width:991px) and (min-width:768px) {
+    table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
 }
 
 
