@@ -16,13 +16,17 @@
     [Authorize] // ACTIVAR SOLICITAR LOGUEO
     public class SearchController : Controller
     {
+        /*
+         * Controlador para gestionar la busqueda de registros de vuelo por fecha
+         * solo contiene un VIEW (Index) con un formulario y una tabla
+         *  - desde la tabla se navega a las paginas del CRUD (PassangerController)
+         */
 
-        private List<Passanger> PassangersData;
-        public string FechaSelect;
+        private List<Passanger> PassangersData;        
 
         private readonly IPassangerRepository passangerRepository;//esta es la coneccion al repository para que modifique la base de datos por medio del repositorio
         private readonly IUserHelper userHelper;//esta es la conexion a las tablas de usuario
-        private readonly IConfiguration configuration;
+        private readonly IConfiguration configuration;  // usado para hacer llamadas a BD
 
         public SearchController(IPassangerRepository passangerRepository, IConfiguration configuration, IUserHelper userHelper)
         {
@@ -41,7 +45,7 @@
             
             if (Fecha != "")
             {
-                FechaSelect = Fecha;
+               
                 System.Diagnostics.Debug.WriteLine(Fecha);
                 PassangersData = GetDataByDateAsync(Fecha).Result; // .Result evita convertir el metodo en Async
 
@@ -90,7 +94,7 @@
                                 Infant = int.Parse(sdr["Infant"].ToString()),
                                 Total = int.Parse(sdr["Total"].ToString()),
                                 ImageUrl = sdr["ImageUrl"].ToString(),// se envia la foto que tiene 
-                                User = await this.userHelper.GetUserByIdAsync(sdr["UserId"].ToString()) //ingresa con usuario logueado
+                                User = await this.userHelper.GetUserByIdAsync(sdr["UserId"].ToString()) // busqueda de usuario
                         });
                         }
                         con.Close();
@@ -102,7 +106,7 @@
 
 
         // -----------------------------------------------------------------------------------------------------------------------------------
-        // -------------------Codigo para navegar a PassangerController para realizar el CRUD-----------------------------------------------
+        // -------------------Codigo para navegar a PassangerController para realizar el CRUD (botones de la tabla)-----------------------------------------------
         // --------------------------------------------------------------------------------------------------------------------------------
 
 

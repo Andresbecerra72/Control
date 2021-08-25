@@ -22,6 +22,9 @@
     [Authorize] // ACTIVAR SOLICITAR LOGUEO
     public class PassangersController : Controller
     {
+        /*
+         *  Controlador usado para gestionar el CRUD de los registros de cada vuelo
+         */
         
         private readonly IPassangerRepository passangerRepository;//esta es la coneccion al repository para que modifique la base de datos por medio del repositorio
         private readonly IUserHelper userHelper;//esta es la conexion a las tablas de usuario
@@ -55,8 +58,10 @@
         }
 
         // -----------------------------------------
-      
 
+
+        // --------------------------------------------------------
+        // ---------------Navegación Details view---------------------
         // --------------------------------------------------------
 
         // GET: Passangers/Details/5
@@ -77,6 +82,11 @@
         }
 
 
+
+        // --------------------------------------------------------
+        // ---------------Navegación Create view---------------------
+        // --------------------------------------------------------
+
         // GET: Passangers/Create
 
         //[Authorize(Roles = "Admin")]//acesso con login a usuarios con rol de administrador
@@ -85,7 +95,7 @@
             return View();
         }
 
-        // POST: Passangers/Create
+        // POST: Passangers/Create     * Acción
         [HttpPost]
        
         [ValidateAntiForgeryToken]
@@ -148,6 +158,11 @@
             };
         }
 
+
+        // --------------------------------------------------------
+        // ---------------Navegación Edit view---------------------
+        // --------------------------------------------------------
+
         // GET: Passangers/Edit/5
         //[Authorize(Roles = "Super, Admin")]//acesso con login a usuarios con rol de administrador
         public async Task<IActionResult> Edit(int? id)
@@ -188,7 +203,7 @@
 
 
 
-        // POST: Passangers/Edit/5
+        // POST: Passangers/Edit/5    * Acción
         [HttpPost]
        
         [ValidateAntiForgeryToken]
@@ -241,7 +256,9 @@
             return View(view);
         }
 
-
+        // --------------------------------------------------------
+        // ---------------Navegación Delete view---------------------
+        // --------------------------------------------------------
 
         // GET: Passangers/Delete/5
         [Authorize(Roles = "Super, Admin")]//acesso con login a usuarios con rol de administrador
@@ -261,7 +278,7 @@
             return View(passanger);
         }
 
-        // POST: Passangers/Delete/5
+        // POST: Passangers/Delete/5    * Acción
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
